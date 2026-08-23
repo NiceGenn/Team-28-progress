@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Где проект сейчас, что делать на этой неделе и что осталось до защиты.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E">
+<title>Штаб «Точки перемен»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=PT+Serif:wght@700&display=swap">
+
+<style>
+:root{
+  --ground:#EEF2F5; --surface:#FFFFFF; --surface-2:#F6F9FB; --border:#D7E0E7;
+  --ink:#141D25; --ink-2:#4A5A69; --muted:#7C8B99;
+  --accent:#2D5D7C; --accent-soft:#E2EDF4; --accent-line:#B9D2E2;
+  --done:#2E7D5B; --done-soft:#E1F0E8;
+  --now:#9E6404; --now-soft:#FAEFD9; --now-line:#E6C387;
+  --risk:#AC372A; --risk-soft:#F8E6E3;
+  --idle:#8FA0AD;
+  --shadow:0 1px 2px rgba(20,29,37,.05), 0 8px 24px -12px rgba(20,29,37,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F161C; --surface:#18212A; --surface-2:#1D2831; --border:#2B3945;
+    --ink:#E6EDF3; --ink-2:#AAB9C5; --muted:#7E8E9C;
+    --accent:#83B6D8; --accent-soft:#1C2C38; --accent-line:#2F4A5C;
+    --done:#63BC90; --done-soft:#16291F;
+    --now:#DDA54C; --now-soft:#2A2317; --now-line:#4D3F1E;
+    --risk:#E2776A; --risk-soft:#2C1B18;
+    --idle:#66757F;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F161C; --surface:#18212A; --surface-2:#1D2831; --border:#2B3945;
+  --ink:#E6EDF3; --ink-2:#AAB9C5; --muted:#7E8E9C;
+  --accent:#83B6D8; --accent-soft:#1C2C38; --accent-line:#2F4A5C;
+  --done:#63BC90; --done-soft:#16291F;
+  --now:#DDA54C; --now-soft:#2A2317; --now-line:#4D3F1E;
+  --risk:#E2776A; --risk-soft:#2C1B18;
+  --idle:#66757F;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Golos Text","Segoe UI",system-ui,sans-serif;
+  font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:32px 20px 72px; display:flex; flex-direction:column; gap:28px}
+h1,h2,h3{font-family:"PT Serif",Georgia,serif; font-weight:700; text-wrap:balance; margin:0}
+h1{font-size:clamp(26px,4vw,38px); line-height:1.15; letter-spacing:-.01em}
+h2{font-size:20px; line-height:1.25}
+h3{font-size:16px; line-height:1.3}
+p{margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
+.eyebrow{
+  font-size:11px; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ---------- шапка ---------- */
+header .kicker{color:var(--accent); font-weight:600; font-size:13px; letter-spacing:.04em}
+header h1{margin:6px 0 10px}
+header .sub{color:var(--ink-2); max-width:62ch}
+
+.facts{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+.fact{
+  background:var(--surface); border:1px solid var(--border); border-radius:8px;
+  padding:9px 13px; display:flex; flex-direction:column; gap:1px; box-shadow:var(--shadow);
+}
+.fact .k{font-size:11px; color:var(--muted); letter-spacing:.05em; text-transform:uppercase; font-weight:600}
+.fact .v{font-size:15px; font-weight:600}
+.fact.hot .v{color:var(--now)}
+
+/* ---------- лента ---------- */
+.panel{
+  background:var(--surface); border:1px solid var(--border); border-radius:12px;
+  padding:22px; box-shadow:var(--shadow);
+}
+.panel > .head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px}
+.track{
+  position:relative; height:34px; margin:26px 0 8px;
+  background:var(--surface-2); border:1px solid var(--border); border-radius:6px;
+}
+.seg{
+  position:absolute; top:5px; height:22px; border-radius:4px;
+  background:var(--accent-soft); border:1px solid var(--accent-line);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+  font-size:11px; font-weight:600; color:var(--accent); white-space:nowrap;
+}
+.seg[data-state="done"]{background:var(--done-soft); border-color:var(--done); color:var(--done)}
+.seg[data-state="now"]{background:var(--now-soft); border-color:var(--now-line); color:var(--now)}
+.today{position:absolute; top:-9px; bottom:-9px; width:2px; background:var(--risk); z-index:3}
+.today b{
+  position:absolute; top:-21px; left:50%; transform:translateX(-50%);
+  font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--risk); white-space:nowrap;
+}
+.stages{list-style:none; margin:18px 0 0; padding:0; display:grid; gap:8px}
+.stages li{
+  display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center;
+  padding:9px 12px; border-radius:8px; background:var(--surface-2); border:1px solid transparent;
+}
+.stages li[data-state="now"]{background:var(--now-soft); border-color:var(--now-line)}
+.stages li[data-state="done"]{opacity:.72}
+.dot{width:9px; height:9px; border-radius:50%; background:var(--idle)}
+.stages li[data-state="done"] .dot{background:var(--done)}
+.stages li[data-state="now"] .dot{background:var(--now); box-shadow:0 0 0 4px color-mix(in srgb, var(--now) 22%, transparent)}
+.stages .nm{font-weight:600; font-size:14px}
+.stages .dates{font-size:13px; color:var(--ink-2); white-space:nowrap}
+[contenteditable]{
+  border-bottom:1px dashed var(--accent-line); padding:0 2px; border-radius:2px; outline:none;
+}
+[contenteditable]:focus{background:var(--accent-soft); border-bottom-color:var(--accent)}
+
+/* ---------- сейчас ---------- */
+.now-panel{border-color:var(--now-line); background:linear-gradient(180deg, var(--now-soft), var(--surface) 90px)}
+.tasks{list-style:none; margin:0; padding:0; display:grid; gap:2px}
+.tasks li{display:grid; grid-template-columns:auto 1fr; gap:11px; align-items:start; padding:8px 6px; border-radius:7px}
+.tasks li:hover{background:var(--surface-2)}
+.tasks input[type=checkbox]{
+  appearance:none; width:18px; height:18px; margin:2px 0 0; flex:none; cursor:pointer;
+  border:1.5px solid var(--muted); border-radius:5px; background:var(--surface); position:relative;
+}
+.tasks input[type=checkbox]:checked{background:var(--done); border-color:var(--done)}
+.tasks input[type=checkbox]:checked::after{
+  content:""; position:absolute; left:5px; top:1px; width:5px; height:10px;
+  border:solid #fff; border-width:0 2px 2px 0; transform:rotate(43deg);
+}
+.tasks input[type=checkbox]:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.tasks label{cursor:pointer}
+.tasks .t{font-weight:600; font-size:14px}
+.tasks input:checked + label .t{text-decoration:line-through; color:var(--muted)}
+.tasks .why{font-size:13px; color:var(--ink-2); display:block; margin-top:1px}
+.tag{
+  font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  padding:2px 6px; border-radius:4px; margin-left:7px; white-space:nowrap;
+  background:var(--risk-soft); color:var(--risk); vertical-align:1px;
+}
+.tag.people{background:var(--accent-soft); color:var(--accent)}
+
+.callout{
+  margin-top:16px; padding:13px 15px; border-radius:8px;
+  background:var(--risk-soft); border:1px solid color-mix(in srgb, var(--risk) 35%, transparent);
+  font-size:13.5px; color:var(--ink);
+}
+.callout b{color:var(--risk)}
+
+/* ---------- две колонки ---------- */
+.cols{display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start}
+@media (max-width:840px){ .cols{grid-template-columns:1fr} }
+
+/* ---------- документы ---------- */
+.docs{display:grid; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:9px; overflow:hidden}
+.docs .row{display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center; padding:9px 12px; background:var(--surface)}
+.docs .row .n{font-size:13.5px; font-weight:500}
+.docs .row .n small{display:block; color:var(--muted); font-size:11.5px; font-weight:400}
+.chip{
+  font-family:inherit; font-size:11px; font-weight:700; letter-spacing:.04em;
+  padding:4px 9px; border-radius:20px; border:1px solid var(--border); cursor:pointer;
+  background:var(--surface-2); color:var(--muted); white-space:nowrap; min-width:96px;
+}
+.chip[data-state="work"]{background:var(--now-soft); border-color:var(--now-line); color:var(--now)}
+.chip[data-state="done"]{background:var(--done-soft); border-color:var(--done); color:var(--done)}
+.chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ---------- баллы ---------- */
+.score{display:grid; gap:9px}
+.score .r{display:grid; grid-template-columns:1fr 58px; gap:10px; align-items:center; font-size:13px}
+.score .bar{height:7px; border-radius:4px; background:var(--surface-2); overflow:hidden; margin-top:4px}
+.score .bar i{display:block; height:100%; background:var(--accent); border-radius:4px}
+.score .r[data-risk="1"] .bar i{background:var(--now)}
+.score .pts{text-align:right; font-weight:600; font-size:12.5px; color:var(--ink-2)}
+.score .total{
+  display:flex; justify-content:space-between; align-items:baseline;
+  border-top:1px solid var(--border); padding-top:11px; margin-top:4px; font-weight:600;
+}
+.score .total b{font-size:22px; font-family:"PT Serif",serif}
+
+/* ---------- работает ---------- */
+.works{display:grid; grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:9px}
+.works div{
+  background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:10px 12px;
+}
+.works .num{font-family:"PT Serif",serif; font-size:19px; font-weight:700; color:var(--accent); line-height:1.1}
+.works .lb{font-size:12px; color:var(--ink-2); margin-top:3px}
+
+/* ---------- вопросы ---------- */
+.qs{list-style:none; margin:0; padding:0; display:grid; gap:2px}
+.qs li{display:grid; grid-template-columns:auto 1fr; gap:11px; align-items:start; padding:7px 6px; border-radius:7px; font-size:13.5px}
+.qs li:hover{background:var(--surface-2)}
+.qs input[type=checkbox]{
+  appearance:none; width:16px; height:16px; margin:3px 0 0; flex:none; cursor:pointer;
+  border:1.5px solid var(--muted); border-radius:4px; background:var(--surface); position:relative;
+}
+.qs input[type=checkbox]:checked{background:var(--accent); border-color:var(--accent)}
+.qs input[type=checkbox]:checked::after{
+  content:""; position:absolute; left:4.5px; top:.5px; width:4px; height:9px;
+  border:solid #fff; border-width:0 2px 2px 0; transform:rotate(43deg);
+}
+.qs input:checked + label{text-decoration:line-through; color:var(--muted)}
+.qs label{cursor:pointer}
+
+.notes{
+  white-space:pre-wrap; min-height:88px; padding:13px 15px; border-radius:9px; background:var(--surface-2);
+  border:1px dashed var(--accent-line); font-size:14px; line-height:1.6;
+}
+.notes:focus{border-style:solid; border-color:var(--accent); background:var(--surface)}
+
+footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px; line-height:1.7}
+@media (prefers-reduced-motion:reduce){ *{animation:none!important; transition:none!important} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28</div>
+  <h1>Оптимизация приёма и отработки сообщений граждан</h1>
+  <p class="sub">Благовещенский муниципальный округ. Предмет проекта — процесс приёма, маршрутизации и контроля исполнения сообщений о проблемах благоустройства и жизнеобеспечения. Бот «Точка перемен» — внедрённое мероприятие.</p>
+
+  <div class="facts">
+    <div class="fact"><span class="k">Период проекта</span><span class="v mono">22.07 — 30.09.2026</span></div>
+    <div class="fact hot"><span class="k">До закрытия</span><span class="v mono" id="leftClose">—</span></div>
+    <div class="fact hot"><span class="k">До сдачи материалов</span><span class="v mono" id="leftSubmit">—</span></div>
+    <div class="fact"><span class="k">Приказ</span><span class="v">издан, копия ожидается</span></div>
+    <div class="fact"><span class="k">Заявка на конкурс</span><span class="v">подана 30.07, в срок</span></div>
+  </div>
+</header>
+
+<section class="panel">
+  <div class="head">
+    <h2>Где мы сейчас</h2>
+    <span class="eyebrow">даты правятся прямо здесь</span>
+  </div>
+
+  <div class="track" id="track"></div>
+
+  <ol class="stages" id="stages">
+    <li data-state="done">
+      <span class="dot"></span>
+      <span class="nm">Старт проекта</span>
+      <span class="dates mono"><span class="d1" contenteditable="true" spellcheck="false">22.07.2026</span> — <span class="d2" contenteditable="true" spellcheck="false">31.07.2026</span></span>
+    </li>
+    <li data-state="now">
+      <span class="dot"></span>
+      <span class="nm">Диагностика и целевое состояние</span>
+      <span class="dates mono"><span class="d1" contenteditable="true" spellcheck="false">03.08.2026</span> — <span class="d2" contenteditable="true" spellcheck="false">04.09.2026</span></span>
+    </li>
+    <li data-state="idle">
+      <span class="dot"></span>
+      <span class="nm">Реализация плана мероприятий</span>
+      <span class="dates mono"><span class="d1" contenteditable="true" spellcheck="false">07.09.2026</span> — <span class="d2" contenteditable="true" spellcheck="false">23.09.2026</span></span>
+    </li>
+    <li data-state="idle">
+      <span class="dot"></span>
+      <span class="nm">Анализ результатов и закрытие</span>
+      <span class="dates mono"><span class="d1" contenteditable="true" spellcheck="false">24.09.2026</span> — <span class="d2" contenteditable="true" spellcheck="false">30.09.2026</span></span>
+    </li>
+  </ol>
+
+  <p style="margin-top:14px; font-size:13px; color:var(--ink-2)">
+    Период отсчитан от стартового вебинара 22.07.2026. Два месяца восемь дней: закрытие успевает до сдачи материалов 01.10 и попадает в III квартал — окно защиты. Растянуть период нельзя: за 30.09 проект не закрыт, и справку проекта заполнять не из чего. Обратная сторона — срок ниже ориентира «6 ± 2 месяца» из тренинга; на защите ответ готов: значительная часть мероприятий внедрена в ходе пилота, параллельно с диагностикой. <b>После получения копии приказа даты сверить</b> и, если расходятся, поправить в строках выше.
+  </p>
+</section>
+
+<section class="panel now-panel">
+  <div class="head">
+    <h2>Что делать на этой неделе</h2>
+    <span class="eyebrow">24 — 31 августа</span>
+  </div>
+
+  <ul class="tasks">
+    <li>
+      <input type="checkbox" id="t1">
+      <label for="t1"><span class="t">Договориться с куратором о согласовании карты<span class="tag people">нужен куратор</span></span>
+        <span class="why">Карта текущего состояния подлежит обязательному согласованию лично или по ВКС. Это единственное, что нельзя сделать в последний день — встречу назначают заранее.</span></label>
+    </li>
+    <li>
+      <input type="checkbox" id="t2">
+      <label for="t2"><span class="t">Раздать анкету замеров «как было»<span class="tag people">нужны сотрудники</span></span>
+        <span class="why">Каналы приёма, число сообщений в месяц, журнал регистрации, доля повторных обращений. Самая долгая работа: зависит не от нас.</span></label>
+    </li>
+    <li>
+      <input type="checkbox" id="t3">
+      <label for="t3"><span class="t">Хронометраж: замерить операции процесса<span class="tag people">нужны сотрудники</span></span>
+        <span class="why">Сколько минут занимали регистрация одного сообщения, поиск ответственного, передача поручения. Без этих цифр эффект проекта недоказуем — и сам хронометраж идёт в зачёт как инструмент.</span></label>
+    </li>
+    <li>
+      <input type="checkbox" id="t4">
+      <label for="t4"><span class="t">Гемба: посмотреть процесс на месте</span>
+        <span class="why">Фиксируем только то, что видим. Ищем несовершенство в процессе, а не в людях.</span></label>
+    </li>
+    <li>
+      <input type="checkbox" id="t5">
+      <label for="t5"><span class="t">Карта текущего состояния в draw.io</span>
+        <span class="why">Условные обозначения из методики. ВПП — парой «минимум — максимум». Проблемы нумеруются и собираются в список.</span></label>
+    </li>
+    <li>
+      <input type="checkbox" id="t6">
+      <label for="t6"><span class="t">Реестр потерь и «5 почему»</span>
+        <span class="why">Восемь видов потерь официальными названиями — это 2 балла из 2. Корневые причины нужны для слайда 4 презентации.</span></label>
+    </li>
+    <li>
+      <input type="checkbox" id="t7">
+      <label for="t7"><span class="t">Получить копию приказа<span class="tag people">нужна администрация</span></span>
+        <span class="why">Точные даты, название проекта дословно, состав команды. Копия приказа — обязательный документ пакета на защиту.</span></label>
+    </li>
+    <li>
+      <input type="checkbox" id="t8">
+      <label for="t8"><span class="t">Карточка проекта на подпись</span>
+        <span class="why">Заполнена, кроме владельца процесса, должности руководителя и состава команды. Базовые значения — с оговоркой «уточняются в рамках хронометража».</span></label>
+    </li>
+    <li>
+      <input type="checkbox" id="t9">
+      <label for="t9"><span class="t">Записать команду на обучение<span class="tag">срочно</span></span>
+        <span class="why">Единственный критерий, где можно провалиться. Сертификаты нужны у более чем 60 % команды, и быстрее это не станет.</span></label>
+    </li>
+  </ul>
+
+  <div class="callout">
+    <b>Порядок важен.</b> Замеры и согласование с куратором запускаются первыми: они упираются в чужое расписание. Карту, реестр потерь и «5 почему» можно делать параллельно — они зависят только от нас.
+  </div>
+</section>
+
+<div class="cols">
+
+  <section class="panel">
+    <div class="head"><h2>Документы пакета</h2><span class="eyebrow">клик по статусу</span></div>
+    <div class="docs" id="docs">
+      <div class="row"><span class="n">Приказ об открытии проекта<small>издан, нужна копия</small></span><button class="chip" data-state="work">в работе</button></div>
+      <div class="row"><span class="n">Карточка проекта<small>Приложение № 1, форма МПК</small></span><button class="chip" data-state="work">в работе</button></div>
+      <div class="row"><span class="n">Карта текущего состояния<small>draw.io, согласование с куратором</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Анализ проблем<small>«5 почему», Исикава, реестр потерь</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Карта целевого состояния<small>draw.io</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">План мероприятий<small>Приложение № 3</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Карта достигнутого состояния<small>без проблем и мероприятий</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Отчёт о результатах<small>Приложение № 4</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Стандарт процесса<small>регламент, даёт балл</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Отчётная презентация<small>7 слайдов, ждём шаблон</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Речь защиты<small>доклад 10 мин + ответы 10 мин</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Справка проекта<small>Приложение № 2 к 99-р, pdf</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Заявка на конкурс<small>подана 30.06.2026</small></span><button class="chip" data-state="done">готово</button></div>
+    </div>
+  </section>
+
+  <div style="display:grid; gap:20px">
+
+    <section class="panel">
+      <div class="head"><h2>Баллы конкурса</h2><span class="eyebrow">заочный этап</span></div>
+      <div class="score">
+        <div class="r"><div>Инструменты бережливого управления<div class="bar"><i style="width:100%"></i></div></div><div class="pts">1,5 / 1,5</div></div>
+        <div class="r" data-risk="1"><div>Доля обученных в команде<div class="bar"><i style="width:33%"></i></div></div><div class="pts">? / 1,5</div></div>
+        <div class="r"><div>Масштабность проекта<div class="bar"><i style="width:75%"></i></div></div><div class="pts">1,5–2 / 2</div></div>
+        <div class="r"><div>Количество видов потерь<div class="bar"><i style="width:100%"></i></div></div><div class="pts">2 / 2</div></div>
+        <div class="r"><div>Источник проблематики<div class="bar"><i style="width:100%"></i></div></div><div class="pts">2 / 2</div></div>
+        <div class="r"><div>Стандартизация результатов<div class="bar"><i style="width:100%"></i></div></div><div class="pts">1 / 1</div></div>
+        <div class="r"><div>Соответствие формам<div class="bar"><i style="width:100%"></i></div></div><div class="pts">1 / 1</div></div>
+        <div class="r"><div>Цифровое решение<div class="bar"><i style="width:100%"></i></div></div><div class="pts">2 / 2</div></div>
+        <div class="r"><div>Актуальность<div class="bar"><i style="width:100%"></i></div></div><div class="pts">4 / 4</div></div>
+        <div class="total"><span>Реалистичный итог</span><b>15,5–16 из 16</b></div>
+      </div>
+      <p style="margin-top:12px; font-size:13px; color:var(--ink-2)">Провал возможен ровно в одном месте — обучение. Масштабность вырастет до максимума, если в цепочках исполнения есть сторонние организации: подрядчики, ресурсоснабжающие, ЕДДС.</p>
+    </section>
+
+    <section class="panel">
+      <div class="head"><h2>Проект уже работает</h2></div>
+      <div class="works">
+        <div><div class="num">2</div><div class="lb">канала на равных: Telegram и MAX</div></div>
+        <div><div class="num">17</div><div class="lb">категорий в 4 направлениях с головными замами</div></div>
+        <div><div class="num">3</div><div class="lb">уровня эскалации: цепочка → зам → глава округа</div></div>
+        <div><div class="num">100 м</div><div class="lb">радиус сквозной дедупликации за 14 дней</div></div>
+        <div><div class="num">224</div><div class="lb">автотеста ядра</div></div>
+        <div><div class="num">2.53.5</div><div class="lb">версия панели администрации</div></div>
+      </div>
+      <p style="margin-top:13px; font-size:13px; color:var(--ink-2)">ИИ-классификация, каскад геопривязки, SLA-таймеры с автоэскалацией, доказательное закрытие с фото и оценкой гражданина, автовозврат в работу при оценке ≤ 2, панель со статистикой и картой. Показатели «как стало» выгружаются из системы в любой момент — считать нечего, они уже считаются.</p>
+    </section>
+
+  </div>
+</div>
+
+<section class="panel">
+  <div class="head"><h2>Что уточнить</h2><span class="eyebrow">отмечайте по мере ответов</span></div>
+  <ul class="qs">
+    <li><input type="checkbox" id="q1"><label for="q1">Копия приказа: точные даты, название дословно, состав команды</label></li>
+    <li><input type="checkbox" id="q2"><label for="q2">Кто владелец процесса — должность и ФИО</label></li>
+    <li><input type="checkbox" id="q3"><label for="q3">Должность руководителя проекта для карточки</label></li>
+    <li><input type="checkbox" id="q4"><label for="q4">Название команды и её состав из поданной заявки, 2–5 человек</label></li>
+    <li><input type="checkbox" id="q5"><label for="q5">Есть ли в цепочках сторонние организации — подрядчики, РСО, УК, ЕДДС</label></li>
+    <li><input type="checkbox" id="q6"><label for="q6">Кто назначен куратором проекта от МПК или АЦОПП</label></li>
+    <li><input type="checkbox" id="q7"><label for="q7">Дата заседания Проектного комитета и когда направлять материалы</label></li>
+    <li><input type="checkbox" id="q8"><label for="q8">Сертификаты об обучении — собрать со всей команды</label></li>
+    <li><input type="checkbox" id="q9"><label for="q9">Шаблон презентации: цвета, шрифты, соотношение сторон</label></li>
+    <li><input type="checkbox" id="q10"><label for="q10">Численность жителей округа и число населённых пунктов</label></li>
+    <li><input type="checkbox" id="q11"><label for="q11">Затраты на реализацию в рублях — требуются на слайде результатов</label></li>
+    <li><input type="checkbox" id="q12"><label for="q12">Трактовка термина «заказчик процесса» — источники расходятся</label></li>
+  </ul>
+</section>
+
+<section class="panel">
+  <div class="head"><h2>Заметки</h2><span class="eyebrow">пишите прямо сюда</span></div>
+  <div class="notes" contenteditable="true">Что сказал куратор, что ответила администрация, к чему вернуться.</div>
+</section>
+
+<footer>
+  Отметки, статусы, даты и заметки сохраняются <b>в вашем браузере</b> —
+  у каждого свои, между людьми не синхронизируются.<br>
+  Содержание страницы обновляет руководитель проекта.
+  <a href="#" id="reset">Сбросить мои отметки</a>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var CLOSE = new Date(2026,8,30), SUBMIT = new Date(2026,9,1);
+  function parse(s){
+    var m = String(s||"").trim().match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+    return m ? new Date(+m[3], +m[2]-1, +m[1]) : null;
+  }
+  function days(a,b){ return Math.round((b-a)/86400000); }
+  function plural(n){
+    var a = Math.abs(n)%100, b = a%10;
+    if(a>10 && a<20) return "дней";
+    if(b>1 && b<5) return "дня";
+    if(b===1) return "день";
+    return "дней";
+  }
+  function today(){ var d=new Date(); d.setHours(0,0,0,0); return d; }
+
+  function counters(){
+    var t = today();
+    var a = days(t, CLOSE), b = days(t, SUBMIT);
+    document.getElementById("leftClose").textContent  = a>=0 ? a+" "+plural(a) : "срок прошёл";
+    document.getElementById("leftSubmit").textContent = b>=0 ? b+" "+plural(b) : "срок прошёл";
+  }
+
+  function draw(){
+    var track = document.getElementById("track");
+    var items = Array.prototype.slice.call(document.querySelectorAll("#stages li"));
+    var pairs = items.map(function(li){
+      return [parse(li.querySelector(".d1").textContent), parse(li.querySelector(".d2").textContent)];
+    });
+    if(pairs.some(function(p){ return !p[0] || !p[1]; })) return;
+
+    var min = Math.min.apply(null, pairs.map(function(p){ return +p[0]; }));
+    var max = Math.max.apply(null, pairs.map(function(p){ return +p[1]; }));
+    var span = max - min;
+    if(span <= 0) return;
+
+    track.textContent = "";
+    var t = +today();
+    items.forEach(function(li, i){
+      var seg = document.createElement("div");
+      seg.className = "seg";
+      var state = pairs[i][1] < t ? "done" : (pairs[i][0] <= t ? "now" : "idle");
+      seg.setAttribute("data-state", state);
+      seg.style.left  = ((pairs[i][0]-min)/span*100) + "%";
+      seg.style.width = Math.max((pairs[i][1]-pairs[i][0])/span*100, 2) + "%";
+      seg.textContent = String(i+1);
+      seg.title = li.querySelector(".nm").textContent.trim();
+      track.appendChild(seg);
+      li.setAttribute("data-state", state);
+      var nm = li.querySelector(".nm");
+      var old = nm.querySelector(".tag");
+      if(old) old.remove();
+      if(state === "now"){
+        var tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = "мы здесь";
+        nm.appendChild(document.createTextNode(" "));
+        nm.appendChild(tag);
+      }
+    });
+
+    if(t >= min && t <= max){
+      var mark = document.createElement("div");
+      mark.className = "today";
+      mark.style.left = ((t-min)/span*100) + "%";
+      var lb = document.createElement("b");
+      lb.textContent = "сегодня";
+      mark.appendChild(lb);
+      track.appendChild(mark);
+    }
+  }
+
+  document.getElementById("stages").addEventListener("input", draw);
+
+  document.getElementById("docs").addEventListener("click", function(e){
+    var chip = e.target.closest(".chip");
+    if(!chip) return;
+    var order = ["idle","work","done"], labels = {idle:"не начато", work:"в работе", done:"готово"};
+    var next = order[(order.indexOf(chip.getAttribute("data-state")) + 1) % order.length];
+    chip.setAttribute("data-state", next);
+    chip.textContent = labels[next];
+  });
+
+  counters();
+  draw();
+})();
+</script>
+
+<script>
+/* Сохранение состояния в браузере посетителя: у каждого своё, между людьми
+   не синхронизируется. На GitHub Pages общего хранилища нет. */
+(function(){
+  var KEY = "shtab-tochka-peremen-v1";
+  function all(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+  var LABELS = { idle: "не начато", work: "в работе", done: "готово" };
+
+  function collect(){
+    var st = { checks:{}, chips:[], dates:[], notes:"" };
+    all("input[type=checkbox]").forEach(function(c){ if(c.id) st.checks[c.id] = c.checked; });
+    all("#docs .chip").forEach(function(c){ st.chips.push(c.getAttribute("data-state")); });
+    all("#stages .d1, #stages .d2").forEach(function(d){ st.dates.push(d.textContent.trim()); });
+    var n = document.querySelector(".notes");
+    if(n) st.notes = n.innerText;
+    return st;
+  }
+
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(collect())); } catch(e){}
+  }
+
+  function restore(){
+    var raw = null;
+    try { raw = localStorage.getItem(KEY); } catch(e){ return; }
+    if(!raw) return;
+    var st;
+    try { st = JSON.parse(raw); } catch(e){ return; }
+    var checks = st.checks || {};
+    all("input[type=checkbox]").forEach(function(c){
+      if(c.id && Object.prototype.hasOwnProperty.call(checks, c.id)) c.checked = !!checks[c.id];
+    });
+    all("#docs .chip").forEach(function(c, i){
+      var v = (st.chips || [])[i];
+      if(v && LABELS[v]){ c.setAttribute("data-state", v); c.textContent = LABELS[v]; }
+    });
+    all("#stages .d1, #stages .d2").forEach(function(d, i){
+      var v = (st.dates || [])[i];
+      if(v) d.textContent = v;
+    });
+    var n = document.querySelector(".notes");
+    if(n && typeof st.notes === "string" && st.notes.trim()) n.textContent = st.notes;
+  }
+
+  restore();
+  // пересчитать ленту времени под восстановленные даты
+  document.getElementById("stages").dispatchEvent(new Event("input", { bubbles: true }));
+
+  document.addEventListener("change", save);
+  document.addEventListener("input", save);
+  document.addEventListener("blur", save, true);
+  document.addEventListener("click", function(e){
+    if(e.target.closest(".chip")) setTimeout(save, 0);
+  });
+
+  var reset = document.getElementById("reset");
+  if(reset) reset.addEventListener("click", function(e){
+    e.preventDefault();
+    if(!confirm("Сбросить ваши отметки, статусы и заметки к исходным?")) return;
+    try { localStorage.removeItem(KEY); } catch(err){}
+    location.reload();
+  });
+})();
+</script>
+
+</body>
+</html>
