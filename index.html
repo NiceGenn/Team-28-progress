@@ -323,6 +323,24 @@ header .sub{color:var(--ink-2); max-width:62ch}
 }
 .printbtn:hover{background:var(--accent-soft)}
 .printbtn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ---------- версия страницы ---------- */
+.ver{
+  float:right; margin:2px 10px 0 0; font-size:11.5px; letter-spacing:0;
+  color:var(--muted); border:1px solid var(--border); border-radius:6px;
+  padding:5px 9px; background:var(--surface); white-space:nowrap;
+}
+.changelog{ display:block; text-align:left; margin:16px auto 0;
+  max-width:640px; font-size:12.5px; color:var(--muted) }
+.changelog summary{ cursor:pointer; color:var(--accent); font-weight:600;
+  list-style:none; display:inline-block; padding:2px 0 }
+.changelog summary::-webkit-details-marker{display:none}
+.changelog summary::before{content:"▸ "}
+.changelog[open] summary::before{content:"▾ "}
+.changelog ul{ list-style:none; margin:8px 0 0; padding:0 }
+.changelog li{ padding:5px 0; border-top:1px solid var(--border); line-height:1.55 }
+.changelog li:first-child{border-top:0}
+.changelog b{ color:var(--ink); font-weight:600 }
 .printhead{display:none}
 footer .prn{display:none}
 
@@ -346,6 +364,12 @@ footer .prn{display:none}
   h1{ font-size:17pt } h2{ font-size:12.5pt } h3{ font-size:11pt }
 
   .printbtn{ display:none }
+  /* версия обязана попасть на бумагу: иначе не понять, какая распечатка
+     на руках у участника и не устарела ли она */
+  .ver{ float:none; margin:0; border:0; padding:0; background:none;
+        font-size:8.5pt; color:#333 }
+  header .ver{ display:none }   /* на бумаге версия одна — в печатной шапке */
+  .changelog{ display:none }
   .printhead{
     display:flex; justify-content:space-between; align-items:baseline; gap:10mm;
     border-bottom:1.2pt solid #000; padding-bottom:2mm; margin-bottom:1mm;
@@ -446,11 +470,13 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <div class="ph-2">
     <span>Участник: <i></i></span>
     <span>Распечатано: <i></i></span>
+    <span class="ver mono">в. 1.4 · 27.08.2026</span>
   </div>
 </div>
 
 <header>
   <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28
+    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 1.4 · 27.08.2026</span>
     <button class="printbtn" type="button" onclick="window.print()">Распечатать</button>
   </div>
   <h1>Оптимизация приёма и отработки сообщений граждан</h1>
@@ -862,7 +888,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <li><input type="checkbox" id="q9"><label for="q9">Шаблон презентации: цвета, шрифты, соотношение сторон</label></li>
     <li><input type="checkbox" id="q10"><label for="q10">Численность жителей округа и число населённых пунктов</label></li>
     <li><input type="checkbox" id="q11"><label for="q11">Затраты на реализацию в рублях — требуются на слайде результатов</label></li>
-    <li><input type="checkbox" id="q12"><label for="q12">Трактовка термина «заказчик процесса» — источники расходятся</label></li>
+    <li><input type="checkbox" id="q12" checked><label for="q12"><s>Трактовка термина «заказчик процесса»</s> — закрыто 27.08: администрация округа</label></li>
   </ul>
 </section>
 
@@ -876,6 +902,24 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <span class="prn">Рабочая копия участника проекта. Отметки на бумаге в общую версию
   не попадают — вносите их в Штаб или передайте руководителю проекта.<br></span>
   Документы и черновики — в репозитории <span class="mono">NiceGenn/Team-28</span>.
+
+  <details class="changelog">
+    <summary>Версия 1.4 от 27.08.2026 — что менялось</summary>
+    <ul>
+      <li><b>1.4 · 27.08.2026.</b> Самооценка по 9 заочным и 5 очным критериям
+        конкурса. Состав команды «Лидеры перемен» и контакты. Раздел
+        «Материалы: что снять и собрать». Правовые акты и подписи Главы
+        округа по этапам. Заявка от 30.07.2026 в фактах. Владелец процесса —
+        Башун А.А. Печатная форма и кнопка «Распечатать». Номер версии.</li>
+      <li><b>1.3 · 23.08.2026.</b> Карта текущего состояния переведена
+        на линейную цепочку этапов — как в защищённых проектах области.
+        Лист гембы для выхода на процесс.</li>
+      <li><b>1.2 · 23.08.2026.</b> Колонка баллов расширена.</li>
+      <li><b>1.1 · 23.08.2026.</b> Этапы раскрыты по подпунктам: что делаем,
+        в какие числа, какой документ на выходе.</li>
+      <li><b>1.0 · 23.08.2026.</b> Первая версия Штаба.</li>
+    </ul>
+  </details>
 </footer>
 
 </div>
