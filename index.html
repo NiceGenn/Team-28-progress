@@ -183,6 +183,29 @@ header .sub{color:var(--ink-2); max-width:62ch}
 .docs .row{display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center; padding:9px 12px; background:var(--surface)}
 .docs .row .n{font-size:13.5px; font-weight:500}
 .docs .row .n small{display:block; color:var(--muted); font-size:11.5px; font-weight:400}
+
+/* ---------- ссылка на скачивание ----------
+   Файлы лежат в публичном репозитории рядом со страницей: Team-28 приватный,
+   ссылка в него участнику команды не откроется. */
+.dl{
+  display:inline-flex; align-items:center; gap:4px; margin-left:2px;
+  font-size:11px; font-weight:600; letter-spacing:.01em; text-decoration:none;
+  color:var(--accent); background:var(--accent-soft);
+  border:1px solid var(--accent-line); border-radius:5px; padding:1px 6px;
+  white-space:nowrap; vertical-align:baseline;
+}
+.dl::before{content:"↓"; font-weight:700}
+.dl:hover{background:var(--surface-2)}
+.dl:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.dl.wip{color:var(--now); background:var(--now-soft); border-color:var(--now-line)}
+.dl.wip::after{content:" · в работе"; font-weight:400; opacity:.85}
+
+/* ---------- раздел «Файлы проекта» ---------- */
+.lead{color:var(--ink-2); font-size:13.5px; margin:0 0 14px; max-width:78ch}
+.files .row{grid-template-columns:1fr auto; align-items:center}
+.files .none{font-size:11px; color:var(--muted); white-space:nowrap;
+  border:1px dashed var(--border); border-radius:5px; padding:2px 7px}
+.foot-note{margin-top:12px; font-size:12px; color:var(--muted)}
 .chip{
   font-family:inherit; font-size:11px; font-weight:700; letter-spacing:.04em;
   padding:4px 9px; border-radius:20px; border:1px solid var(--border); cursor:pointer;
@@ -423,6 +446,26 @@ footer .prn{display:none}
   .notes{ min-height:34mm; border:.6pt dashed #888; background:#fff }
 
   .docs .chip{ border:.6pt solid #888; background:#fff; color:#000 }
+
+  /* ссылка на бумаге не нажимается, но человек должен знать, что файл есть
+     и где он лежит — печатаем подпись без рамки, адрес папки один раз внизу */
+  .dl{ border:0; background:none; padding:0; margin-left:4px; color:#000;
+       font-size:8pt; font-weight:600 }
+  .dl::before{ content:"↓ " }
+  .dl.wip::after{ content:" (в работе)" }
+  .files .none{ border:0; padding:0; font-size:8pt }
+  /* «скачать» на бумаге бессмысленно — на листе не нажать. Пишем, что файл
+     существует; где он лежит, сказано один раз в подписи под списком. */
+  .files .dl{ font-size:0 }
+  .files .dl::before{ content:"✓ файл есть"; font-size:8pt; font-weight:600 }
+  .files .dl.wip::before{ content:"✓ файл есть, в работе" }
+  .files .dl.wip::after{ content:none }
+  .lead{ font-size:9pt; margin-bottom:3mm }
+  .foot-note{ font-size:8pt; margin-top:2mm }
+  .foot-note::after{
+    content:" Сами файлы — на странице Штаба, раздел «Файлы проекта»: "
+            "nicegenn.github.io/Team-28-progress";
+  }
   .score .bar{ border:.5pt solid #B9C4CC }
 
   /* разрывы страниц по смыслу */
@@ -470,13 +513,13 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <div class="ph-2">
     <span>Участник: <i></i></span>
     <span>Распечатано: <i></i></span>
-    <span class="ver mono">в. 1.4 · 27.08.2026</span>
+    <span class="ver mono">в. 1.5 · 27.08.2026</span>
   </div>
 </div>
 
 <header>
   <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28
-    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 1.4 · 27.08.2026</span>
+    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 1.5 · 27.08.2026</span>
     <button class="printbtn" type="button" onclick="window.print()">Распечатать</button>
   </div>
   <h1>Оптимизация приёма и отработки сообщений граждан</h1>
@@ -558,22 +601,22 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <li>
       <input type="checkbox" id="t2">
       <label for="t2"><span class="t">Раздать анкету замеров «как было»<span class="tag people">нужны сотрудники</span></span>
-        <span class="why">Каналы приёма, число сообщений в месяц, журнал регистрации, доля повторных обращений. Самая долгая работа: зависит не от нас.</span></label>
+        <span class="why">Каналы приёма, число сообщений в месяц, журнал регистрации, доля повторных обращений. Самая долгая работа: зависит не от нас. Печатать по числу опрашиваемых, разделы А–З. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/anketa-zamery.pdf" download>Анкета, 3 стр.</a></span></label>
     </li>
     <li>
       <input type="checkbox" id="t3">
       <label for="t3"><span class="t">Хронометраж: замерить операции процесса<span class="tag people">нужны сотрудники</span></span>
-        <span class="why">Сколько минут занимали регистрация одного сообщения, поиск ответственного, передача поручения. Без этих цифр эффект проекта недоказуем — и сам хронометраж идёт в зачёт как инструмент.</span></label>
+        <span class="why">Сколько минут занимали регистрация одного сообщения, поиск ответственного, передача поручения. Без этих цифр эффект проекта недоказуем — и сам хронометраж идёт в зачёт как инструмент. Таблица — раздел В анкеты. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/anketa-zamery.pdf" download>Анкета, разд. В</a></span></label>
     </li>
     <li>
       <input type="checkbox" id="t4">
       <label for="t4"><span class="t">Гемба: посмотреть процесс на месте</span>
-        <span class="why">Фиксируем только то, что видим. Ищем несовершенство в процессе, а не в людях.</span></label>
+        <span class="why">Фиксируем только то, что видим. Ищем несовершенство в процессе, а не в людях. Лист гембы — 6 страниц А4 альбомной, 42 замера по 10 этапам, печатать на планшет. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/list-gemby.pdf" download>Лист гембы</a></span></label>
     </li>
     <li>
       <input type="checkbox" id="t5">
       <label for="t5"><span class="t">Карта текущего состояния в draw.io</span>
-        <span class="why">Условные обозначения из методики. ВПП — парой «минимум — максимум». Проблемы нумеруются и собираются в список.</span></label>
+        <span class="why">Условные обозначения из методики. ВПП — парой «минимум — максимум». Проблемы нумеруются и собираются в список. Каркас готов — после замеров подставляем цифры и переэкспортируем. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-tekushchego.drawio" download>Исходник draw.io</a> <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-tekushchego.png" download>Текущий вид</a></span></label>
     </li>
     <li>
       <input type="checkbox" id="t6">
@@ -583,12 +626,12 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <li>
       <input type="checkbox" id="t7">
       <label for="t7"><span class="t">Получить копию приказа<span class="tag people">нужна администрация</span></span>
-        <span class="why">Точные даты, название проекта дословно, состав команды. Копия приказа — обязательный документ пакета на защиту.</span></label>
+        <span class="why">Точные даты, название проекта дословно, состав команды. Копия приказа — обязательный документ пакета на защиту. Что именно спросить — в анкете о процедурном статусе. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/anketa-status.pdf" download>Анкета: статус</a></span></label>
     </li>
     <li>
       <input type="checkbox" id="t8">
       <label for="t8"><span class="t">Карточка проекта на подпись</span>
-        <span class="why">Заполнена целиком: заказчик, владелец, руководитель, команда. Базовые значения показателей — с оговоркой «уточняются в рамках хронометража», методика это разрешает. Две версии: строгая по форме Word (с подписями) и оформленная по образцу области.</span></label>
+        <span class="why">Заполнена целиком: заказчик, владелец, руководитель, команда. Базовые значения показателей — с оговоркой «уточняются в рамках хронометража», методика это разрешает. Две версии: строгая по форме Word (с подписями) и оформленная по образцу области. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta.pdf" download>Оформленная, PDF</a> <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta-forma.docx" download>Форма Word</a></span></label>
     </li>
     <li>
       <input type="checkbox" id="t9">
@@ -608,18 +651,18 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <div class="head"><h2>Документы пакета</h2><span class="eyebrow ui">клик по статусу</span></div>
     <div class="docs" id="docs">
       <div class="row"><span class="n">Приказ об открытии проекта<small>статус уточняется</small></span><button class="chip" data-state="idle">не начато</button></div>
-      <div class="row"><span class="n">Карточка проекта<small>Приложение № 1, форма МПК</small></span><button class="chip" data-state="work">в работе</button></div>
-      <div class="row"><span class="n">Карта текущего состояния<small>draw.io, согласование с куратором</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Карточка проекта<small>Приложение № 1, форма МПК <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta.pdf" download>PDF</a> <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta-forma.docx" download>Word</a></small></span><button class="chip" data-state="work">в работе</button></div>
+      <div class="row"><span class="n">Карта текущего состояния<small>draw.io, согласование с куратором <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-tekushchego.png" download>PNG</a> <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-tekushchego.drawio" download>исходник</a></small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Анализ проблем<small>«5 почему», Исикава, реестр потерь</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Карта целевого состояния<small>draw.io</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">План мероприятий<small>Приложение № 3</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Карта достигнутого состояния<small>без проблем и мероприятий</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Отчёт о результатах<small>Приложение № 4</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Стандарт процесса<small>регламент, даёт балл</small></span><button class="chip" data-state="idle">не начато</button></div>
-      <div class="row"><span class="n">Отчётная презентация<small>7 слайдов, ждём шаблон</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Отчётная презентация<small>7 слайдов, ждём шаблон <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pptx" download>PPTX</a></small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Речь защиты<small>доклад 10 мин + ответы 10 мин</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Справка проекта<small>Приложение № 2 к 99-р · pdf · делается последней, 30.09—01.10</small></span><button class="chip" data-state="idle">не начато</button></div>
-      <div class="row"><span class="n">Заявка на конкурс<small>подана 30.07.2026 · «Лидеры перемен», 5 человек</small></span><button class="chip" data-state="done">готово</button></div>
+      <div class="row"><span class="n">Заявка на конкурс<small>подана 30.07.2026 · «Лидеры перемен», 5 человек · <b>подписанный оригинал не выкладываем</b> — у руководителя проекта</small></span><button class="chip" data-state="done">готово</button></div>
     </div>
   </section>
 
@@ -825,6 +868,34 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
 
 <section class="panel">
   <div class="head">
+    <h2>Файлы проекта</h2>
+    <span class="eyebrow">скачать и посмотреть</span>
+  </div>
+  <p class="lead">Всё, что уже собрано, — одним списком. Документы в работе тоже
+  здесь: лучше увидеть черновик и сказать, что не так, чем ждать готового.
+  Пометка <b>в работе</b> значит, что цифры или разделы ещё подставляются.</p>
+  <div class="docs files">
+      <div class="row"><span class="n">Карточка проекта<small>Оформленная, один лист А4 · база показателей ждёт замеров</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta.pdf" download>скачать</a></div>
+      <div class="row"><span class="n">Карточка проекта — форма Word<small>Строгая официальная форма, Приложение № 1, с блоком подписей</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta-forma.docx" download>скачать</a></div>
+      <div class="row"><span class="n">Анкета замеров «как было»<small>Раздать сотрудникам: каналы приёма, журнал, хронометраж, ВПП, периметр</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/anketa-zamery.pdf" download>скачать</a></div>
+      <div class="row"><span class="n">Лист гембы<small>6 страниц А4 альбомной, 42 замера по 10 этапам — печатать на планшет</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/list-gemby.pdf" download>скачать</a></div>
+      <div class="row"><span class="n">Карта текущего состояния<small>Каркас на 10 этапов. Длительности подставляются после хронометража</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-tekushchego.png" download>скачать</a></div>
+      <div class="row"><span class="n">Карта — исходник draw.io<small>Открывать на app.diagrams.net. Правится только здесь, PNG экспортируется из него</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-tekushchego.drawio" download>скачать</a></div>
+      <div class="row"><span class="n">Анкета: процедурный статус<small>Что направлено в МПК, издан ли приказ, кто куратор — вопросы администрации</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/anketa-status.pdf" download>скачать</a></div>
+      <div class="row"><span class="n">Анкета: сроки конкурса<small>Дата Проектного комитета, когда направлять материалы, форма подачи</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/anketa-sroki.pdf" download>скачать</a></div>
+      <div class="row"><span class="n">Самооценка по критериям конкурса<small>Все 9 заочных и 5 очных критериев: наш балл, чем подтверждается</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/samoocenka.pdf" download>скачать</a></div>
+      <div class="row"><span class="n">Анализ процесса «как было / как стало»<small>Разбор процесса, на нём стоят карточка, карта и презентация</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/analiz-processa.pdf" download>скачать</a></div>
+      <div class="row"><span class="n">Отчётная презентация<small>Черновик: часть слайдов ждёт карту, цифры замеров и скриншоты</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pptx" download>скачать</a></div>
+      <div class="row"><span class="n">Штаб — печатная форма<small>Снимок этой страницы на 15 страницах А4. Свежую печатайте кнопкой вверху</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/shtab-pechatnaya-forma.pdf" download>скачать</a></div>
+      <div class="row"><span class="n">Заявка на конкурс<small>Подписанный оригинал на публичной странице не выкладываем — запросить у руководителя проекта</small></span><span class="none">файла ещё нет</span></div>
+      <div class="row"><span class="n">Приказ об открытии проекта<small>Копии у нас нет: запрошена у администрации</small></span><span class="none">файла ещё нет</span></div>
+  </div>
+  <p class="foot-note">Файлы обновляются вместе со страницей. Если открыли
+  давно — обновите вкладку, браузер мог показать старую версию.</p>
+</section>
+
+<section class="panel">
+  <div class="head">
     <h2>После закрытия проекта</h2>
     <span class="eyebrow">в период реализации не входит, но сроки жёсткие</span>
   </div>
@@ -904,8 +975,13 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   Документы и черновики — в репозитории <span class="mono">NiceGenn/Team-28</span>.
 
   <details class="changelog">
-    <summary>Версия 1.4 от 27.08.2026 — что менялось</summary>
+    <summary>Версия 1.5 от 27.08.2026 — что менялось</summary>
     <ul>
+      <li><b>1.5 · 27.08.2026.</b> Раздел «Файлы проекта»: всё собранное
+        одним списком, со скачиванием. Ссылки на файлы встали и в задачи
+        недели — анкету замеров, лист гембы, карточку, карту видно прямо
+        оттуда. Документы в работе выложены тоже, с пометкой «в работе».
+        Подписанный оригинал заявки на публичной странице не выкладывается.</li>
       <li><b>1.4 · 27.08.2026.</b> Самооценка по 9 заочным и 5 очным критериям
         конкурса. Состав команды «Лидеры перемен» и контакты. Раздел
         «Материалы: что снять и собрать». Правовые акты и подписи Главы
