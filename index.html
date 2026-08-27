@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Где проект сейчас, что делать на этой неделе и что осталось до защиты.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Ход подготовки проекта бережливого управления Благовещенского муниципального округа к защите и конкурсу «Команда-28»: этапы, сроки, документы, баллы.">
+<meta name="color-scheme" content="light dark">
 <title>Штаб «Точки перемен»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,6 +113,29 @@ header .sub{color:var(--ink-2); max-width:62ch}
 .stages li[data-state="now"] .dot{background:var(--now); box-shadow:0 0 0 4px color-mix(in srgb, var(--now) 22%, transparent)}
 .stages .nm{font-weight:600; font-size:14px}
 .stages .dates{font-size:13px; color:var(--ink-2); white-space:nowrap}
+.sub{
+  grid-column:1/-1; display:grid; gap:5px; margin:8px 0 2px 4px;
+  padding:2px 0 2px 17px; border-left:2px solid var(--accent-line);
+}
+.sub .s{display:grid; grid-template-columns:96px 1fr minmax(0,320px); gap:12px; align-items:baseline}
+.sub .sd{font-size:12.5px; color:var(--muted); font-family:"IBM Plex Mono",ui-monospace,monospace}
+.sub .st{font-size:13.5px}
+.sub .so{font-size:12.5px; color:var(--accent); font-weight:500}
+.sub .s[data-ok] .st::before{content:"✔ "; color:var(--done); font-weight:700}
+.sub .s[data-wait] .so{color:var(--risk)}
+.sub .so:first-letter{font-weight:inherit}
+@media(max-width:760px){ .sub .s{grid-template-columns:1fr; gap:2px} .sub .sd{font-size:12px} }
+.after{list-style:none; margin:0; padding:0; display:grid; gap:8px}
+.after li{
+  display:grid; grid-template-columns:auto 1fr minmax(0,300px); gap:12px; align-items:baseline;
+  padding:10px 12px; border-radius:8px; background:var(--surface-2);
+}
+.after .ad{font-size:12.5px; color:var(--muted); white-space:nowrap;
+  font-family:"IBM Plex Mono",ui-monospace,monospace}
+.after .an{font-size:13.5px; font-weight:600}
+.after .ao{font-size:12.5px; color:var(--accent)}
+.after li.key{background:var(--accent-soft); border:1px solid var(--accent-line)}
+@media(max-width:760px){ .after li{grid-template-columns:1fr; gap:3px} }
 [contenteditable]{
   border-bottom:1px dashed var(--accent-line); padding:0 2px; border-radius:2px; outline:none;
 }
@@ -207,20 +230,229 @@ header .sub{color:var(--ink-2); max-width:62ch}
 .qs label{cursor:pointer}
 
 .notes{
-  white-space:pre-wrap; min-height:88px; padding:13px 15px; border-radius:9px; background:var(--surface-2);
+  min-height:88px; padding:13px 15px; border-radius:9px; background:var(--surface-2);
   border:1px dashed var(--accent-line); font-size:14px; line-height:1.6;
 }
 .notes:focus{border-style:solid; border-color:var(--accent); background:var(--surface)}
 
+
+/* ---------- разбор критериев ---------- */
+.crit{display:grid; gap:8px}
+.crit details{
+  background:var(--surface-2); border:1px solid transparent; border-radius:9px;
+  padding:0 13px;
+}
+.crit details[open]{background:var(--surface); border-color:var(--border); box-shadow:var(--shadow)}
+.crit summary{
+  display:grid; grid-template-columns:26px 1fr auto auto; gap:12px; align-items:center;
+  padding:11px 0; cursor:pointer; list-style:none;
+}
+.crit summary::-webkit-details-marker{display:none}
+.crit summary::after{
+  content:"›"; font-size:19px; color:var(--muted); transform:rotate(90deg);
+  transition:transform .15s;
+}
+.crit details[open] summary::after{transform:rotate(270deg)}
+.crit summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:6px}
+.crit .no{
+  font-size:12px; font-weight:700; color:var(--muted);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+}
+.crit .ttl{font-size:14px; font-weight:600}
+.crit .pt{
+  font-size:13px; font-weight:700; white-space:nowrap;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+}
+.crit .ok .pt{color:var(--done)}
+.crit .warn .pt{color:var(--risk)}
+.crit .mid .pt{color:var(--now)}
+.crit .body{padding:2px 0 15px 38px; display:grid; gap:11px; font-size:13.5px; line-height:1.6}
+.crit .body p{color:var(--ink-2)}
+.crit .grad{
+  font-size:12.5px; color:var(--muted); background:var(--surface-2);
+  border-radius:7px; padding:8px 11px; line-height:1.55;
+}
+.crit details[open] .grad{background:var(--surface-2)}
+.crit .body b{color:var(--ink)}
+.crit .quote{
+  border-left:3px solid var(--accent); background:var(--accent-soft);
+  padding:10px 13px; border-radius:0 8px 8px 0; font-size:13.5px;
+}
+.crit .mini{width:100%; border-collapse:collapse; font-size:12.5px}
+.crit .mini td, .crit .mini th{
+  border-bottom:1px solid var(--border); padding:6px 9px 6px 0; text-align:left;
+  vertical-align:top;
+}
+.crit .mini th{font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); font-weight:600}
+.crit .mini tr:last-child td{border-bottom:none}
+@media(max-width:640px){
+  .crit summary{grid-template-columns:22px 1fr auto; gap:8px}
+  .crit summary::after{display:none}
+  .crit .body{padding-left:0}
+}
+
+/* ---------- материалы и НПА ---------- */
+.mat{display:grid; gap:10px}
+.mat .m{
+  display:grid; grid-template-columns:auto 1fr minmax(0,190px); gap:12px;
+  align-items:start; padding:11px 13px; border-radius:9px; background:var(--surface-2);
+}
+.mat .m input[type=checkbox]{
+  appearance:none; width:18px; height:18px; margin:1px 0 0; flex:none; cursor:pointer;
+  border:1.5px solid var(--muted); border-radius:5px; background:var(--surface); position:relative;
+}
+.mat .m input[type=checkbox]:checked{background:var(--done); border-color:var(--done)}
+.mat .m input[type=checkbox]:checked::after{
+  content:""; position:absolute; left:5px; top:1px; width:5px; height:10px;
+  border:solid #fff; border-width:0 2px 2px 0; transform:rotate(43deg);
+}
+.mat .m input[type=checkbox]:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.mat .mn{font-size:13.5px; font-weight:600}
+.mat .mw{display:block; font-size:12.5px; color:var(--ink-2); font-weight:400; margin-top:3px; line-height:1.55}
+.mat .mt{font-size:12px; color:var(--accent); text-align:right; white-space:nowrap}
+.mat .m.hot{background:var(--now-soft); border:1px solid var(--now-line)}
+.mat .m.hot .mt{color:var(--now); font-weight:600}
+@media(max-width:700px){ .mat .m{grid-template-columns:auto 1fr} .mat .mt{grid-column:2; text-align:left} }
+
+
+/* ---------- кнопка печати ---------- */
+.printbtn{
+  float:right; font:600 12px/1 "Golos Text",system-ui,sans-serif; color:var(--accent);
+  background:var(--surface); border:1px solid var(--accent-line); border-radius:7px;
+  padding:7px 13px; cursor:pointer; letter-spacing:0;
+}
+.printbtn:hover{background:var(--accent-soft)}
+.printbtn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.printhead{display:none}
+footer .prn{display:none}
+
+/* ---------- печать: A4, светлая палитра, всё раскрыто ---------- */
+@media print{
+  @page{ size:A4 portrait; margin:13mm 11mm 12mm; }
+
+  :root{
+    --ground:#FFFFFF; --surface:#FFFFFF; --surface-2:#F4F6F8; --border:#B9C4CC;
+    --ink:#000000; --ink-2:#333333; --muted:#5A6670;
+    --accent:#1F4B66; --accent-soft:#EDF3F7; --accent-line:#A8C2D2;
+    --done:#1E6B47; --done-soft:#EAF3EE;
+    --now:#7A4D03; --now-soft:#FBF3E2; --now-line:#D9BE86;
+    --risk:#8E2A1F; --risk-soft:#F7E9E7;
+    --idle:#8A959C; --shadow:none;
+  }
+  *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+  body{ font-size:9.6pt; line-height:1.45; background:#fff }
+  .wrap{ max-width:none; margin:0; padding:0; gap:7mm }
+  h1{ font-size:17pt } h2{ font-size:12.5pt } h3{ font-size:11pt }
+
+  .printbtn{ display:none }
+  .printhead{
+    display:flex; justify-content:space-between; align-items:baseline; gap:10mm;
+    border-bottom:1.2pt solid #000; padding-bottom:2mm; margin-bottom:1mm;
+  }
+  .printhead .ph-1{ font:700 10pt/1.2 "PT Serif",Georgia,serif }
+  .printhead .ph-2{ display:flex; gap:8mm; font-size:8.5pt; color:#333 }
+  .printhead .ph-2 i{ display:inline-block; width:38mm; border-bottom:.5pt solid #666 }
+
+  header .sub{ max-width:none }
+  .facts{ gap:2mm; margin-top:3mm }
+  .fact{ padding:2mm 3mm; border-color:#B9C4CC }
+
+  .panel{ border:.6pt solid #B9C4CC; border-radius:2mm; padding:4mm; break-inside:auto }
+  .panel > .head{ margin-bottom:3mm }
+
+  /* на A4 срабатывали мобильные правила и всё складывалось в столбик —
+     возвращаем табличную раскладку, она вдвое компактнее */
+  .sub .s{ grid-template-columns:20mm 1fr 45mm; gap:3mm }
+  .sub .sd{ font-size:8pt }
+  .sub .st{ font-size:9pt }
+  .sub .so{ font-size:8pt }
+  .after li{ grid-template-columns:auto 1fr 42mm; gap:3mm }
+  .mat .m{ grid-template-columns:auto 1fr 24mm; gap:3mm }
+  .mat .mt{ text-align:right }
+  .crit summary{ grid-template-columns:6mm 1fr auto; gap:3mm }
+  .crit .body{ padding-left:6mm }
+
+  /* этапы, задачи, документы, вопросы — не рвать построчно */
+  .stages li, .after li, .tasks li, .qs li, .docs .row,
+  .mat .m, .works > div, .score .r, .sub .s{ break-inside:avoid }
+  .cols{ grid-template-columns:1fr }
+
+  /* всё раскрыто: на бумаге ничего не кликнешь */
+  .eyebrow.ui{ display:none }
+  .crit details{ border:.6pt solid #C8D2D9; background:#fff; margin-bottom:2mm;
+                 break-inside:auto }
+  .crit summary, .crit .mini tr, .crit .grad, .crit .quote{ break-inside:avoid }
+  .crit summary{ padding:2mm 0 }
+  .crit summary::after{ display:none }
+  .crit .body{ display:block; padding:0 0 3mm 9mm }
+  .crit .body > *{ margin-bottom:2mm }
+
+  /* поля для заполнения от руки */
+  input[type=checkbox]{
+    width:3.6mm !important; height:3.6mm !important; border:.7pt solid #444 !important;
+    border-radius:.6mm !important; background:#fff !important;
+  }
+  input[type=checkbox]:checked{ background:#fff !important; border-color:#000 !important }
+  input[type=checkbox]:checked::after{ border-color:#000 !important }
+  [contenteditable]{ border-bottom:.5pt solid #888; background:transparent }
+  .notes{ min-height:34mm; border:.6pt dashed #888; background:#fff }
+
+  .docs .chip{ border:.6pt solid #888; background:#fff; color:#000 }
+  .score .bar{ border:.5pt solid #B9C4CC }
+
+  /* разрывы страниц по смыслу */
+  .now-panel,
+  section.panel:has(> .head > h2:first-child){ break-inside:auto }
+  .brk-print{ break-before:page }
+
+  footer{ padding-top:4mm; border-top:.5pt solid #B9C4CC; font-size:8pt }
+  footer .scr{ display:none }
+  footer .prn{ display:inline }
+  a{ color:#000; text-decoration:underline }
+}
+
+
+/* ---------- команда ---------- */
+.team{display:grid; gap:8px}
+.team .tm{
+  display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1.2fr) minmax(0,200px);
+  gap:14px; align-items:start; padding:11px 13px; border-radius:9px; background:var(--surface-2);
+}
+.team .tm.cap{background:var(--accent-soft); border:1px solid var(--accent-line)}
+.team .tn{font-size:13.5px; font-weight:600}
+.team .tr{display:block; font-size:11px; font-weight:600; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--accent); margin-top:3px}
+.team .tp{font-size:12.5px; color:var(--ink-2); line-height:1.5}
+.team .tc{font-size:12.5px; color:var(--ink-2); line-height:1.6}
+.team .tc a{color:var(--accent); text-decoration:none}
+.team .tc a:hover{text-decoration:underline}
+@media(max-width:760px){ .team .tm{grid-template-columns:1fr; gap:4px} }
+@media print{
+  .team .tm{grid-template-columns:1fr 1fr 40mm; gap:3mm; break-inside:avoid}
+  .team .tc a{color:#000}
+}
+
 footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px; line-height:1.7}
 @media (prefers-reduced-motion:reduce){ *{animation:none!important; transition:none!important} }
 </style>
+
 </head>
 <body>
 <div class="wrap">
 
+<div class="printhead">
+  <div class="ph-1">Штаб проекта · рабочая копия участника</div>
+  <div class="ph-2">
+    <span>Участник: <i></i></span>
+    <span>Распечатано: <i></i></span>
+  </div>
+</div>
+
 <header>
-  <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28</div>
+  <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28
+    <button class="printbtn" type="button" onclick="window.print()">Распечатать</button>
+  </div>
   <h1>Оптимизация приёма и отработки сообщений граждан</h1>
   <p class="sub">Благовещенский муниципальный округ. Предмет проекта — процесс приёма, маршрутизации и контроля исполнения сообщений о проблемах благоустройства и жизнеобеспечения. Бот «Точка перемен» — внедрённое мероприятие.</p>
 
@@ -228,15 +460,16 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <div class="fact"><span class="k">Период проекта</span><span class="v mono">22.07 — 30.09.2026</span></div>
     <div class="fact hot"><span class="k">До закрытия</span><span class="v mono" id="leftClose">—</span></div>
     <div class="fact hot"><span class="k">До сдачи материалов</span><span class="v mono" id="leftSubmit">—</span></div>
-    <div class="fact"><span class="k">Приказ</span><span class="v">издан, копия ожидается</span></div>
+    <div class="fact hot"><span class="k">Приказ</span><span class="v">статус уточняется</span></div>
     <div class="fact"><span class="k">Заявка на конкурс</span><span class="v">подана 30.07, в срок</span></div>
+    <div class="fact"><span class="k">Команда</span><span class="v">«Лидеры перемен», 5 человек</span></div>
   </div>
 </header>
 
 <section class="panel">
   <div class="head">
     <h2>Где мы сейчас</h2>
-    <span class="eyebrow">даты правятся прямо здесь</span>
+    <span class="eyebrow ui">даты правятся прямо здесь</span>
   </div>
 
   <div class="track" id="track"></div>
@@ -246,23 +479,38 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
       <span class="dot"></span>
       <span class="nm">Старт проекта</span>
       <span class="dates mono"><span class="d1" contenteditable="true" spellcheck="false">22.07.2026</span> — <span class="d2" contenteditable="true" spellcheck="false">31.07.2026</span></span>
+      <div class="sub"><div class="s" data-ok><span class="sd">22.07</span><span class="st">Стартовый вебинар «Эффективного региона» — начало работы команды</span><span class="so">участие команды</span></div><div class="s" data-ok><span class="sd">24.07</span><span class="st">Таксономия направлений и категорий утверждена заместителями главы</span><span class="so">протокол/решение замов</span></div><div class="s" data-ok><span class="sd">30.07</span><span class="st">Заявка на конкурс «Команда-28» подана и подписана Главой округа</span><span class="so">команда «Лидеры перемен», 5 человек</span></div><div class="s" data-wait><span class="sd">июль</span><span class="st">Приказ администрации об открытии проекта</span><span class="so">НПА · статус уточняется, см. ниже</span></div><div class="s" data-wait><span class="sd">июль–авг.</span><span class="st">Карточка проекта — в МПК на согласование</span><span class="so">НПА · утверждает Глава округа</span></div></div>
     </li>
     <li data-state="now">
       <span class="dot"></span>
       <span class="nm">Диагностика и целевое состояние</span>
       <span class="dates mono"><span class="d1" contenteditable="true" spellcheck="false">03.08.2026</span> — <span class="d2" contenteditable="true" spellcheck="false">04.09.2026</span></span>
+      <div class="sub"><div class="s"><span class="sd">03–24.08</span><span class="st">Сбор фактических данных о процессе</span><span class="so">анкета замеров «как было»</span></div><div class="s"><span class="sd">24–31.08</span><span class="st">Гемба и хронометраж процесса на месте</span><span class="so">лист гембы, подписанный</span></div><div class="s"><span class="sd">24–31.08</span><span class="st">Карта текущего состояния в draw.io</span><span class="so">карта + согласование с куратором</span></div><div class="s"><span class="sd">до 31.08</span><span class="st">Реестр потерь, «5 почему», диаграмма Исикавы</span><span class="so">аналитика для слайда 4</span></div><div class="s" data-wait><span class="sd">24–31.08</span><span class="st">Снять прежний рабочий процесс: журнал, стол приёмной, заявления</span><span class="so">фото «до» — потом этого уже не будет</span></div><div class="s"><span class="sd">01–03.09</span><span class="st">Карта целевого состояния в draw.io</span><span class="so">карта + согласование с куратором</span></div><div class="s"><span class="sd">03–04.09</span><span class="st">План мероприятий по реализации проекта</span><span class="so">НПА · подписи руководителя проекта и ответственного лица</span></div></div>
     </li>
     <li data-state="idle">
       <span class="dot"></span>
       <span class="nm">Реализация плана мероприятий</span>
       <span class="dates mono"><span class="d1" contenteditable="true" spellcheck="false">07.09.2026</span> — <span class="d2" contenteditable="true" spellcheck="false">23.09.2026</span></span>
+      <div class="sub"><div class="s"><span class="sd">07.09</span><span class="st">Совещание по защите подходов внедрения</span><span class="so">протокол совещания</span></div><div class="s"><span class="sd">08–23.09</span><span class="st">Внедрение мероприятий и фиксация результатов</span><span class="so">записи в журнале проекта</span></div><div class="s"><span class="sd">до 15.09</span><span class="st">Обезличенные экраны бота и панели</span><span class="so">скриншоты для слайдов 8–10</span></div><div class="s"><span class="sd">до 23.09</span><span class="st">Пары фото «до / после» по одному адресу, 3–5 штук</span><span class="so">требование Приложения № 5</span></div><div class="s"><span class="sd">сентябрь</span><span class="st">Текст регламента процесса — готовить заранее, не 28.09</span><span class="so">подпись в последние дни — лотерея</span></div><div class="s"><span class="sd">весь этап</span><span class="st">Сборка отчётной презентации по шаблону</span><span class="so">презентация — Приложение № 5</span></div><div class="s" data-wait><span class="sd">весь этап</span><span class="st">Обучение команды, сбор сертификатов</span><span class="so">сертификаты — критерий 2 конкурса</span></div></div>
     </li>
     <li data-state="idle">
       <span class="dot"></span>
       <span class="nm">Анализ результатов и закрытие</span>
       <span class="dates mono"><span class="d1" contenteditable="true" spellcheck="false">24.09.2026</span> — <span class="d2" contenteditable="true" spellcheck="false">30.09.2026</span></span>
+      <div class="sub"><div class="s"><span class="sd">24–25.09</span><span class="st">Повторный хронометраж, мониторинг достигнутых результатов</span><span class="so">замеры «как стало»</span></div><div class="s"><span class="sd">28.09</span><span class="st">Карта достигнутого состояния в draw.io</span><span class="so">карта без проблем и мероприятий</span></div><div class="s"><span class="sd">28–29.09</span><span class="st">Стандарт улучшенного процесса — регламент и памятки</span><span class="so">НПА · приказ Главы округа, без него нет балла</span></div><div class="s"><span class="sd">30.09</span><span class="st">Отчёт о результатах, закрытие проекта</span><span class="so">НПА · Приложение № 4, подписанный</span></div><div class="s"><span class="sd">30.09</span><span class="st">Расчёт экономического эффекта ₽/год и затрат</span><span class="so">цифры для справки и слайда 7</span></div></div>
     </li>
   </ol>
+
+  <div class="callout" style="margin-top:16px; border-color:var(--risk); background:var(--risk-soft)">
+    <b style="color:var(--risk)">Процедурный статус под вопросом — выяснить первым делом.</b>
+    Со слов руководителя проекта, кроме заявки на конкурс Организатору и в МПК
+    <b>ничего не направлялось</b>. По Положению процедура запускается с карточки:
+    МПК рассматривает её 10 рабочих дней → уведомление о согласовании 5 р.д. →
+    приказ об открытии в течение 5 р.д. после уведомления. Если карточка
+    не подавалась, это <b>до трёх недель сверху</b>, и в срок до 30.09 они
+    помещаются только при параллельном ведении работ. Уточнить у куратора,
+    в каком статусе процедура и надо ли подавать карточку сейчас.
+  </div>
 
   <p style="margin-top:14px; font-size:13px; color:var(--ink-2)">
     Период отсчитан от стартового вебинара 22.07.2026. Два месяца восемь дней: закрытие успевает до сдачи материалов 01.10 и попадает в III квартал — окно защиты. Растянуть период нельзя: за 30.09 проект не закрыт, и справку проекта заполнять не из чего. Обратная сторона — срок ниже ориентира «6 ± 2 месяца» из тренинга; на защите ответ готов: значительная часть мероприятий внедрена в ходе пилота, параллельно с диагностикой. <b>После получения копии приказа даты сверить</b> и, если расходятся, поправить в строках выше.
@@ -314,12 +562,12 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <li>
       <input type="checkbox" id="t8">
       <label for="t8"><span class="t">Карточка проекта на подпись</span>
-        <span class="why">Заполнена, кроме владельца процесса, должности руководителя и состава команды. Базовые значения — с оговоркой «уточняются в рамках хронометража».</span></label>
+        <span class="why">Заполнена целиком: заказчик, владелец, руководитель, команда. Базовые значения показателей — с оговоркой «уточняются в рамках хронометража», методика это разрешает. Две версии: строгая по форме Word (с подписями) и оформленная по образцу области.</span></label>
     </li>
     <li>
       <input type="checkbox" id="t9">
-      <label for="t9"><span class="t">Записать команду на обучение<span class="tag">срочно</span></span>
-        <span class="why">Единственный критерий, где можно провалиться. Сертификаты нужны у более чем 60 % команды, и быстрее это не станет.</span></label>
+      <label for="t9"><span class="t">Записать четверых из пяти на обучение<span class="tag">срочно</span></span>
+        <span class="why">Команда «Лидеры перемен», 5 человек — для 1,5 балла нужны сертификаты у четверых. Единственный критерий, где можно провалиться, и быстрее это не станет.</span></label>
     </li>
   </ul>
 
@@ -331,9 +579,9 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
 <div class="cols">
 
   <section class="panel">
-    <div class="head"><h2>Документы пакета</h2><span class="eyebrow">клик по статусу</span></div>
+    <div class="head"><h2>Документы пакета</h2><span class="eyebrow ui">клик по статусу</span></div>
     <div class="docs" id="docs">
-      <div class="row"><span class="n">Приказ об открытии проекта<small>издан, нужна копия</small></span><button class="chip" data-state="work">в работе</button></div>
+      <div class="row"><span class="n">Приказ об открытии проекта<small>статус уточняется</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Карточка проекта<small>Приложение № 1, форма МПК</small></span><button class="chip" data-state="work">в работе</button></div>
       <div class="row"><span class="n">Карта текущего состояния<small>draw.io, согласование с куратором</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Анализ проблем<small>«5 почему», Исикава, реестр потерь</small></span><button class="chip" data-state="idle">не начато</button></div>
@@ -344,8 +592,8 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
       <div class="row"><span class="n">Стандарт процесса<small>регламент, даёт балл</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Отчётная презентация<small>7 слайдов, ждём шаблон</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Речь защиты<small>доклад 10 мин + ответы 10 мин</small></span><button class="chip" data-state="idle">не начато</button></div>
-      <div class="row"><span class="n">Справка проекта<small>Приложение № 2 к 99-р, pdf</small></span><button class="chip" data-state="idle">не начато</button></div>
-      <div class="row"><span class="n">Заявка на конкурс<small>подана 30.06.2026</small></span><button class="chip" data-state="done">готово</button></div>
+      <div class="row"><span class="n">Справка проекта<small>Приложение № 2 к 99-р · pdf · делается последней, 30.09—01.10</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Заявка на конкурс<small>подана 30.07.2026 · «Лидеры перемен», 5 человек</small></span><button class="chip" data-state="done">готово</button></div>
     </div>
   </section>
 
@@ -385,16 +633,232 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
 </div>
 
 <section class="panel">
+  <div class="head">
+    <h2>Команда проекта «Лидеры перемен»</h2>
+    <span class="eyebrow">состав из заявки от 30.07.2026</span>
+  </div>
+
+  <div class="team">
+    <div class="tm cap">
+      <span class="tn">Уваров Геннадий Геннадьевич<span class="tr">капитан команды · руководитель проекта · докладчик</span></span>
+      <span class="tp">начальник отдела информационного обслуживания Финансового управления</span>
+      <span class="tc"><a href="tel:+79146085779">+7 914 608-57-79</a> · 77-10-27<br><a href="mailto:fin_upr@blagraion.ru">fin_upr@blagraion.ru</a></span>
+    </div>
+    <div class="tm">
+      <span class="tn">Вихрова Анастасия Васильевна</span>
+      <span class="tp">директор МБУ «Информационный центр Благовещенского муниципального округа»</span>
+      <span class="tc" contenteditable="true" spellcheck="false">телефон, почта</span>
+    </div>
+    <div class="tm">
+      <span class="tn">Воронцова Дарья Сергеевна</span>
+      <span class="tp">начальник отдела по благоустройству управления ЖКХ</span>
+      <span class="tc" contenteditable="true" spellcheck="false">телефон, почта</span>
+    </div>
+    <div class="tm">
+      <span class="tn">Комчадалова Анна Александровна</span>
+      <span class="tp">начальник отдела муниципального контроля</span>
+      <span class="tc" contenteditable="true" spellcheck="false">телефон, почта</span>
+    </div>
+    <div class="tm">
+      <span class="tn">Степаненко Анна Олеговна</span>
+      <span class="tp">советник главы администрации округа</span>
+      <span class="tc" contenteditable="true" spellcheck="false">телефон, почта</span>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:16px">
+    <b>Состав менять нельзя.</b> Он должен совпадать дословно в четырёх местах:
+    заявка → приказ об открытии → карточка проекта → справка проекта.
+    Расхождение хотя бы в одной фамилии — вопрос комиссии и минус по критерию
+    «соответствие формам».
+    <br><br>
+    <b>Обучение: нужны сертификаты у четверых из пяти.</b> «Более 60 %» от пяти —
+    это минимум четыре человека; трое дают ровно 60 % и порог не берут.
+    Один участник может остаться без сертификата без потери балла.
+  </div>
+</section>
+
+<section class="panel">
+  <div class="head">
+    <h2>Самооценка по критериям конкурса</h2>
+    <span class="eyebrow ui">нажмите на критерий — раскроется разбор</span>
+  </div>
+
+  <p style="font-size:13.5px; color:var(--ink-2); margin-bottom:16px">
+    Основание — распоряжение Губернатора № 99-р от 13.07.2026, Приложения № 3 и № 4.
+    Баллы заочного этапа комиссия выставляет <b>по справке проекта</b>, а справка
+    пишется 30.09 — 01.10, в один день с закрытием. Здесь заранее разложено, за что
+    мы претендуем на балл, из чего он берётся и чем подтверждается — чтобы в этот день
+    справка собиралась копированием, а не написанием.
+  </p>
+
+  <h3 style="margin:0 0 10px">Заочный этап — максимум 16 баллов</h3>
+  <div class="crit"><details><summary class="ok"><span class="no">1</span><span class="ttl">Инструменты бережливого управления</span><span class="pt">1,5 / 1,5</span></summary><div class="body"><div class="grad"><b>Градация:</b> ≤2 инструмента — 0,5 · 3–4 — 1 · <b>≥5 — 1,5</b></div><p><b>Балл даётся не за список.</b> В формулировке критерия стоит «с обоснованием выбора и оценкой влияния на результат». Перечисление из десяти слов даст 0,5. По каждому инструменту пишем три вещи: где применён — зачем выбран — что изменилось.</p><table class="mini"><tr><th>Инструмент</th><th>Чем подтверждается</th></tr><tr><td>Картирование процесса</td><td>три карты draw.io: текущего, целевого, достигнутого</td></tr><tr><td>Хронометраж</td><td>подписанный лист гембы</td></tr><tr><td>Гемба</td><td>тот же лист, отметки «видел сам»</td></tr><tr><td>«5 почему»</td><td>слайд 4 презентации</td></tr><tr><td>Диаграмма Исикавы</td><td>слайд 4 презентации</td></tr><tr><td>Голос клиента</td><td>оценка гражданина 1–5, статистика оценок</td></tr><tr><td>Визуализация</td><td>скриншоты дашборда и карты заявок</td></tr><tr><td>Канбан</td><td>скриншот доски заявок по статусам</td></tr><tr><td>Стандартизация</td><td>регламент процесса + памятки по ролям</td></tr><tr><td>Защита от ошибок</td><td>закрытие невозможно без фото; дедупликация</td></tr></table><p>Десять инструментов при пороге в пять — запас двукратный.</p></div></details><details><summary class="warn"><span class="no">2</span><span class="ttl">Доля обученных в команде</span><span class="pt">? / 1,5</span></summary><div class="body"><div class="grad"><b>Градация:</b> 10–40 % — 0,5 · 40–60 % — 1 · <b>&gt;60 % — 1,5</b></div><p><b>Единственное место, где можно провалиться.</b> Считается доля конкурсантов команды с сертификатом об обучении основам бережливого управления.</p><div class="quote"><b>Состав известен из заявки: «Лидеры перемен», 5 человек.</b> Значит для 1,5 балла нужны сертификаты у <b>четверых</b>: «более 60 %» от пяти — это минимум четыре. Трое дают ровно 60 % и не проходят.</div><p>Кого учить — решать вам, но логика простая: капитан обязательно плюс трое из четверых. Один человек может остаться без сертификата без потери балла.</p><p>Всё остальное в проекте зависит от нас и делается за вечер. Обучение — внешний срок: курс идёт столько, сколько идёт, и к 01.10 сертификат либо есть, либо нет. <b>Отложить нельзя, ускорить нельзя.</b> Потеря при провале: 1,5 балла, итог 14–14,5.</p></div></details><details><summary class="mid"><span class="no">3</span><span class="ttl">Масштабность проекта</span><span class="pt">1,5 → 2 / 2</span></summary><div class="body"><div class="grad"><b>Градация:</b> одно подразделение — 1 · несколько подразделений — 1,5 · <b>межведомственное взаимодействие — 2</b></div><p><b>1,5 балла есть безусловно:</b> процесс проходит через подразделение приёма сообщений, четыре направления с головными заместителями, их подразделения-исполнители и Главу округа.</p><p><b>Для 2 баллов нужно межведомственное взаимодействие.</b> Есть ли в цепочках исполнения сторонние организации — подрядные, ресурсоснабжающие, управляющие компании, ЕДДС? Если да, их надо явно назвать в периметре в карточке и в справке.</p><p><b>МБУ «Информационный центр» в периметр не идёт.</b> Его директор входит в команду, но само учреждение в приёме и отработке сообщений не участвует. Участие человека в команде не равно участию организации в процессе — в справке это не заявляем.</p><p>Самые дешёвые полбалла в списке: не требуют работы, только ответа администрации.</p></div></details><details><summary class="ok"><span class="no">4</span><span class="ttl">Количество видов потерь</span><span class="pt">2 / 2</span></summary><div class="body"><div class="grad"><b>Градация:</b> 1–2 вида — 0,5 · 3–5 — 1,5 · <b>&gt;5 — 2</b></div><p>У нас <b>8 из 8</b> — вся официальная классификация, в официальном порядке и официальными названиями: перепроизводство · лишние движения · ненужная транспортировка · излишние запасы · избыточная обработка · ожидание · переделка и брак · неиспользование человеческого потенциала.</p><p><b>Названия не менять.</b> Комиссия сверяет по знакомому списку из тренинга: «потеря времени» вместо «ожидание» читается как другой, незачтённый пункт.</p><p>Каждая потеря должна подтверждаться наблюдением на гембе. Неподтверждённую вычёркиваем: восемь заявленных и три доказанных хуже, чем шесть доказанных.</p></div></details><details><summary class="ok"><span class="no">5</span><span class="ttl">Источник проблематики</span><span class="pt">2 / 2</span></summary><div class="body"><div class="grad"><b>Градация:</b> <b>инцидент-менеджмент (массовые жалобы граждан) — 2</b> · внутренняя и внешняя обратная связь — 1 · реестр процессов — 1 · межведомственное взаимодействие — 1 · ничего — 0</div><p>Наш случай — ровно первый пункт. <b>Формулировка обязана звучать дословно:</b></p><div class="quote">Источник проблематики: <b>инцидент-менеджмент — массовые обращения граждан о состоянии территории округа.</b></div><p>В примере защищённого проекта Госжилинспекции написано просто «обращения граждан» — это читается как «внешняя обратная связь» и стоит <b>1 балл вместо 2</b>. Разница в одном слове.</p></div></details><details><summary class="mid"><span class="no">6</span><span class="ttl">Стандартизация результатов</span><span class="pt">1 / 1</span></summary><div class="body"><div class="grad"><b>Градация:</b> разработан и <b>применяется</b> стандарт, регламент, инструкция или алгоритм — 1 · нет — 0</div><p>Ключевое слово — «применяется». Разработанный, но не введённый в действие документ балла не даёт. Поэтому регламент процесса <b>утверждается приказом администрации</b> до закрытия проекта, срок 28–29.09.</p><p>Заготовка есть: памятки по ролям, которые уже раздаются панелью. Их надо поднять до муниципального регламента — это не написание с нуля.</p></div></details><details><summary class="mid"><span class="no">7</span><span class="ttl">Соответствие формам</span><span class="pt">1 / 1</span></summary><div class="body"><div class="grad"><b>Градация:</b> соответствуют — 1 · нет — 0</div><p>Балл технический, но теряется по невнимательности. Сверка перед отправкой:</p><table class="mini"><tr><td>Карточка проекта</td><td>форма Приложения № 1, один лист А4, альбомная</td></tr><tr><td>Справка проекта</td><td>форма Приложения № 2 к 99-р, PDF</td></tr><tr><td>Презентация</td><td>структура Приложения № 5, порядок разделов не менять</td></tr><tr><td>Карты процесса</td><td>draw.io, условные обозначения из методрекомендаций</td></tr><tr><td>План мероприятий</td><td>Приложение № 3</td></tr><tr><td>Отчёт о результатах</td><td>Приложение № 4</td></tr><tr><td>Название проекта</td><td><b>дословно одинаково</b> в приказе, карточке, заявке и справке</td></tr></table><p>Последняя строка — самый частый провал: название, набранное заново в каждом документе, расходится в падеже или в порядке слов.</p></div></details><details><summary class="ok"><span class="no">8</span><span class="ttl">Цифровое решение</span><span class="pt">2 / 2</span></summary><div class="body"><div class="grad"><b>Градация:</b> доработка имеющегося решения своими силами — 1 · <b>собственная разработка нового цифрового решения — 2</b> · разработка сторонним заказчиком — 1 · Яндекс-форма — 0,5</div><p>Наш случай — верхняя градация. Формулировать явно:</p><div class="quote">Собственная разработка нового цифрового решения — мультиканальный сервис приёма сообщений «Точка перемен»: два канала, ИИ-классификация обращений, автоматическая маршрутизация, контроль сроков, панель администрации. Разработано силами администрации округа, <b>без привлечения стороннего подрядчика</b>.</div><p>Последние четыре слова — то, что отделяет 2 балла от 1. Их надо написать.</p></div></details><details><summary class="ok"><span class="no">9</span><span class="ttl">Актуальность проекта</span><span class="pt">4 / 4</span></summary><div class="body"><div class="grad"><b>Градация:</b> <b>высокая — 4</b> · средняя — 3 · низкая — 2 · нет значимого эффекта — 1</div><p><b>Самый весомый критерий: четверть всех баллов заочного этапа.</b> На что опираемся:</p><table class="mini"><tr><td>Предмет</td><td>благоустройство и жизнеобеспечение — то, что жители видят каждый день</td></tr><tr><td>Охват</td><td>27 населённых пунктов округа, большинство — сёла, где канала обращения фактически не было</td></tr><tr><td>Соответствие</td><td>клиентоцентричность, федеральный проект «Государство для людей»</td></tr><tr><td>Федеральная практика</td><td>платформа обратной связи, ЦУР</td></tr><tr><td>Тиражируемость</td><td>процесс типовой для муниципальных образований области</td></tr></table><p>Численность жителей округа усилит аргумент — цифру стоит получить.</p></div></details></div>
+
+  <div class="callout" style="margin-top:16px">
+    <b>Реалистичный итог: 15,5 — 16 из 16.</b> Провал возможен ровно в одном месте —
+    обучение команды. В очный этап проходят первые 10 мест сводного рейтинга;
+    при равенстве баллов выше тот, кто подал заявку раньше — наша от 30.07,
+    окно приёма 20–31.07.
+  </div>
+
+  <h3 style="margin:22px 0 10px">Очный этап — максимум 25 баллов</h3>
+  <p style="font-size:13.5px; color:var(--ink-2); margin-bottom:12px">
+    Пять критериев по 5-балльной шкале. Оцениваются <b>доклад и докладчик</b>, а не
+    документы. <b>Очный этап весит 25 баллов против 16 заочных</b> — документы
+    открывают дверь, но выигрывает доклад. Репетиции начинать не позднее середины сентября.
+  </p>
+  <div class="crit"><details><summary class="mid"><span class="no">1</span><span class="ttl">Аргументация выбора темы</span><span class="pt">5</span></summary><div class="body"><p>Почему именно этот процесс: массовость обращений, повторные обращения об одной проблеме, отсутствие контроля сроков. Опереться на чек-лист разграничения «проект или предложение по улучшению» — он проходится с большим запасом, и это хороший аргумент в докладе.</p></div></details><details><summary class="mid"><span class="no">2</span><span class="ttl">Клиентоориентированность</span><span class="pt">5</span></summary><div class="body"><p>Результат для жителя: проблема устранена и он об этом уведомлён. Показать замкнутый контур: оценка гражданина ≤ 2 автоматически возвращает заявку в работу. Это редкий случай, когда обратная связь не собирается «для галочки», а управляет процессом.</p></div></details><details><summary class="mid"><span class="no">3</span><span class="ttl">Наглядный дополнительный материал</span><span class="pt">5</span></summary><div class="body"><p>Критерий прямо называет: <b>презентация, схемы, таблицы, раздаточный материал</b>. То есть на защиту можно и нужно нести не только слайды.</p><table class="mini"><tr><td>Карты процесса на A3</td><td>три листа в руки комиссии — со слайда они не читаются</td></tr><tr><td>Подписанный лист гембы</td><td>ответ на вопрос «откуда цифра ВПП»</td></tr><tr><td>Фото «до / после»</td><td>требование Приложения № 5, слайд 7</td></tr><tr><td>Скриншоты бота и панели</td><td>обезличенные, крупными фрагментами</td></tr><tr><td>Регламент процесса</td><td>распечатка утверждённого стандарта</td></tr></table></div></details><details><summary class="mid"><span class="no">4</span><span class="ttl">Представление проекта</span><span class="pt">5</span></summary><div class="body"><p><b>Соблюдение регламента прямо входит в критерий:</b> доклад не более 10 минут, ответы не более 10 минут. Прогон с секундомером обязателен — на бумаге десять минут и вслух десять минут это разные объёмы текста.</p><p>Плюс банк из примерно 20 вероятных вопросов с готовыми ответами.</p></div></details><details><summary class="mid"><span class="no">5</span><span class="ttl">Качество доклада</span><span class="pt">5</span></summary><div class="body"><p>Композиция: проблема → потери → что сделали → цифры → что закрепили. Убеждённость строится на том, что система уже работает, а не проектируется: это наше главное отличие от большинства защищаемых проектов.</p></div></details></div>
+</section>
+
+<section class="panel">
+  <div class="head">
+    <h2>Материалы: что снять и собрать</h2>
+    <span class="eyebrow">то, что нельзя доделать в последний день</span>
+  </div>
+
+  <p style="font-size:13.5px; color:var(--ink-2); margin-bottom:14px">
+    Приложение № 5 требует на слайде результатов <b>фото «до» и «после»</b> и примеры
+    внедрённых изменений <b>с указанием затрат</b>. Очный критерий 3 прямо называет
+    допустимые формы: <b>презентация, схемы, таблицы, раздаточный материал</b> — то есть
+    на защиту можно нести не только слайды. Всё это снимается заранее: «до» уже почти
+    невозможно снять, процесс изменился.
+  </p>
+
+  <div class="mat">
+<div class="m hot"><input type="checkbox" id="m1"><label for="m1"><span class="mn">Обезличенные экраны бота<span class="mw">Приём сообщения с фото и геометкой, карточка заявки у исполнителя, уведомление гражданину «до / после» с оценкой. Крупными фрагментами, не экран целиком — с проектора мелочь не читается.</span></span></label><span class="mt">до 15.09</span></div><div class="m hot"><input type="checkbox" id="m2"><label for="m2"><span class="mn">Обезличенные экраны панели администрации<span class="mw">Дашборд с дельтами, SLA-разрез, карта заявок, канбан-доска, статистика по направлениям. Это доказательная база сразу по трём инструментам: визуализация, канбан, голос клиента.</span></span></label><span class="mt">до 15.09</span></div><div class="m"><input type="checkbox" id="m3"><label for="m3"><span class="mn">Фото «после» — устранённые проблемы<span class="mw">Ямы, освещение, контейнерные площадки, спил деревьев по закрытым заявкам. Берутся из фотоотчётов исполнителей в системе — они там уже есть.</span></span></label><span class="mt">до 23.09</span></div><div class="m hot"><input type="checkbox" id="m4"><label for="m4"><span class="mn">Фото «до» — те же объекты до устранения<span class="mw">Из фото, приложенных гражданами к заявкам. <b>Пара «до / после» по одному адресу</b> — самый сильный слайд во всей презентации. Отобрать 3–5 пар.</span></span></label><span class="mt">до 23.09</span></div><div class="m hot"><input type="checkbox" id="m5"><label for="m5"><span class="mn">Фото или схема прежнего рабочего процесса<span class="mw">Как принимали сообщения раньше: журнал регистрации, стол приёмной, телефон, стопка письменных заявлений. Снять на гембе 24–31.08 — потом этого уже не будет.</span></span></label><span class="mt">24–31.08</span></div><div class="m"><input type="checkbox" id="m6"><label for="m6"><span class="mn">Карты процесса на A3, три листа<span class="mw">Текущее, целевое, достигнутое состояние. В руки комиссии: со слайда карта читается только по форме, детали — с бумаги.</span></span></label><span class="mt">до защиты</span></div><div class="m"><input type="checkbox" id="m7"><label for="m7"><span class="mn">Затраты на реализацию в рублях<span class="mw">Требуются прямо: «примеры внедрённых изменений с указанием затрат». Считаем расход платных API, хостинг, рабочее время. Без цифры слайд 7 неполон.</span></span></label><span class="mt">до 24.09</span></div><div class="m"><input type="checkbox" id="m8"><label for="m8"><span class="mn">Публикация о проекте в СМИ или соцсетях округа<span class="mw">Строка в таблице дополнительной информации на последнем слайде. Сейчас пусто.</span></span></label><span class="mt">до 23.09</span></div><div class="m"><input type="checkbox" id="m9"><label for="m9"><span class="mn">Скриншот статистики за период пилота<span class="mw">Срез «как стало» на дату подготовки отчёта: время реакции, доля закрытых в срок, средняя оценка. Снимается на стенде — в облаке живой базы нет.</span></span></label><span class="mt">24–25.09</span></div>
+  </div>
+
+  <div class="callout" style="margin-top:16px">
+    <b>Персональные данные не переносим.</b> ФИО, телефоны и тексты обращений
+    с экранов убираем, примеры обезличиваем. Это требование 152-ФЗ и отдельный
+    риск на защите: один нескрытый номер телефона на слайде перечёркивает
+    аккуратность всего пакета.
+  </div>
+</section>
+
+<section class="panel">
+  <div class="head">
+    <h2>Правовые акты и подписи Главы округа</h2>
+    <span class="eyebrow">чужая подпись — всегда узкое место</span>
+  </div>
+
+  <p style="font-size:13.5px; color:var(--ink-2); margin-bottom:14px">
+    Пять документов проекта не считаются готовыми без подписи. Три из них
+    подписывает или утверждает <b>Глава округа</b>, один — руководитель проекта
+    вместе с ответственным лицом, по отчёту состав подписантов уточняется.
+    Каждая подпись — внешняя зависимость: её нельзя ускорить, а без неё документ
+    не существует. Отдельно: Приложение № 5 требует на слайде результатов
+    <b>перечень разработанных правовых актов</b> — этот список и есть ответ.
+  </p>
+
+  <ul class="after">
+    <li>
+      <span class="ad">июль 2026</span>
+      <span class="an">Приказ (распоряжение) об открытии проекта</span>
+      <span class="ao">издан, нужна копия</span>
+    </li>
+    <li>
+      <span class="ad">до 31.08</span>
+      <span class="an">Карточка проекта — утверждает Глава округа</span>
+      <span class="ao">подпись руководителя органа</span>
+    </li>
+    <li>
+      <span class="ad">03–04.09</span>
+      <span class="an">План мероприятий — подписывают руководитель проекта и ответственное лицо</span>
+      <span class="ao">Приложение № 3</span>
+    </li>
+    <li class="key">
+      <span class="ad">28–29.09</span>
+      <span class="an">Приказ об утверждении регламента процесса</span>
+      <span class="ao">без него критерий 6 не засчитан</span>
+    </li>
+    <li>
+      <span class="ad">30.09</span>
+      <span class="an">Отчёт о результатах реализации проекта</span>
+      <span class="ao">Приложение № 4 · состав подписантов уточнить</span>
+    </li>
+  </ul>
+
+  <div class="callout" style="margin-top:16px">
+    <b>Что в приказе об открытии обязано быть:</b> название проекта, сроки реализации
+    (начало и окончание), состав команды проекта. По нему сверяются карточка, заявка
+    и справка — <b>название должно совпадать дословно во всех четырёх</b>.
+    <br><br>
+    <b>Про регламент — не откладывать на 28.09.</b> Критерий 6 требует, чтобы стандарт
+    был «разработан <b>и применяется</b>». Разработанный, но не утверждённый приказом
+    документ балла не даёт, а подпись в последние два дня проекта — это лотерея.
+    Текст регламента готовить в сентябре, на подпись заносить заранее.
+    <br><br>
+    <b>Открытый вопрос:</b> нужен ли отдельный муниципальный правовой акт,
+    закрепляющий сам сервис приёма сообщений — положение о канале, политика
+    обработки персональных данных. Для конкурса не обязателен, но усиливает
+    и стандартизацию, и актуальность. Уточнить у Главы округа.
+  </div>
+</section>
+
+<section class="panel">
+  <div class="head">
+    <h2>После закрытия проекта</h2>
+    <span class="eyebrow">в период реализации не входит, но сроки жёсткие</span>
+  </div>
+
+  <ul class="after">
+    <li class="key">
+      <span class="ad">до 01.10.2026</span>
+      <span class="an">Справка проекта + отчётная презентация — Организатору конкурса</span>
+      <span class="ao">на aksenova.aa@mpk.amurobl.ru</span>
+    </li>
+    <li>
+      <span class="ad">III кв. 2026</span>
+      <span class="an">Защита проекта на Проектном комитете области</span>
+      <span class="ao">дату уточнить у куратора</span>
+    </li>
+    <li>
+      <span class="ad">IV кв. 2026</span>
+      <span class="an">Презентация результатов на рабочих совещаниях Губернатора</span>
+      <span class="ao">по вызову</span>
+    </li>
+    <li>
+      <span class="ad">до 28.12.2026</span>
+      <span class="an">Выплаты победителям и призёрам конкурса «Команда-28»</span>
+      <span class="ao">если попадаем в призы</span>
+    </li>
+  </ul>
+
+  <div class="callout" style="margin-top:16px">
+    <b>Справка проекта — что это.</b> Приложение № 2 к распоряжению 99-р, отдельный
+    документ конкурса на две страницы, в формате PDF. Не путать с карточкой и с отчётом:
+    карточка — это план в начале, отчёт — это результат по форме Положения, справка —
+    выжимка для конкурсной комиссии.
+    <br><br>
+    В ней: <b>наименование проекта</b>, <b>период реализации</b> — дата начала и дата
+    закрытия, и пять пунктов: цели с указанием проблем · выявленные потери ·
+    применённые инструменты бережливого управления · достигнутые результаты ·
+    экономический эффект ₽/год при наличии. <b>Приложения к справке:</b> карточка
+    проекта и копия отчётной презентации.
+    <br><br>
+    <b>Когда делать.</b> Заполняется <b>последней, после закрытия проекта 30.09</b> —
+    раньше нечего писать в графы «дата закрытия» и «достигнутые результаты».
+    Практически: 30.09 подписан отчёт, 30.09–01.10 справка собирается из готового
+    и уходит вместе с презентацией. Отдельной работы почти нет — все пять пунктов
+    к этому моменту уже написаны в других документах. <b>Но именно по справке
+    выставляются баллы заочного этапа</b>, поэтому формулировки в неё переносим
+    дословно из карточки и отчёта, а не пересказываем.
+  </div>
+</section>
+
+<section class="panel">
   <div class="head"><h2>Что уточнить</h2><span class="eyebrow">отмечайте по мере ответов</span></div>
   <ul class="qs">
-    <li><input type="checkbox" id="q1"><label for="q1">Копия приказа: точные даты, название дословно, состав команды</label></li>
-    <li><input type="checkbox" id="q2"><label for="q2">Кто владелец процесса — должность и ФИО</label></li>
-    <li><input type="checkbox" id="q3"><label for="q3">Должность руководителя проекта для карточки</label></li>
-    <li><input type="checkbox" id="q4"><label for="q4">Название команды и её состав из поданной заявки, 2–5 человек</label></li>
+    <li><input type="checkbox" id="q1"><label for="q1"><b>Направлялась ли карточка проекта в МПК и издан ли приказ об открытии</b> — процедурный статус</label></li>
+    <li><input type="checkbox" id="q2" checked><label for="q2"><s>Кто владелец процесса</s> — закрыто 27.08: Башун А.А., глава округа</label></li>
+    <li><input type="checkbox" id="q3" checked><label for="q3"><s>Должность руководителя проекта</s> — закрыто заявкой 27.08</label></li>
+    <li><input type="checkbox" id="q4" checked><label for="q4"><s>Название команды и её состав</s> — закрыто: «Лидеры перемен», 5 человек</label></li>
     <li><input type="checkbox" id="q5"><label for="q5">Есть ли в цепочках сторонние организации — подрядчики, РСО, УК, ЕДДС</label></li>
     <li><input type="checkbox" id="q6"><label for="q6">Кто назначен куратором проекта от МПК или АЦОПП</label></li>
     <li><input type="checkbox" id="q7"><label for="q7">Дата заседания Проектного комитета и когда направлять материалы</label></li>
-    <li><input type="checkbox" id="q8"><label for="q8">Сертификаты об обучении — собрать со всей команды</label></li>
+    <li><input type="checkbox" id="q8"><label for="q8">Сертификаты об обучении — нужны у четверых из пяти</label></li>
     <li><input type="checkbox" id="q9"><label for="q9">Шаблон презентации: цвета, шрифты, соотношение сторон</label></li>
     <li><input type="checkbox" id="q10"><label for="q10">Численность жителей округа и число населённых пунктов</label></li>
     <li><input type="checkbox" id="q11"><label for="q11">Затраты на реализацию в рублях — требуются на слайде результатов</label></li>
@@ -408,10 +872,10 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
 </section>
 
 <footer>
-  Отметки, статусы, даты и заметки сохраняются <b>в вашем браузере</b> —
-  у каждого свои, между людьми не синхронизируются.<br>
-  Содержание страницы обновляет руководитель проекта.
-  <a href="#" id="reset">Сбросить мои отметки</a>
+  <span class="scr">Изменения сохраняются в странице: отметки, статусы, даты и заметки.<br></span>
+  <span class="prn">Рабочая копия участника проекта. Отметки на бумаге в общую версию
+  не попадают — вносите их в Штаб или передайте руководителю проекта.<br></span>
+  Документы и черновики — в репозитории <span class="mono">NiceGenn/Team-28</span>.
 </footer>
 
 </div>
@@ -500,73 +964,77 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     chip.textContent = labels[next];
   });
 
+  // На печати всё должно быть раскрыто: на бумаге ничего не кликнешь.
+  var reopened = [];
+  function expand(){
+    reopened = [];
+    document.querySelectorAll("details:not([open])").forEach(function(d){
+      d.open = true; reopened.push(d);
+    });
+  }
+  function collapse(){
+    reopened.forEach(function(d){ d.open = false; });
+    reopened = [];
+  }
+  window.addEventListener("beforeprint", expand);
+  window.addEventListener("afterprint", collapse);
+  if(window.matchMedia){
+    var mq = window.matchMedia("print");
+    if(mq.addEventListener){
+      mq.addEventListener("change", function(e){ e.matches ? expand() : collapse(); });
+    }
+  }
+
   counters();
   draw();
 })();
 </script>
 
 <script>
-/* Сохранение состояния в браузере посетителя: у каждого своё, между людьми
-   не синхронизируется. На GitHub Pages общего хранилища нет. */
+/* Сохранение правок в браузере читателя. Ключ один на всю страницу. */
 (function(){
-  var KEY = "shtab-tochka-peremen-v1";
-  function all(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); }
-  var LABELS = { idle: "не начато", work: "в работе", done: "готово" };
+  var KEY = "shtab-tp-v2";
+  function safe(fn, dflt){ try{ return fn(); }catch(e){ return dflt; } }
+  function load(){ return safe(function(){
+    return JSON.parse(localStorage.getItem(KEY) || "{}"); }, {}); }
+  function save(st){ safe(function(){
+    localStorage.setItem(KEY, JSON.stringify(st)); }); }
 
-  function collect(){
-    var st = { checks:{}, chips:[], dates:[], notes:"" };
-    all("input[type=checkbox]").forEach(function(c){ if(c.id) st.checks[c.id] = c.checked; });
-    all("#docs .chip").forEach(function(c){ st.chips.push(c.getAttribute("data-state")); });
-    all("#stages .d1, #stages .d2").forEach(function(d){ st.dates.push(d.textContent.trim()); });
-    var n = document.querySelector(".notes");
-    if(n) st.notes = n.innerText;
-    return st;
-  }
+  var st = load();
 
-  function save(){
-    try { localStorage.setItem(KEY, JSON.stringify(collect())); } catch(e){}
-  }
-
-  function restore(){
-    var raw = null;
-    try { raw = localStorage.getItem(KEY); } catch(e){ return; }
-    if(!raw) return;
-    var st;
-    try { st = JSON.parse(raw); } catch(e){ return; }
-    var checks = st.checks || {};
-    all("input[type=checkbox]").forEach(function(c){
-      if(c.id && Object.prototype.hasOwnProperty.call(checks, c.id)) c.checked = !!checks[c.id];
+  var boxes = document.querySelectorAll("input[type=checkbox][id]");
+  boxes.forEach(function(b){
+    if(st["chk:" + b.id] === true) b.checked = true;
+    b.addEventListener("change", function(){
+      st = load(); st["chk:" + b.id] = b.checked; save(st);
     });
-    all("#docs .chip").forEach(function(c, i){
-      var v = (st.chips || [])[i];
-      if(v && LABELS[v]){ c.setAttribute("data-state", v); c.textContent = LABELS[v]; }
-    });
-    all("#stages .d1, #stages .d2").forEach(function(d, i){
-      var v = (st.dates || [])[i];
-      if(v) d.textContent = v;
-    });
-    var n = document.querySelector(".notes");
-    if(n && typeof st.notes === "string" && st.notes.trim()) n.textContent = st.notes;
-  }
-
-  restore();
-  // пересчитать ленту времени под восстановленные даты
-  document.getElementById("stages").dispatchEvent(new Event("input", { bubbles: true }));
-
-  document.addEventListener("change", save);
-  document.addEventListener("input", save);
-  document.addEventListener("blur", save, true);
-  document.addEventListener("click", function(e){
-    if(e.target.closest(".chip")) setTimeout(save, 0);
   });
 
-  var reset = document.getElementById("reset");
-  if(reset) reset.addEventListener("click", function(e){
-    e.preventDefault();
-    if(!confirm("Сбросить ваши отметки, статусы и заметки к исходным?")) return;
-    try { localStorage.removeItem(KEY); } catch(err){}
-    location.reload();
+  var chips = document.querySelectorAll(".docs .chip");
+  var labels = {idle:"не начато", work:"в работе", done:"готово"};
+  chips.forEach(function(c, i){
+    var v = st["doc:" + i];
+    if(v && labels[v]){ c.setAttribute("data-state", v); c.textContent = labels[v]; }
+    c.addEventListener("click", function(){
+      setTimeout(function(){
+        st = load(); st["doc:" + i] = c.getAttribute("data-state"); save(st);
+      }, 0);
+    });
   });
+
+  var edits = document.querySelectorAll("[contenteditable]");
+  edits.forEach(function(el, i){
+    var v = st["ed:" + i];
+    if(typeof v === "string" && v.length) el.textContent = v;
+    el.addEventListener("blur", function(){
+      st = load(); st["ed:" + i] = el.textContent; save(st);
+    });
+  });
+
+  if(edits.length){
+    document.getElementById("stages").dispatchEvent(
+      new Event("input", {bubbles:true}));
+  }
 })();
 </script>
 
