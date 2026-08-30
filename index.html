@@ -188,17 +188,37 @@ header .sub{color:var(--ink-2); max-width:62ch}
    Файлы лежат в публичном репозитории рядом со страницей: Team-28 приватный,
    ссылка в него участнику команды не откроется. */
 .dl{
-  display:inline-flex; align-items:center; gap:4px; margin-left:2px;
-  font-size:11px; font-weight:600; letter-spacing:.01em; text-decoration:none;
+  display:inline-flex; align-items:center; gap:5px; margin:2px 2px 0 0;
+  font-size:12px; font-weight:700; letter-spacing:.01em; text-decoration:none;
   color:var(--accent); background:var(--accent-soft);
-  border:1px solid var(--accent-line); border-radius:5px; padding:1px 6px;
+  border:1.5px solid var(--accent); border-radius:7px; padding:3px 10px;
   white-space:nowrap; vertical-align:baseline;
+  box-shadow:0 1px 0 rgba(20,29,37,.06);
 }
-.dl::before{content:"↓"; font-weight:700}
-.dl:hover{background:var(--surface-2)}
+.dl::before{content:"↓"; font-weight:800; font-size:13px}
+.dl:hover{background:var(--accent); color:var(--surface)}
 .dl:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
-.dl.wip{color:var(--now); background:var(--now-soft); border-color:var(--now-line)}
-.dl.wip::after{content:" · в работе"; font-weight:400; opacity:.85}
+.dl.wip{color:var(--now); background:var(--now-soft); border-color:var(--now)}
+.dl.wip:hover{background:var(--now); color:var(--surface)}
+.dl.wip::after{content:" · в работе"; font-weight:500; opacity:.9}
+
+/* ---------- баннер тестов ---------- */
+.exam{
+  display:block; text-decoration:none; color:inherit;
+  background:var(--accent-soft); border:1.5px solid var(--accent-line);
+  border-radius:12px; padding:16px 20px; box-shadow:var(--shadow);
+}
+.exam:hover{border-color:var(--accent)}
+.exam:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.exam .top{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.exam h2{font-size:18px}
+.exam .go{
+  margin-left:auto; font-size:12px; font-weight:700; letter-spacing:.02em;
+  color:var(--surface); background:var(--accent); border-radius:7px;
+  padding:5px 12px; white-space:nowrap;
+}
+.exam p{margin-top:7px; font-size:13.5px; color:var(--ink-2); max-width:80ch}
+.exam .meta{margin-top:9px; font-size:12px; color:var(--muted)}
 
 /* ---------- раздел «Файлы проекта» ---------- */
 .lead{color:var(--ink-2); font-size:13.5px; margin:0 0 14px; max-width:78ch}
@@ -454,6 +474,8 @@ footer .prn{display:none}
   .dl::before{ content:"↓ " }
   .dl.wip::after{ content:" (в работе)" }
   .files .none{ border:0; padding:0; font-size:8pt }
+  .exam{ border:.6pt solid #B9C4CC; box-shadow:none; padding:4mm; page-break-inside:avoid }
+  .exam .go{ display:none }
   /* «скачать» на бумаге бессмысленно — на листе не нажать. Пишем, что файл
      существует; где он лежит, сказано один раз в подписи под списком. */
   .files .dl{ font-size:0 }
@@ -513,13 +535,13 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <div class="ph-2">
     <span>Участник: <i></i></span>
     <span>Распечатано: <i></i></span>
-    <span class="ver mono">в. 1.7 · 30.08.2026</span>
+    <span class="ver mono">в. 1.9 · 30.08.2026</span>
   </div>
 </div>
 
 <header>
   <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28
-    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 1.7 · 30.08.2026</span>
+    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 1.9 · 30.08.2026</span>
     <button class="printbtn" type="button" onclick="window.print()">Распечатать</button>
   </div>
   <h1>Оптимизация приёма и отработки сообщений граждан</h1>
@@ -534,6 +556,17 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <div class="fact"><span class="k">Команда</span><span class="v">«Лидеры перемен», 5 человек</span></div>
   </div>
 </header>
+
+<a class="exam" href="https://nicegenn.github.io/Team-28-progress/файлы/testy-otvety.html" target="_blank" rel="noopener">
+  <div class="top">
+    <h2>Разбор тестов курса</h2>
+    <span class="go">Открыть →</span>
+  </div>
+  <p><b>30 вопросов курса с ответами и пояснениями — для ознакомления перед обучением.</b>
+  Зелёным отмечены верные варианты, оранжевым — пять вопросов, где правильный ответ
+  неочевиден: там курс считает не так, как учебник, и это стоит перечитать.</p>
+  <p class="meta">Открывается отдельной страницей. Пригодится троим, кому обучение ещё предстоит.</p>
+</a>
 
 <section class="panel">
   <div class="head">
@@ -626,7 +659,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <li>
       <input type="checkbox" id="t7">
       <label for="t7"><span class="t">Получить копию приказа<span class="tag people">нужна администрация</span></span>
-        <span class="why">Точные даты, название проекта дословно, состав команды. Копия приказа — обязательный документ пакета на защиту. Что именно спросить — в анкете о процедурном статусе. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/anketa-status.pdf" target="_blank" rel="noopener">Анкета: статус</a></span></label>
+        <span class="why">Точные даты, название проекта дословно, состав команды. Копия приказа — обязательный документ пакета на защиту. Что именно спросить — в анкете о процедурном статусе. <b>Если приказ не издан</b> — проект распоряжения готов, остаётся внести в бланк администрации и подписать. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/anketa-status.pdf" target="_blank" rel="noopener">Анкета: статус</a> <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/rasporyazhenie-proekt.docx" target="_blank" rel="noopener">Проект распоряжения</a></span></label>
     </li>
     <li>
       <input type="checkbox" id="t8">
@@ -636,7 +669,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <li>
       <input type="checkbox" id="t9">
       <label for="t9"><span class="t">Записать ещё троих на обучение<span class="tag">срочно</span></span>
-        <span class="why">Первый сертификат есть: капитан прошёл базовый онлайн-курс на платформе РСВ — тот самый, что рекомендует область (слайд 11 ВКС). Это 1 из 5 — 20 %, то есть 0,5 балла; для 1,5 нужны четверо, значит ещё трое. Курс проходится за несколько часов: единственный критерий, где отставание нагоняется быстро, но только если люди сядут и пройдут. Ссылку разослать команде.</span></label>
+        <span class="why">Первый сертификат есть: капитан прошёл базовый онлайн-курс на платформе РСВ — тот самый, что рекомендует область (слайд 11 ВКС). Это 1 из 5 — 20 %, то есть 0,5 балла; для 1,5 нужны четверо, значит ещё трое. Курс проходится за несколько часов: единственный критерий, где отставание нагоняется быстро, но только если люди сядут и пройдут. Ссылку на курс разослать команде, образец сертификата — рядом. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/sertifikat-uvarov.pdf" target="_blank" rel="noopener">Сертификат, образец</a></span></label>
     </li>
   </ul>
 
@@ -650,7 +683,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <section class="panel">
     <div class="head"><h2>Документы пакета</h2><span class="eyebrow ui">клик по статусу</span></div>
     <div class="docs" id="docs">
-      <div class="row"><span class="n">Приказ об открытии проекта<small>статус уточняется</small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Приказ об открытии проекта<small>статус уточняется · проект документа готов <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/rasporyazhenie-proekt.pdf" target="_blank" rel="noopener">PDF</a> <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/rasporyazhenie-proekt.docx" target="_blank" rel="noopener">Word на правку</a></small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Карточка проекта<small>Приложение № 1, форма МПК <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta.pdf" target="_blank" rel="noopener">PDF</a> <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta-forma.docx" target="_blank" rel="noopener">Word</a></small></span><button class="chip" data-state="work">в работе</button></div>
       <div class="row"><span class="n">Карта текущего состояния<small>draw.io, согласование с куратором <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-tekushchego.png" target="_blank" rel="noopener">PNG</a> <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-tekushchego.drawio" target="_blank" rel="noopener">исходник</a></small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Анализ проблем<small>«5 почему», Исикава, реестр потерь</small></span><button class="chip" data-state="idle">не начато</button></div>
@@ -877,6 +910,8 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <div class="docs files">
       <div class="row"><span class="n">Карточка проекта<small>Оформленная, один лист А4 · база показателей ждёт замеров</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Карточка проекта — форма Word<small>Строгая официальная форма, Приложение № 1, с блоком подписей</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta-forma.docx" target="_blank" rel="noopener">скачать</a></div>
+      <div class="row"><span class="n">Распоряжение об инициировании — Word<small>Проект на правку и подпись. Вид документа и бланк уточняет делопроизводство</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/rasporyazhenie-proekt.docx" target="_blank" rel="noopener">скачать</a></div>
+      <div class="row"><span class="n">Распоряжение об инициировании — PDF<small>То же для просмотра. Даты и номер проставляются при регистрации</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/rasporyazhenie-proekt.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Анкета замеров «как было»<small>Раздать сотрудникам: каналы приёма, журнал, хронометраж, ВПП, периметр</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/anketa-zamery.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Лист гембы<small>6 страниц А4 альбомной, 42 замера по 10 этапам — печатать на планшет</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/list-gemby.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Карта текущего состояния<small>Каркас на 10 этапов. Длительности подставляются после хронометража</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-tekushchego.png" target="_blank" rel="noopener">скачать</a></div>
@@ -886,9 +921,11 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
       <div class="row"><span class="n">Самооценка по критериям конкурса<small>Все 9 заочных и 5 очных критериев: наш балл, чем подтверждается</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/samoocenka.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Анализ процесса «как было / как стало»<small>Разбор процесса, на нём стоят карточка, карта и презентация</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/analiz-processa.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Отчётная презентация<small>Черновик: часть слайдов ждёт карту, цифры замеров и скриншоты</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pptx" target="_blank" rel="noopener">скачать</a></div>
-      <div class="row"><span class="n">Штаб — печатная форма<small>Снимок этой страницы на 15 страницах А4. Свежую печатайте кнопкой вверху</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/shtab-pechatnaya-forma.pdf" target="_blank" rel="noopener">скачать</a></div>
+      <div class="row"><span class="n">Сертификат об обучении — Уваров Г.Г.<small>Базовый онлайн-курс платформы РСВ. Критерий 2: 1 из 5, нужно 4</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/sertifikat-uvarov.pdf" target="_blank" rel="noopener">скачать</a></div>
+      <div class="row"><span class="n">Разбор тестов курса<small>30 вопросов с ответами и пояснениями — открывается страницей, не скачивается</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/testy-otvety.html" target="_blank" rel="noopener">открыть</a></div>
+      <div class="row"><span class="n">Штаб — печатная форма<small>Снимок этой страницы на 16 страницах А4. Свежую печатайте кнопкой вверху</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/shtab-pechatnaya-forma.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Заявка на конкурс<small>Подписанный оригинал на публичной странице не выкладываем — запросить у руководителя проекта</small></span><span class="none">файла ещё нет</span></div>
-      <div class="row"><span class="n">Приказ об открытии проекта<small>Копии у нас нет: запрошена у администрации</small></span><span class="none">файла ещё нет</span></div>
+      <div class="row"><span class="n">Приказ об открытии проекта — изданный<small>Копии у нас нет: запрошена у администрации. Выше лежит наш проект на случай, если приказ ещё не издавался</small></span><span class="none">файла ещё нет</span></div>
   </div>
   <p class="foot-note">Файлы обновляются вместе со страницей. Если открыли
   давно — обновите вкладку, браузер мог показать старую версию.</p>
@@ -975,8 +1012,14 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   Документы и черновики — в репозитории <span class="mono">NiceGenn/Team-28</span>.
 
   <details class="changelog">
-    <summary>Версия 1.7 от 30.08.2026 — что менялось</summary>
+    <summary>Версия 1.9 от 30.08.2026 — что менялось</summary>
     <ul>
+      <li><b>1.9 · 30.08.2026.</b> Вверху — разбор тестов курса: 30 вопросов
+        с ответами, для тех, кому обучение предстоит. Кнопки скачивания стали
+        заметнее: крупнее, с рамкой и заливкой.</li>
+      <li><b>1.8 · 30.08.2026.</b> Проект распоряжения об инициировании
+        проекта — по образцу приказа МПК № 52-ОД, в Word на правку и в PDF.
+        Выложен сертификат об обучении как образец для остальных.</li>
       <li><b>1.7 · 30.08.2026.</b> Разобрана презентация ВКС. Обучение:
         онлайн (курс РСВ) и офлайн (АЦОПП) — равноправны, вопрос о зачёте
         «Сенежа» снят. Найдено расхождение источников в порядке

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ответы: бережливое управление</title>
+<style>
+  :root{
+    --ink:#16202b;
+    --ink-soft:#4d5b6a;
+    --paper:#f2f0eb;
+    --card:#ffffff;
+    --rule:#d8d4cb;
+    --ok:#1f6b4a;
+    --ok-bg:#e3f0e8;
+    --fix:#8a5a12;
+    --fix-bg:#f7ecd6;
+    --dim:#8b8579;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 80px}
+
+  header{border-bottom:2px solid var(--ink);padding:44px 0 22px;margin-bottom:26px}
+  .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin:0 0 14px}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;
+     font-size:clamp(28px,5vw,42px);line-height:1.12;margin:0 0 14px;letter-spacing:-.01em}
+  .lede{margin:0;max-width:54ch;color:var(--ink-soft);font-size:15px}
+
+  .bar{
+    position:sticky;top:0;z-index:5;background:var(--paper);
+    border-bottom:1px solid var(--rule);padding:12px 0;margin-bottom:30px;
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  }
+  .bar .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-right:4px}
+  button.filter{
+    font:inherit;font-size:13px;padding:6px 13px;border-radius:999px;
+    border:1px solid var(--rule);background:transparent;color:var(--ink-soft);
+    cursor:pointer;transition:background .15s,border-color .15s,color .15s;
+  }
+  button.filter:hover{border-color:var(--ink-soft)}
+  button.filter[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+  button.filter:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+  section{margin-bottom:44px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;
+            padding-bottom:8px;border-bottom:1px solid var(--rule);margin-bottom:20px}
+  .sec-num{font-family:Georgia,serif;font-size:13px;color:var(--dim);
+           border:1px solid var(--rule);border-radius:50%;
+           width:26px;height:26px;flex:0 0 26px;display:flex;align-items:center;justify-content:center}
+  .sec-head h2{font-size:15px;font-weight:600;letter-spacing:.02em;margin:0;flex:1}
+  .sec-count{font-size:12px;color:var(--dim)}
+
+  .q{background:var(--card);border:1px solid var(--rule);
+     border-left:3px solid var(--ok);padding:18px 20px;margin-bottom:14px}
+  .q[data-status="fixed"]{border-left-color:var(--fix)}
+  .q.hidden{display:none}
+
+  .q-top{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}
+  .q-idx{font-family:Georgia,serif;font-size:13px;color:var(--dim);padding-top:2px;flex:0 0 auto;min-width:22px}
+  .q-text{font-weight:600;font-size:15.5px;line-height:1.4;margin:0;flex:1}
+
+  .tag{display:inline-block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+       padding:3px 8px;border-radius:3px;white-space:nowrap;margin-left:auto}
+  .tag.ok{background:var(--ok-bg);color:var(--ok)}
+  .tag.fix{background:var(--fix-bg);color:var(--fix)}
+
+  .hint{font-size:12.5px;color:var(--dim);margin:0 0 12px 32px;font-style:italic}
+
+  ul.opts{list-style:none;margin:0 0 0 32px;padding:0}
+  ul.opts li{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;
+             margin-bottom:3px;border-radius:4px;font-size:14.5px;line-height:1.45}
+  li.right{background:var(--ok-bg);color:var(--ink)}
+  li.right .mark{color:var(--ok);font-weight:700}
+  li.wrong{color:#9a958b}
+  li.wrong .mark{color:#c4bfb4}
+  .mark{flex:0 0 14px;text-align:center;font-size:13px;padding-top:1px}
+
+  table.match{margin:0 0 0 32px;border-collapse:collapse;width:calc(100% - 32px);font-size:14.5px}
+  table.match td{padding:8px 10px;border-bottom:1px solid #eceae4;vertical-align:top}
+  table.match tr:last-child td{border-bottom:none}
+  td.key{background:var(--ok-bg);font-weight:600;width:38%}
+  td.arrow{color:var(--ok);width:20px;text-align:center;padding:8px 0}
+
+  .note{margin:12px 0 0 32px;padding-left:12px;border-left:2px solid var(--rule);
+        font-size:13.5px;color:var(--ink-soft)}
+  .note.trap{border-left-color:var(--fix)}
+  .note strong{color:var(--ink)}
+
+  footer{border-top:1px solid var(--rule);padding-top:18px;margin-top:20px;font-size:13px;color:var(--dim)}
+  @media (max-width:560px){
+    ul.opts,table.match,.hint,.note{margin-left:0;width:100%}
+    .q{padding:16px 14px}
+    .tag{margin-left:0}
+    .q-top{flex-wrap:wrap}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Процессное (бережливое) управление · шпаргалка</p>
+  <h1>Ответы на тесты курса</h1>
+  <p class="lede">30 вопросов, все ответы приняты системой. Зелёным подсвечены правильные варианты. Оранжевым помечены пять вопросов, где верный ответ оказался неочевидным — их стоит перечитать перед итоговым тестированием.</p>
+</header>
+
+<div class="bar">
+  <span class="lbl">Показать</span>
+  <button class="filter" data-f="all" aria-pressed="true">Все&nbsp;·&nbsp;30</button>
+  <button class="filter" data-f="fixed" aria-pressed="false">Ловушки&nbsp;·&nbsp;5</button>
+</div>
+
+<!-- ================= РАЗДЕЛ 1 ================= -->
+<section>
+  <div class="sec-head"><span class="sec-num">1</span><h2>Основы бережливого производства</h2><span class="sec-count">3 вопроса</span></div>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">01</span><p class="q-text">Какая идея лежит в основе бережливого производства?</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>Массовое производство без учета затрат ресурсов</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Максимальное задействование всех доступных ресурсов</span></li>
+      <li class="right"><span class="mark">✓</span><span>Исключение действий, потребляющих ресурсы, но не приносящих пользы конечному потребителю</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Использование максимального количества энергии и материалов для достижения высокой производительности</span></li>
+    </ul>
+    <p class="note">Совпадает с определением потери в методических рекомендациях МПК АО: действие, потребляющее ресурсы, но не создающее ценности.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">02</span><p class="q-text">Выберите 5 принципов бережливого производства</p><span class="tag ok">верно</span></div>
+    <p class="hint">Несколько вариантов ответа</p>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Стремиться к совершенству</span></li>
+      <li class="right"><span class="mark">✓</span><span>Позволить потребителю вытягивать продукт</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Беречь природные ресурсы, заботиться об экологии</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Исключить использование технологий и инноваций</span></li>
+      <li class="right"><span class="mark">✓</span><span>Обеспечить непрерывное течение потока создания ценности продукта</span></li>
+      <li class="right"><span class="mark">✓</span><span>Определить поток создания ценности для этого продукта</span></li>
+      <li class="right"><span class="mark">✓</span><span>Определить ценность конкретного продукта</span></li>
+    </ul>
+    <p class="note">Классические принципы Вумека и Джонса. Экология и отказ от технологий к ним не относятся.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">03</span><p class="q-text">Руководство не обязательно должно быть сторонником бережливого проекта, оно может не верить в его реализацию и не поддерживать. Главное, чтобы в проекты были вовлечены вы и ваша команда</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Неверно</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Верно</span></li>
+    </ul>
+    <p class="note">Карточка проекта утверждается руководителем органа власти и согласуется с МПК АО. Без поддержки руководства проект не запускается.</p>
+  </article>
+</section>
+
+<!-- ================= РАЗДЕЛ 2 ================= -->
+<section>
+  <div class="sec-head"><span class="sec-num">2</span><h2>Запуск проекта, цели и роли</h2><span class="sec-count">7 вопросов</span></div>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">01</span><p class="q-text">«Сократить среднее время ожидания граждан в очереди в кадровом центре занятости населения в городе Л. в 2 раза». Какой характеристики не хватает цели?</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>Нет конкретики</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Цель не актуальна</span></li>
+      <li class="right"><span class="mark">✓</span><span>Цель не ограничена во времени</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Цель не измерима</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Цель недостижима</span></li>
+    </ul>
+    <p class="note">Конкретика и измеримость есть, срок достижения не указан.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">02</span><p class="q-text">Если заказчик проекта не посещает собрания проектной команды, он всегда может узнать актуальную информацию из плана коммуникаций. Проводить с ним дополнительные встречи не обязательно</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Неверно</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Верно</span></li>
+    </ul>
+    <p class="note">Заказчик — ключевая заинтересованная сторона: с ним согласуют цели, целевое состояние и результаты.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">03</span><p class="q-text">Расположите в правильном порядке этапы сбора Голоса клиента</p><span class="tag ok">верно</span></div>
+    <table class="match">
+      <tr><td class="key">Этап 1</td><td class="arrow">→</td><td>Анализ существующих источников данных</td></tr>
+      <tr><td class="key">Этап 2</td><td class="arrow">→</td><td>Выбор метода и инструментов сбора данных</td></tr>
+      <tr><td class="key">Этап 3</td><td class="arrow">→</td><td>Проведение исследования</td></tr>
+      <tr><td class="key">Этап 4</td><td class="arrow">→</td><td>Анализ и интерпретация результатов</td></tr>
+    </table>
+    <p class="note">Сначала смотрим, что уже есть (обращения, жалобы, статистика), потом решаем, чем добирать недостающее, затем собираем и интерпретируем.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">04</span><p class="q-text">Схема SIPOC может быть упрощенной и не учитывать все детали процесса</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Верно</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Неверно</span></li>
+    </ul>
+    <p class="note">SIPOC — высокоуровневая схема: 4–7 укрупнённых шагов. Детализация — задача карты потока создания ценности.</p>
+  </article>
+
+  <article class="q" data-status="fixed">
+    <div class="q-top"><span class="q-idx">05</span><p class="q-text">Какие роли обычно включают в команду бережливого проекта?</p><span class="tag fix">ловушка</span></div>
+    <p class="hint">Несколько вариантов ответа · ровно 4 пункта</p>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>Команда аналитиков</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Штатный психолог</span></li>
+      <li class="right"><span class="mark">✓</span><span>Заказчик проекта</span></li>
+      <li class="right"><span class="mark">✓</span><span>Лидер внедрения</span></li>
+      <li class="right"><span class="mark">✓</span><span>Владелец процесса</span></li>
+      <li class="right"><span class="mark">✓</span><span>Рабочая команда</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Спонсор проекта</span></li>
+    </ul>
+    <p class="note trap"><strong>Спонсор проекта — не входит.</strong> Спонсор и куратор внешние по отношению к команде: обеспечивают ресурсы и поддержку, но участниками не считаются.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">06</span><p class="q-text">Паспорт проекта лучше подписать с заказчиком и владельцем проекта</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Верно</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Неверно</span></li>
+    </ul>
+    <p class="note">Подпись фиксирует согласие с целями, границами и показателями — снижает риск разногласий при защите результатов.</p>
+  </article>
+
+  <article class="q" data-status="fixed">
+    <div class="q-top"><span class="q-idx">07</span><p class="q-text">Для чего нужен план коммуникаций?</p><span class="tag fix">ловушка</span></div>
+    <p class="hint">Несколько вариантов ответа · ровно 2 пункта</p>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>Чтобы заказчик проекта мог контролировать все действия команды и ставить задачи</span></li>
+      <li class="right"><span class="mark">✓</span><span>Чтобы команда, заказчик проекта и все заинтересованные лица были в курсе ведения проекта</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Это формальный документ для заказчика проекта</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Чтобы все заинтересованные лица могли вносить в проект свои коррективы и предложения</span></li>
+      <li class="right"><span class="mark">✓</span><span>Чтобы команда, заказчик проекта и все заинтересованные лица знали, к кому обращаться по тому или иному вопросу</span></li>
+    </ul>
+    <p class="note trap"><strong>Внесение корректив — не входит.</strong> План коммуникаций отвечает только за информирование и маршрутизацию вопросов: кто, кому, что и когда сообщает. Изменения в проекте — зона руководителя проекта.</p>
+  </article>
+</section>
+
+<!-- ================= РАЗДЕЛ 3 ================= -->
+<section>
+  <div class="sec-head"><span class="sec-num">3</span><h2>Диагностика: гемба, карты, данные</h2><span class="sec-count">5 вопросов</span></div>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">01</span><p class="q-text">Что такое гемба?</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Место, где идет рабочий процесс</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Ритуал, проводимый японскими воинами перед сражением</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Спортивная игра, которая позволяет сплотить рабочий коллектив</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Место, где рождаются новые идеи</span></li>
+    </ul>
+    <p class="note">Гемба (яп. 現場) — «реальное место», площадка, где создаётся ценность.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">02</span><p class="q-text">Сопоставьте карты и ситуации, в которых их лучше использовать</p><span class="tag ok">верно</span></div>
+    <table class="match">
+      <tr><td class="key">VSM</td><td class="arrow">→</td><td>Если проект нацелен на сокращение сроков</td></tr>
+      <tr><td class="key">MIFA</td><td class="arrow">→</td><td>Если проект нацелен на уменьшение ошибок</td></tr>
+      <tr><td class="key">Диаграмма Спагетти</td><td class="arrow">→</td><td>Если проект нацелен на улучшение рабочего пространства</td></tr>
+    </table>
+    <p class="note">VSM показывает время протекания процесса, MIFA детализирует передачу информации и документов (где и возникают ошибки), Спагетти рисует физические перемещения.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">03</span><p class="q-text">На изображении представлена… (план помещения с пересекающимися траекториями перемещений)</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>Функциональная карта процесса (MIFA)</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Карта потока ценности (VSM)</span></li>
+      <li class="right"><span class="mark">✓</span><span>Диаграмма Спагетти</span></li>
+    </ul>
+    <p class="note">План помещения плюс запутанные линии перемещений — однозначно спагетти-диаграмма.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">04</span><p class="q-text">Какие элементы включает план сбора данных?</p><span class="tag ok">верно</span></div>
+    <p class="hint">Несколько вариантов ответа · ровно 3 пункта</p>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>Контактные данные руководителя проекта</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Описание целей и задач проекта</span></li>
+      <li class="right"><span class="mark">✓</span><span>Описание необходимой информации и ее объема</span></li>
+      <li class="right"><span class="mark">✓</span><span>Установление конкретных сроков и порядка сбора данных</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Функции членов команды</span></li>
+      <li class="right"><span class="mark">✓</span><span>Определение методов и инструментов для сбора информации</span></li>
+    </ul>
+    <p class="note">Связка «что собираем — как собираем — когда собираем».</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">05</span><p class="q-text">В каком случае выборка репрезентативна?</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>Когда выборка состоит только из мужчин</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Когда выбираются только представители самых малочисленных групп популяции</span></li>
+      <li class="right"><span class="mark">✓</span><span>Когда все части популяции представлены равноценно</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Когда выборка состоит из людей, которые сами согласились на участие, исключая другие группы популяции</span></li>
+    </ul>
+    <p class="note">Структура выборки должна отражать структуру генеральной совокупности.</p>
+  </article>
+</section>
+
+<!-- ================= РАЗДЕЛ 4 ================= -->
+<section>
+  <div class="sec-head"><span class="sec-num">4</span><h2>Потери, категории работ, время такта</h2><span class="sec-count">4 вопроса</span></div>
+
+  <article class="q" data-status="fixed">
+    <div class="q-top"><span class="q-idx">01</span><p class="q-text">Выберите действия, которые больше всего похожи на потери</p><span class="tag fix">ловушка</span></div>
+    <p class="hint">Несколько вариантов ответа · ровно 3 пункта · порядок вариантов в тесте меняется</p>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Ожидание принятия решения</span></li>
+      <li class="right"><span class="mark">✓</span><span>Подготовка отчета в трех экземплярах</span></li>
+      <li class="right"><span class="mark">✓</span><span>Хранение оборудования, которое вышло из строя</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Проведение инвентаризации</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Редактирование документов</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Совещания по проекту</span></li>
+    </ul>
+    <p class="note trap"><strong>Редактирование документов — не потеря.</strong> Это нормальная операция, добавляющая ценность. Потерей была бы переделка из-за ошибок, но в формулировке этого нет.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">02</span><p class="q-text">Сопоставьте шаги процесса и их категории</p><span class="tag ok">верно</span></div>
+    <table class="match">
+      <tr><td class="key">Значимая работа (VA)</td><td class="arrow">→</td><td>Физически изменяет продукт или информацию</td></tr>
+      <tr><td class="key">Незначимая работа (BVA)</td><td class="arrow">→</td><td>Деятельность, не добавляющая ценности, но необходимая с точки зрения организации</td></tr>
+      <tr><td class="key">Потери (NVA)</td><td class="arrow">→</td><td>Деятельность, не добавляющая ценности</td></tr>
+    </table>
+  </article>
+
+  <article class="q" data-status="fixed">
+    <div class="q-top"><span class="q-idx">03</span><p class="q-text">Марина и Анна принимают документы с 8 до 17, обед — 1 час. В день приходит 80 человек. Какое время такта составляет прием одного человека?</p><span class="tag fix">ловушка</span></div>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>24 минуты</span></li>
+      <li class="wrong"><span class="mark">·</span><span>6 минут</span></li>
+      <li class="right"><span class="mark">✓</span><span>12 минут</span></li>
+      <li class="wrong"><span class="mark">·</span><span>10 минут</span></li>
+    </ul>
+    <p class="note trap"><strong>Формула курса:</strong> (рабочее время одного сотрудника × количество сотрудников) ÷ количество обращений. Здесь 480 × 2 ÷ 80 = 12 минут. Классическая формула такта фонд на число исполнителей не умножает и дала бы 6 минут — этот курс считает иначе, запомните именно его вариант.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">04</span><p class="q-text">Суть метода 5 «Почему» — задать пять раз вопрос «Почему». Нельзя задать, например, 3 или 7 вопросов</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Неверно</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Верно</span></li>
+    </ul>
+    <p class="note">«Пять» — ориентир, а не жёсткое правило: вопросы задают до выявления коренной причины.</p>
+  </article>
+</section>
+
+<!-- ================= РАЗДЕЛ 5 ================= -->
+<section>
+  <div class="sec-head"><span class="sec-num">5</span><h2>Решения: балансировка, защита от ошибок, SMED</h2><span class="sec-count">8 вопросов</span></div>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">01</span><p class="q-text">Каким образом лучше сбалансировать процесс?</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Чтобы время выполнения шагов было меньше времени такта примерно на 20%</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Чтобы время выполнения шагов было больше времени такта примерно на 20%</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Чтобы время выполнения шагов было равно времени такта</span></li>
+    </ul>
+    <p class="note">Запас в 20% нужен на колебания спроса и вариативность операций. Без него любое отклонение создаёт очередь.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">02</span><p class="q-text">В чем заключается цель методов защиты от ошибок?</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>В исправлении от обратного: в создании еще большего количества ошибок</span></li>
+      <li class="right"><span class="mark">✓</span><span>Предотвращение ошибок до передачи готового продукта клиентам</span></li>
+      <li class="wrong"><span class="mark">·</span><span>В предоставлении на следующий этап продукта с максимальным количеством ошибок, чтобы улучшить навыки поиска проблем</span></li>
+      <li class="wrong"><span class="mark">·</span><span>В перенаправлении ответственности за ошибки на клиентов</span></li>
+    </ul>
+    <p class="note">Суть пока-ёкэ: встроить защиту в процесс так, чтобы дефект не мог возникнуть или был пойман до выхода к потребителю.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">03</span><p class="q-text">Принципиально можно выделить три вида защиты от ошибок. Какие?</p><span class="tag ok">верно</span></div>
+    <p class="hint">Несколько вариантов ответа · ровно 3 пункта</p>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Проверка на следующей стадии</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Клиентский контроль</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Проверка до начала производства</span></li>
+      <li class="right"><span class="mark">✓</span><span>Самоконтроль</span></li>
+      <li class="right"><span class="mark">✓</span><span>Приемка контролером или инспекция</span></li>
+    </ul>
+    <p class="note">Триада Синго: последовательная проверка следующим этапом, самопроверка исполнителем и проверка контролером.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">04</span><p class="q-text">Соотнесите понятия: система выталкивания и система вытягивания</p><span class="tag ok">верно</span></div>
+    <table class="match">
+      <tr><td class="key">Система вытягивания</td><td class="arrow">→</td><td>Метод управления производством, где операции сигнализируют о потребностях предыдущим</td></tr>
+      <tr><td class="key">Система выталкивания</td><td class="arrow">→</td><td>Метод, где продукты производятся на основе спроса и затем выталкиваются на рынок</td></tr>
+    </table>
+    <p class="note">Сигнал от последующей операции к предыдущей — это канбан, то есть вытягивание.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">05</span><p class="q-text">Расположите в правильном порядке этапы SMED</p><span class="tag ok">верно</span></div>
+    <table class="match">
+      <tr><td class="key">Предварительный этап</td><td class="arrow">→</td><td>Создать многофункциональную команду и задокументировать продолжительность процесса</td></tr>
+      <tr><td class="key">Этап 1</td><td class="arrow">→</td><td>Отделить внешние работы от внутренних, нормировать внешние работы</td></tr>
+      <tr><td class="key">Этап 2</td><td class="arrow">→</td><td>Преобразовать внутренние работы во внешние</td></tr>
+      <tr><td class="key">Этап 3</td><td class="arrow">→</td><td>Оптимизировать все виды работ</td></tr>
+    </table>
+    <p class="note">Канонический порядок по Синго: замерить → разделить → перенести → оптимизировать.</p>
+  </article>
+
+  <article class="q" data-status="fixed">
+    <div class="q-top"><span class="q-idx">06</span><p class="q-text">Выберите верные утверждения о матрице принятия решений</p><span class="tag fix">ловушка</span></div>
+    <p class="hint">Несколько вариантов ответа · ровно 3 пункта</p>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>Вы можете применять матрицу, если нужно убедить коллег в принятии неочевидного, субъективного решения</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Оптимально применять матрицу, когда надо сделать выбор из 5 и более имеющихся решений</span></li>
+      <li class="right"><span class="mark">✓</span><span>С матрицей можно выбрать второй лучший вариант, если невозможно будет реализовать приоритетное решение</span></li>
+      <li class="right"><span class="mark">✓</span><span>Благодаря матрице можно минимизировать влияние субъективных факторов на решение, оно становится более объективным</span></li>
+      <li class="right"><span class="mark">✓</span><span>Матрица поможет убедить участников в правильности предлагаемого решения и наглядно обосновать сделанный выбор</span></li>
+    </ul>
+    <p class="note trap"><strong>Порог «5 и более решений» — не входит.</strong> Матрица работает при любом количестве альтернатив, начиная с двух. Ограничение надуманное.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">07</span><p class="q-text">При разработке целевой карты процесса необходимо сначала определить видение идеального процесса. Как он должен выглядеть?</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Идеальный процесс, или «как должно быть», состоит только из операций, создающих ценность для клиента, и не имеет потерь</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Идеальный процесс, или «как есть сейчас», состоит из операций, создающих ценность для клиента, и из потерь</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Идеальный процесс, или «как будет реализовано», состоит из операций, создающих ценность для клиента, и не имеет минимальных потерь</span></li>
+    </ul>
+    <p class="note">Второй вариант описывает текущее состояние, третий — достигнутое.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">08</span><p class="q-text">Когда надо запускать пилот?</p><span class="tag ok">верно</span></div>
+    <p class="hint">Несколько вариантов ответа · ровно 3 пункта</p>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Планируется большой масштаб изменений</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Изменения незначительные, и их проще проверить на маленькой группе</span></li>
+      <li class="wrong"><span class="mark">·</span><span>На проект было выделено мало времени, и он не доработан</span></li>
+      <li class="right"><span class="mark">✓</span><span>Изменение будет трудно отменить</span></li>
+      <li class="right"><span class="mark">✓</span><span>Внесение изменения будет дорогостоящим процессом</span></li>
+    </ul>
+    <p class="note">Пилот нужен там, где высока цена ошибки: масштабные, необратимые или дорогие изменения.</p>
+  </article>
+</section>
+
+<!-- ================= РАЗДЕЛ 6 ================= -->
+<section>
+  <div class="sec-head"><span class="sec-num">6</span><h2>Мониторинг, 5С и завершение проекта</h2><span class="sec-count">3 вопроса</span></div>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">01</span><p class="q-text">Возможны три ситуации сравнения плана и факта. Какие?</p><span class="tag ok">верно</span></div>
+    <p class="hint">Несколько вариантов ответа · ровно 3 пункта</p>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Отрицательные расхождения</span></li>
+      <li class="right"><span class="mark">✓</span><span>Отсутствие расхождений</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Неформальные расхождения</span></li>
+      <li class="right"><span class="mark">✓</span><span>Положительные расхождения</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Профессиональные расхождения</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Формальные расхождения</span></li>
+    </ul>
+    <p class="note">Факт либо хуже плана, либо совпадает с ним, либо превышает его.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">02</span><p class="q-text">Выберите пять пунктов системы 5С</p><span class="tag ok">верно</span></div>
+    <p class="hint">Несколько вариантов ответа · ровно 5 пунктов</p>
+    <ul class="opts">
+      <li class="wrong"><span class="mark">·</span><span>Самоконтроль</span></li>
+      <li class="right"><span class="mark">✓</span><span>Стандартизировать</span></li>
+      <li class="right"><span class="mark">✓</span><span>Сортировать</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Следить за коллегами</span></li>
+      <li class="right"><span class="mark">✓</span><span>Содержать в чистоте</span></li>
+      <li class="right"><span class="mark">✓</span><span>Соблюдать порядок</span></li>
+      <li class="right"><span class="mark">✓</span><span>Совершенствовать</span></li>
+    </ul>
+    <p class="note">Сортировка → порядок → чистота → стандартизация → совершенствование.</p>
+  </article>
+
+  <article class="q" data-status="ok">
+    <div class="q-top"><span class="q-idx">03</span><p class="q-text">После проекта важно провести формальную встречу команды проекта, чтобы наградить тех, кто работал хорошо, и поругать тех, кто совершал ошибки</p><span class="tag ok">верно</span></div>
+    <ul class="opts">
+      <li class="right"><span class="mark">✓</span><span>Неверно</span></li>
+      <li class="wrong"><span class="mark">·</span><span>Верно</span></li>
+    </ul>
+    <p class="note">Итоговое совещание — про подведение итогов, извлечение уроков и поощрение команды. Разбор ведётся в отношении процесса, а не людей.</p>
+  </article>
+</section>
+
+<footer>
+  <p>Все 30 ответов приняты системой при прохождении тестов. Метка «ловушка» стоит на пяти вопросах, где правильный набор отличался от первой интуитивной догадки — в пояснении к каждому указано, какой вариант лишний и почему.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var buttons = document.querySelectorAll('button.filter');
+  var cards = document.querySelectorAll('.q');
+  var sections = document.querySelectorAll('section');
+
+  function apply(mode){
+    cards.forEach(function(c){
+      var show = (mode === 'all') || (c.dataset.status === mode);
+      c.classList.toggle('hidden', !show);
+    });
+    sections.forEach(function(s){
+      var visible = s.querySelectorAll('.q:not(.hidden)').length;
+      s.style.display = visible ? '' : 'none';
+    });
+  }
+
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){
+      buttons.forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+      apply(b.dataset.f);
+    });
+  });
+})();
+</script>
+</body>
+</html>
