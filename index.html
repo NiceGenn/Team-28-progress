@@ -238,6 +238,31 @@ header .sub{color:var(--ink-2); max-width:62ch}
 .chip[data-state="done"]{background:var(--done-soft); border-color:var(--done); color:var(--done)}
 .chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 
+/* ---------- комплект на сдачу ---------- */
+.ship{ border:2px solid var(--accent); border-radius:14px; padding:16px 18px;
+  background:var(--surface-2); margin:0 0 20px }
+.ship .top{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+  margin-bottom:4px }
+.ship h2{ margin:0; font-size:17px }
+.ship .due{ font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:13px;
+  font-weight:600; color:var(--accent) }
+.ship .lead{ font-size:13.5px; color:var(--ink-2); margin:6px 0 14px;
+  line-height:1.6 }
+.ship .item{ display:grid; grid-template-columns:1fr auto; gap:10px 14px;
+  align-items:start; padding:12px 0; border-top:1px solid var(--border) }
+.ship .item .nm{ font-weight:600; font-size:14.5px }
+.ship .item .st{ font-size:13px; color:var(--ink-2); line-height:1.6;
+  margin-top:4px }
+.ship .item .need{ display:block; font-size:13px; margin-top:6px;
+  line-height:1.6 }
+.ship .item .need b{ color:var(--ink) }
+.ship .pill{ font-size:12px; font-weight:600; padding:4px 10px;
+  border-radius:999px; white-space:nowrap }
+.ship .p-no{ background:#FDECEC; color:#B42318 }
+.ship .p-part{ background:#FEF6E7; color:#B54708 }
+.ship .p-ok{ background:#E9F7EF; color:#0F7B3E }
+@media (max-width:640px){ .ship .item{ grid-template-columns:1fr } }
+
 /* ---------- баллы ---------- */
 .score{display:grid; gap:9px}
 .score .r{display:grid; grid-template-columns:1fr 72px; gap:10px; align-items:center; font-size:13px}
@@ -538,13 +563,13 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <div class="ph-2">
     <span>Участник: <i></i></span>
     <span>Распечатано: <i></i></span>
-    <span class="ver mono">в. 1.15 · 15.09.2026</span>
+    <span class="ver mono">в. 1.16 · 16.09.2026</span>
   </div>
 </div>
 
 <header>
   <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28
-    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 1.15 · 15.09.2026</span>
+    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 1.16 · 16.09.2026</span>
     <button class="printbtn" type="button" onclick="window.print()">Распечатать</button>
   </div>
   <h1>Оптимизация приёма и отработки сообщений граждан</h1>
@@ -557,8 +582,62 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <div class="fact hot"><span class="k">Приказ</span><span class="v">статус уточняется</span></div>
     <div class="fact"><span class="k">Заявка на конкурс</span><span class="v">подана 30.07, в срок</span></div>
     <div class="fact"><span class="k">Команда</span><span class="v">«Лидеры перемен», 5 человек</span></div>
+    <div class="fact"><span class="k">Куратор проекта</span><span class="v">Ключников Александр</span></div>
   </div>
 </header>
+
+<section class="ship">
+  <div class="top">
+    <h2>Что сдаём на конкурс</h2>
+    <span class="due">до 01.10.2026 · aksenova.aa@mpk.amurobl.ru</span>
+  </div>
+  <p class="lead">Три документа, и всё. В теме письма — название команды
+  «Лидеры перемен» и телефон капитана. Ниже — что из них готово и чего
+  каждому не хватает.</p>
+
+  <div class="item">
+    <div>
+      <div class="nm">1. Справка проекта</div>
+      <div class="st">Приложение № 2 к 99-р. Пять критериев на одной странице,
+        подпись Главы округа, перечень приложений.
+        <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-chernovik.pdf" target="_blank" rel="noopener">черновик</a>
+        <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-forma.docx" target="_blank" rel="noopener">пустая форма</a></div>
+      <span class="need"><b>Нужно:</b> цифры «как стало» из панели (24–25.09) ·
+        подтвердить инструменты хронометражем и гембой · расчёт экономического
+        эффекта · <b>подпись Главы округа</b></span>
+    </div>
+    <span class="pill p-part">черновик готов</span>
+  </div>
+
+  <div class="item">
+    <div>
+      <div class="nm">2. Карточка проекта</div>
+      <div class="st">Один лист А4, альбомная, четыре блока. Заполнена и
+        свёрстана.
+        <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-proekta.pdf" target="_blank" rel="noopener">наша карточка</a>
+        <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-forma-itogovaya.docx" target="_blank" rel="noopener">итоговая форма</a></div>
+      <span class="need"><b>Нужно:</b> добавить блок трёх подписей из итоговой
+        формы — руководитель проекта, руководитель аппарата, куратор ·
+        проставить базу показателей вместо прочерков</span>
+    </div>
+    <span class="pill p-part">90 %</span>
+  </div>
+
+  <div class="item">
+    <div>
+      <div class="nm">3. Отчётная презентация</div>
+      <div class="st">14 слайдов на итоговом шаблоне МПК. Заполнено девять,
+        пять — заглушки.
+        <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pptx" target="_blank" rel="noopener">черновик</a>
+        <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/shablon-prezentacii.pptx" target="_blank" rel="noopener">шаблон</a></div>
+      <span class="need"><b>Нужно:</b> карта целевого состояния (сл. 5) ·
+        карта достигнутого (сл. 9) · фото прежнего процесса (сл. 10) ·
+        экраны бота и панели (сл. 11) · регламент процесса (сл. 12) ·
+        база и факт в таблице показателей (сл. 8)</span>
+    </div>
+    <span class="pill p-part">65 %</span>
+  </div>
+</section>
 
 <a class="exam" href="https://nicegenn.github.io/Team-28-progress/файлы/testy-otvety.html" target="_blank" rel="noopener">
   <div class="top">
@@ -725,7 +804,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
       <div class="row"><span class="n">Стандарт процесса<small>регламент, даёт балл</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Отчётная презентация<small>14 слайдов на итоговом шаблоне МПК · ждёт карты, цифры замеров и скриншоты <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pptx" target="_blank" rel="noopener">PPTX</a></small></span><button class="chip" data-state="work">в работе</button></div>
       <div class="row"><span class="n">Речь защиты<small>доклад 10 мин + ответы 10 мин</small></span><button class="chip" data-state="idle">не начато</button></div>
-      <div class="row"><span class="n">Справка проекта<small>Приложение № 2 к 99-р · подпись Главы округа · один из трёх сдаваемых документов <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-forma.docx" target="_blank" rel="noopener">форма Word</a></small></span><button class="chip" data-state="idle">не начато</button></div>
+      <div class="row"><span class="n">Справка проекта<small>Приложение № 2 к 99-р · подпись Главы округа · один из трёх сдаваемых документов <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-forma.docx" target="_blank" rel="noopener">форма Word</a> <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-chernovik.pdf" target="_blank" rel="noopener">черновик</a></small></span><button class="chip" data-state="work">в работе</button></div>
       <div class="row"><span class="n">Заявка на конкурс<small>подана 30.07.2026 · «Лидеры перемен», 5 человек · <b>подписанный оригинал не выкладываем</b> — у руководителя проекта</small></span><button class="chip" data-state="done">готово</button></div>
     </div>
   </section>
@@ -957,6 +1036,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
       <div class="row"><span class="n">Разбор тестов курса<small>30 вопросов с ответами и пояснениями — открывается страницей, не скачивается</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/testy-otvety.html" target="_blank" rel="noopener">открыть</a></div>
       <div class="row"><span class="n">Штаб — печатная форма<small>Снимок этой страницы на 17 страницах А4. Свежую печатайте кнопкой вверху</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/shtab-pechatnaya-forma.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Шаблон итоговой презентации<small>Официальный файл организатора от 15.09.2026 — то, на чём собрана наша презентация</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/shablon-prezentacii.pptx" target="_blank" rel="noopener">скачать</a></div>
+      <div class="row"><span class="n">Справка проекта — черновик<small>Критерии 1–3 заполнены, результаты и экономический эффект ждут замеров. Читать и править</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-chernovik.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Справка проекта — форма<small>Приложение № 2 к 99-р. Заполняется и подписывается Главой округа</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-forma.docx" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Карточка проекта — итоговая форма<small>Присланная 15.09. Состав полей прежний, добавлен блок трёх подписей, включая куратора</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-forma-itogovaya.docx" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Оценочный лист заочного этапа<small>⚠️ Присланная редакция: 8 критериев и 12 баллов. Считаемся по Приложению № 3 к 99-р — 9 критериев, 17 баллов</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/ocenochnyy-list.pdf" target="_blank" rel="noopener">скачать</a></div>
@@ -1026,7 +1106,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <li><input type="checkbox" id="q3" checked><label for="q3"><s>Должность руководителя проекта</s> — закрыто заявкой 27.08</label></li>
     <li><input type="checkbox" id="q4" checked><label for="q4"><s>Название команды и её состав</s> — закрыто: «Лидеры перемен», 5 человек</label></li>
     <li><input type="checkbox" id="q5"><label for="q5">Есть ли в цепочках сторонние организации — подрядчики, РСО, УК, ЕДДС</label></li>
-    <li><input type="checkbox" id="q6"><label for="q6">Кто назначен куратором проекта от МПК или АЦОПП</label></li>
+    <li><input type="checkbox" id="q6" checked><label for="q6"><s>Кто назначен куратором проекта</s> — закрыто 16.09: Ключников Александр. Контакт у руководителя проекта. Нужен для согласования карты и третьей подписи в карточке</label></li>
     <li><input type="checkbox" id="q7"><label for="q7">Дата заседания Проектного комитета и когда направлять материалы</label></li>
     <li><input type="checkbox" id="q8" checked><label for="q8"><s>Засчитывается ли обучение «Сенежа»</s> — закрыто 30.08: слайд 11 ВКС даёт онлайн (РСВ) и офлайн (АЦОПП) как равноправные</label></li>
     <li><input type="checkbox" id="q9"><label for="q9">Шаблон презентации: цвета, шрифты, соотношение сторон</label></li>
@@ -1048,8 +1128,15 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   Документы и черновики — в репозитории <span class="mono">NiceGenn/Team-28</span>.
 
   <details class="changelog">
-    <summary>Версия 1.15 от 15.09.2026 — что менялось</summary>
+    <summary>Версия 1.16 от 16.09.2026 — что менялось</summary>
     <ul>
+      <li><b>1.16 · 16.09.2026.</b> В самом верху — блок <b>«Что сдаём на
+        конкурс»</b>: три документа, срок, почта, и по каждому — что готово
+        и чего не хватает. Собран черновик <b>справки проекта</b>: критерии
+        «цели», «потери» и «инструменты» заполнены, результаты и
+        экономический эффект ждут замеров. <b>Куратор известен</b> —
+        Ключников Александр, вопрос закрыт; он нужен для согласования карты
+        и для третьей подписи в итоговой форме карточки.</li>
       <li><b>1.15 · 15.09.2026.</b> Рядом с картой — ссылка на сам редактор
         <b>app.diagrams.net</b>: он бесплатный, регистрации не требует и
         открывается в браузере. Порядок простой — скачать исходник, открыть
