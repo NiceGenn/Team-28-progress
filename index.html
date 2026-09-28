@@ -244,6 +244,9 @@ header .sub{color:var(--ink-2); max-width:62ch}
 .ship .top{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
   margin-bottom:4px }
 .ship h2{ margin:0; font-size:17px }
+  .ship .ship-sub{ margin:26px 0 6px; font-size:15px; font-weight:650;
+    padding-top:18px; border-top:1px solid var(--line) }
+  .ship .ship-note{ margin:0 0 14px; font-size:13.5px; color:var(--ink-2) }
 .ship .due{ font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:13px;
   font-weight:600; color:var(--accent) }
 .ship .lead{ font-size:13.5px; color:var(--ink-2); margin:6px 0 14px;
@@ -563,13 +566,13 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <div class="ph-2">
     <span>Участник: <i></i></span>
     <span>Распечатано: <i></i></span>
-    <span class="ver mono">в. 4.4 · 28.09.2026</span>
+    <span class="ver mono">в. 4.5 · 28.09.2026</span>
   </div>
 </div>
 
 <header>
   <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28
-    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 4.4 · 28.09.2026</span>
+    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 4.5 · 28.09.2026</span>
     <button class="printbtn" type="button" onclick="window.print()">Распечатать</button>
   </div>
   <h1>Плановое выявление и устранение проблем территории</h1>
@@ -591,10 +594,10 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <h2>Что сдаём на конкурс</h2>
     <span class="due">до 01.10.2026 · aksenova.aa@mpk.amurobl.ru</span>
   </div>
-  <p class="lead">Три документа, и всё. В теме письма — название команды
-  «Лидеры перемен» и телефон капитана. Ниже — что из них готово и чего
-  каждому не хватает. Четвёртым идёт речь защиты: она не сдаётся, но без
-  неё три первых на очном этапе не защитить.</p>
+  <p class="lead">Три документа, и всё. Ниже — что из них готово и чего
+  каждому не хватает, а под чертой — что именно уходит в письме.
+  Четвёртым в списке идёт речь защиты: она не сдаётся, но без неё три
+  первых на очном этапе не защитить.</p>
 
   <div class="item">
     <div>
@@ -665,19 +668,12 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     </div>
     <span class="pill p-ok">готова</span>
   </div>
-</section>
 
-<section class="panel">
-  <div class="head">
-    <h2>Комплект на отправку — справка и два приложения</h2>
-    <span class="eyebrow">всё по таблице «К настоящей справке прилагаются»</span>
-  </div>
-
-  <p class="lead">Приложений два — как в бланке организатора, ничего
-  не дописываем (решение 28.09). Сертификаты об обучении при этом
-  не потерялись: они лежат <b>на листе 20 самой презентации</b>,
-  и раздел 3 справки ссылается на этот лист прямо. Формально то же
-  приложение, только без лишней строки в таблице.</p>
+  <h3 class="ship-sub">Что уходит в письме: справка и два приложения</h3>
+  <p class="ship-note">Приложений два — как в бланке организатора,
+  ничего не дописываем. Сертификаты об обучении при этом не потерялись:
+  они лежат <b>на листе 20 самой презентации</b>, и раздел 3 справки
+  ссылается на этот лист прямо.</p>
 
   <div class="docs files">
     <div class="row"><span class="n">Справка проекта<small>Сам документ,
@@ -751,7 +747,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   (слайд 11 презентации ВКС). Проходится за несколько часов, в конце —
   сертификат в личном кабинете.</p>
   <p class="meta">Прошли все пятеро. Четыре сертификата с верными Ф.И.О. — 4 из 5 = 80 %,
-  это твёрдый 1 балл. Нужен ещё <b>один</b>: четверо из пяти дают 1,5.</p>
+  и это <b>1,5 балла</b>: порог градации «более 60 %» взят.</p>
 </div>
 
 <div class="exam course">
@@ -863,7 +859,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <li>
       <input type="checkbox" id="w7">
       <label for="w7"><span class="t">Отрепетировать речь вслух по таймеру <span class="tag people">три раза</span></span>
-        <span class="why">Речь готова, красного нет: одиннадцать блоков, привязка к слайдам, <b>9 минут 45 секунд</b> из десяти. Соблюдение регламента — отдельный критерий очного этапа, а очный весит 25 баллов против 17 заочных. По бумаге глазами не считается: вслух всегда медленнее. Контрольная точка — слайд 8 ровно на шестой минуте. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity.pdf" target="_blank" rel="noopener">Речь, 8 стр.</a></span></label>
+        <span class="why">Речь готова, красного нет: одиннадцать блоков, привязка к слайдам, <b>9 минут 25 секунд</b> из десяти. Соблюдение регламента — отдельный критерий очного этапа, а очный весит 25 баллов против 17 заочных. По бумаге глазами не считается: вслух всегда медленнее. Контрольная точка — слайд 8 ровно на шестой минуте. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity.pdf" target="_blank" rel="noopener">Речь, 8 стр.</a></span></label>
     </li>
   </ul>
 
@@ -1163,7 +1159,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
       <div class="row"><span class="n">Отчёт о результатах<small>Приложение № 4</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Стандарт процесса<small><b>Разработан 27.09:</b> регламент работы сервиса — одиннадцать разделов, от ролей и прав до особых случаев и контроля — и памятки по ролям для шести ролей процесса, приложением к нему. Приказа об утверждении не будет, см. раздел «Правовые акты» <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/reglament-servisa.pdf" target="_blank" rel="noopener">регламент</a> <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/pamyatki-po-rolyam.pdf" target="_blank" rel="noopener">памятки</a></small></span><button class="chip" data-state="work">в работе</button></div>
       <div class="row"><span class="n">Отчётная презентация<small><b>21 слайд</b> на итоговом шаблоне МПК: 12 обязательных разделов, слайд сертификатов, шесть слайдов приложения с экранами бота и панели · сверена с оценочным листом построчно, все девять критериев показаны · карточка на слайде 2 собирается из того же файла, что и документ, — разойтись они больше не могут · ждёт выгрузку замеров в четырёх строках слайда 8 <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pptx" target="_blank" rel="noopener">PPTX</a></small></span><button class="chip" data-state="work">в работе</button></div>
-      <div class="row"><span class="n">Речь защиты<small><b>Редакция 3.3, готова.</b> Доклад 10 мин + ответы 10 мин: 11 блоков с привязкой к слайдам, 9:45 из 10 минут, банк из 11 вопросов. Красного нет ни одного — каждая цифра закрыта таблицей «на чём держится»: устройство процесса, журнал заявки № 68 или снимок панели. Два слабых места (фотофиксация 67 %, семь просрочек) докладчик называет сам, до вопроса комиссии. Осталось отрепетировать вслух по таймеру <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity.pdf" target="_blank" rel="noopener">PDF</a></small></span><button class="chip" data-state="done">готово</button></div>
+      <div class="row"><span class="n">Речь защиты<small><b>Редакция 3.4, готова.</b> Доклад 10 мин + ответы 10 мин: 11 блоков с привязкой к слайдам, 9:25 из 10 минут, банк из 11 вопросов. Красного нет ни одного — каждая цифра закрыта таблицей «на чём держится»: устройство процесса, журнал заявки № 68 или снимок панели. Два слабых места (фотофиксация 67 %, семь просрочек) докладчик называет сам, до вопроса комиссии. Осталось отрепетировать вслух по таймеру <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity.pdf" target="_blank" rel="noopener">PDF</a></small></span><button class="chip" data-state="done">готово</button></div>
       <div class="row"><span class="n">Справка проекта<small>Приложение № 2 к 99-р · подпись Главы округа · один из трёх сдаваемых документов <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-forma.docx" target="_blank" rel="noopener">форма Word</a> <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-chernovik.docx" target="_blank" rel="noopener">черновик Word</a></small></span><button class="chip" data-state="work">в работе</button></div>
       <div class="row"><span class="n">Заявка на конкурс<small>подана 30.07.2026 · «Лидеры перемен», 5 человек · <b>подписанный оригинал не выкладываем</b> — у руководителя проекта</small></span><button class="chip" data-state="done">готово</button></div>
     </div>
@@ -1471,7 +1467,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
       <div class="row"><span class="n">Карточка проекта — итоговая форма<small>Присланная 15.09. Состав полей прежний, добавлен блок трёх подписей, включая куратора</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/kartochka-forma-itogovaya.docx" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Оценочный лист заочного этапа<small>⚠️ Присланная редакция: 8 критериев и 12 баллов. Считаемся по Приложению № 3 к 99-р — 9 критериев, 17 баллов</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/ocenochnyy-list.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Заявка на конкурс<small>Подписанный оригинал на публичной странице не выкладываем — запросить у руководителя проекта</small></span><span class="none">файла ещё нет</span></div>
-      <div class="row"><span class="n">Речь защиты<small>Одиннадцать блоков с таймингом по слайдам, 9:45 из 10 минут, красного нет. В конце — банк из 11 вопросов с ответами и таблица «на чём держится каждая цифра доклада»</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity.pdf" target="_blank" rel="noopener">скачать</a></div>
+      <div class="row"><span class="n">Речь защиты<small>Одиннадцать блоков с таймингом по слайдам, 9:25 из 10 минут, красного нет. В конце — банк из 11 вопросов с ответами и таблица «на чём держится каждая цифра доклада»</small></span><a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity.pdf" target="_blank" rel="noopener">скачать</a></div>
       <div class="row"><span class="n">Распоряжение — подписанное и зарегистрированное<small>От 24.09.2026 № 534-р. Подпись Главы, печать, вх. № 1589 от 25.09.2026. Это и есть копия для пакета</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rasporyazhenie-podpisannoe.pdf" target="_blank" rel="noopener">скачать</a></div>
   </div>
   <p class="foot-note">Файлы обновляются вместе со страницей. Если открыли
@@ -1559,8 +1555,48 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   Документы и черновики — в репозитории <span class="mono">NiceGenn/Team-28</span>.
 
   <details class="changelog">
-    <summary>Версия 4.4 от 28.09.2026 — что менялось</summary>
+    <summary>Версия 4.5 от 28.09.2026 — что менялось</summary>
     <ul>
+      <li><b>4.5 · 28.09.2026.</b> <b>Сняты два показателя по срокам;
+        «Что сдаём» и «Комплект на отправку» слиты в один раздел.</b>
+        <br><br>
+        Из перечня показателей убраны <b>«доля заявок с установленным
+        сроком исполнения»</b> и <b>«доля заявок, исполненных
+        в установленный срок»</b> — решение заказчика. Показателей стало
+        шесть вместо восьми: карточка, слайд 2, слайд 8, карта
+        достигнутого состояния и справка пересобраны из одного файла,
+        поэтому разойтись они не могли.
+        <br><br>
+        <b>Сроки из проекта при этом не ушли.</b> Они остались
+        качественным результатом в справке («каждой заявке
+        устанавливается срок, при просрочке заявка передаётся
+        заместителю, затем Главе») и мероприятием в плане. Измеримым
+        результатом мероприятия «SLA-таймеры и ступенчатая эскалация»
+        стало <b>время протекания процесса</b> — именно его срок
+        и эскалация сокращают. Связка «мероприятие → показатель»,
+        которой требует Приложение № 5, сохранена.
+        <br><br>
+        <b>Заодно ушло самое уязвимое место пакета.</b> Строка
+        «исполнено в срок: было 60 %, стало 100 % по УДС» соседствовала
+        с семью просрочками из тринадцати на первом экране панели —
+        и требовала оговорки на защите. Теперь этого вопроса нет. В речи
+        осталась одна цифра, которую докладчик называет сам, —
+        фотофиксация 67 %.
+        <br><br>
+        <b>Разделы «Что сдаём на конкурс» и «Комплект на отправку» были
+        почти одним и тем же</b> — слиты в один. Сверху четыре документа
+        со статусом, под чертой — что уходит в письме: справка и два
+        приложения с числом листов и ссылками.
+        <br><br>
+        На слайде «Стандарты и нормативы» инструменты снова ссылаются
+        <b>на номера листов</b>, а не на названия слайдов. Ссылаемся
+        на лист, потому что шаблон печатает на слайдах свой счётчик —
+        на девятом листе стоит «5». Лист — это страница в PDF, её
+        комиссия и листает; так же сделана ссылка на сертификаты
+        в справке.
+        <br><br>
+        Речь пересчитана: 9:25, запас тридцать пять секунд.
+      </li>
       <li><b>4.4 · 28.09.2026.</b> <b>Канбан получен, поставлен отдельным
         слайдом — в презентации 21 слайд.</b>
         <br><br>
