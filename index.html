@@ -366,6 +366,23 @@ header .sub{color:var(--ink-2); max-width:62ch}
   .crit .body{padding-left:0}
 }
 
+/* Приоритетная навигация и явное разделение материалов защиты. */
+.defense-shortcut{display:inline-flex;align-items:center;margin:12px 0;padding:10px 16px;
+ border-radius:8px;background:#244F6C;color:#fff;font-weight:700;text-decoration:none}
+.defense-shortcut:hover{background:#183A51}
+#defense{scroll-margin-top:20px;box-shadow:0 8px 28px rgba(24,58,81,.14)}
+#defense .defense-header{background:#244F6C;color:#fff;margin:-16px -18px 16px;
+ padding:18px;border-radius:10px 10px 0 0;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline}
+#defense .defense-header h2{font-size:32px;color:#fff}
+#defense .defense-header .due{color:#E2EEF7}
+#defense .defense-header small{flex-basis:100%;font-size:13px;color:#E2EEF7}
+#defense .resource-primary{border-left:4px solid #244F6C}
+#defense .resource-primary .dl{background:#244F6C;color:#fff}
+#defense .resource-support{border-left:4px solid var(--border)}
+#defense .resource-tag{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;
+ color:var(--accent);font-weight:700;margin-bottom:3px}
+@media print{.defense-shortcut{display:none}}
+
 /* Раздел защиты: файлы удобно открывать с телефона. */
 #defense{min-width:0}
 #defense .docs .row{grid-template-columns:minmax(0,1fr) auto}
@@ -577,21 +594,22 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <div class="ph-2">
     <span>Участник: <i></i></span>
     <span>Распечатано: <i></i></span>
-    <span class="ver mono">в. 5.6 · 14.10.2026</span>
+    <span class="ver mono">в. 5.7 · 23.10.2026</span>
   </div>
 </div>
 
 <header>
   <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28
-    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 5.6 · 14.10.2026</span>
+    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 5.7 · 23.10.2026</span>
     <button class="printbtn" type="button" onclick="window.print()">Распечатать</button>
   </div>
+  <a class="defense-shortcut" href="#defense">Защита 12 ноября → речь и материалы</a>
   <h1>Плановое выявление и устранение проблем территории</h1>
   <p class="sub"><b>Оптимизация процесса устранения проблем благоустройства и содержания территории Благовещенского муниципального округа за счёт перехода от реагирования на обращения к их плановому выявлению и контролю результата.</b> Предмет проекта — процесс, а не бот: проблему находят до того, как житель напишет обращение. Сигнал подают инициативные группы — активные жители и сотрудники, ежедневно бывающие на территории. Бот «Точка перемен» — внедрённое мероприятие.</p>
 
   <div class="facts">
     <div class="fact"><span class="k">Период проекта</span><span class="v mono">22.07 — 30.09.2026</span></div>
-    <div class="fact hot"><span class="k">До публикации рейтинга</span><span class="v mono" id="leftClose">—</span></div>
+    <div class="fact hot"><span class="k">Заочная оценка</span><span class="v mono" id="leftClose">—</span></div>
     <div class="fact hot"><span class="k">Материалы конкурса</span><span class="v mono" id="leftSubmit">—</span></div>
     <div class="fact"><span class="k">Распоряжение</span><span class="v">подписано 24.09 · № 534-р</span></div>
     <div class="fact"><span class="k">Заявка на конкурс</span><span class="v">подана 30.07, в срок</span></div>
@@ -601,16 +619,19 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
 </header>
 
 <section class="ship" id="defense" aria-labelledby="defense-title">
-  <div class="top">
+  <div class="defense-header">
     <h2 id="defense-title">Защита</h2>
     <span class="due">12 ноября 2026 · 10:00 · 7 минут на команду</span>
+    <small>Главное сейчас: речь, доказательства по критериям и репетиция. Заочный результат — 14,0, второе место; очная оценка — до 25 баллов.</small>
   </div>
   <p class="lead"><b>«Точка кипения», ул. Ленина, 139.</b>
     Всем участникам обязательна <a href="https://leader-id.ru/events/619418" target="_blank" rel="noopener">регистрация на Leader-ID</a>.
     Пока выступает один докладчик; участие второго возможно, распределение ещё не утверждено.
     Направленные справка, карточка и презентация зафиксированы и не меняются.</p>
   <div class="docs files">
-    <div class="row"><span class="n">Речь на семь минут<small>Новый отдельный текст для одного выступающего: 737 слов, расчётно 6:25, запас 35 секунд на паузы и слайды. Внутри — тайминг, соответствие пяти очным критериям, вопросы с ответами под каждым блоком и вариант передачи слова второму докладчику. В блоке 3 разобрано, откуда взяты 10–44 дня. Требуется репетиция вслух.</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity-7-minut.pdf" target="_blank" rel="noopener">речь PDF</a></div>
+    <div class="row resource-primary"><span class="n"><span class="resource-tag">1 · Читать на трибуне</span>Только речь — без дополнений<small>Один выступающий. 737 слов, расчётно 6:25; 35 секунд на паузы и слайды. В PDF только текст доклада и подсказки номеров слайдов. Фактическое время проверить вслух.</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-dlya-tribuny.pdf" target="_blank" rel="noopener">только речь PDF</a></div>
+    <div class="row resource-support"><span class="n"><span class="resource-tag">2 · Подготовка, не читать в докладе</span>Речь с вопросами и пояснениями<small>Под каждым блоком отделены «ПРОИЗНОСИТЬ ВСЛУХ» и «ПОДГОТОВКА — НЕ ЧИТАТЬ В ДОКЛАДЕ». Внутри — 26 вопросов с ответами, разбор 10–44 дней и вариант участия второго докладчика.</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity-7-minut.pdf" target="_blank" rel="noopener">речь с пояснениями PDF</a></div>
+    <div class="row resource-primary"><span class="n"><span class="resource-tag">3 · Рабочий лист на одну страницу</span>Как подготовиться по пяти очным критериям<small>По каждому критерию: на что опираемся, что сделать и как проверить готовность. План одной тренировки на два часа и поля для фактического времени трёх прогонов. Это подготовка, не обещание баллов комиссии.</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/podgotovka-po-ochnym-kriteriyam.pdf" target="_blank" rel="noopener">лист подготовки PDF</a></div>
     <div class="row"><span class="n">Презентация — зафиксированный комплект<small>22 слайда в направленном порядке. Содержание и файлы сохранены; речь привязана к ним. PDF — для просмотра, PPTX — для показа.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pdf" target="_blank" rel="noopener">PDF</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pptx" target="_blank" rel="noopener">PPTX</a></span></div>
     <div class="row"><span class="n">Оценочный лист очного этапа<small>Приложение № 4 к Положению: аргументация выбора темы, клиентоориентированность, наглядные материалы, представление проекта и качество доклада. Оригинальная страница выделена из документа без изменения; лимит выступления 7 минут уточнён организатором.</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/ocenochnyy-list-ochnyy.pdf" target="_blank" rel="noopener">оценочный лист PDF</a></div>
   </div>
@@ -702,7 +723,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <div>
       <div class="nm">4. Речь защиты <span style="font-weight:400">— новый текст под направленные слайды</span></div>
       <div class="st">Отдельная семиминутная редакция для одного докладчика: 737 слов, расчётно 6:25. В ней тайминг, пять очных критериев, ответы комиссии и вариант передачи слова второму выступающему.
-        <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity-7-minut.pdf" target="_blank" rel="noopener">новая речь PDF</a></div>
+        <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity-7-minut.pdf" target="_blank" rel="noopener">речь с пояснениями PDF</a></div>
       <span class="need"><b>Текст подготовлен; фактическое время пока не измерено.</b> Прогнать вслух со слайдами и паузами, не выходя за семь минут. Направленную презентацию не менять.</span>
     </div>
     <span class="pill p-part">нужна репетиция</span>
@@ -865,7 +886,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     десять команд допущены автоматически. Сейчас готовим выступление и ответы;
     отправленный комплект не меняем без отдельной причины.</p>
   <ul class="tasks">
-    <li><input type="checkbox" id="final-rating"><label for="final-rating"><span class="t">20 октября — проверить рейтинг заочной оценки</span><span class="why">Сводный рейтинг обещан организатором в сообщении от 02.10. До публикации не выдаём самооценку за баллы комиссии.</span></label></li>
+    <li><span class="t">Заочная оценка получена: 14,0 балла, второе место</span><span class="why">По предоставленному рейтингу. Разбивки по девяти критериям и замечаний комиссии пока нет; их нужно запросить для подготовки к защите. Прежняя самооценка не является оценкой комиссии.</span></li>
     <li><input type="checkbox" id="final-registration"><label for="final-registration"><span class="t">Всем участникам зарегистрироваться на защиту</span><span class="why">12 ноября, 10:00 — «Точка кипения», ул. Ленина, 139. Регистрация обязательна для всех: <a href="https://leader-id.ru/events/619418" target="_blank" rel="noopener">Leader-ID, событие 619418</a>. После регистрации каждого участника проверить подтверждение. Статус регистрации команды пока не подтверждён.</span></label></li>
     <li><input type="checkbox" id="final-rehearsal-7min"><label for="final-rehearsal-7min"><span class="t">Отрепетировать новый текст под лимит 7 минут</span><span class="why">Организатор установил жёсткий лимит для всей команды. Новый текст — 737 слов, расчётно 6:25; фактическое время ещё не измерено. Репетируем со слайдами и паузами; креатив и творческие элементы допустимы только внутри семи минут.</span></label></li>
     <li><input type="checkbox" id="final-answers"><label for="final-answers"><span class="t">Подготовить ответы комиссии и материалы на стол</span><span class="why">Для каждой цифры — источник и оговорки. Открыть листы очной оценки из Положения и выстроить выступление по их пунктам — эксперты оценивают именно по ним. Разобрать базу и результат, проактивность, стандартизацию и тиражируемость. Согласовать выступление с наставником; подготовить три карты на А3 и папку докладчика с подтверждениями.</span></label></li>
@@ -1216,7 +1237,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
       <div class="row"><span class="n">Отчёт о результатах<small>Приложение № 4</small></span><button class="chip" data-state="idle">не начато</button></div>
       <div class="row"><span class="n">Стандарт процесса<small><b>Разработан 27.09:</b> регламент работы сервиса — одиннадцать разделов, от ролей и прав до особых случаев и контроля — и памятки по ролям для шести ролей процесса, приложением к нему. Приказа об утверждении не будет, см. раздел «Правовые акты» <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/reglament-servisa.pdf" target="_blank" rel="noopener">регламент</a> <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/pamyatki-po-rolyam.pdf" target="_blank" rel="noopener">памятки</a></small></span><button class="chip" data-state="work">в работе</button></div>
       <div class="row"><span class="n">Отчётная презентация<small>Отправлена; комплект принят 29.09.2026, № 3. <b>22 слайда</b> на итоговом шаблоне МПК: 12 обязательных разделов и восемь листов приложения — экраны бота и панели, прежний процесс, «было и стало», сертификаты · сверена с оценочным листом построчно, все девять критериев показаны · карточка на слайде 2 собирается из того же файла, что и документ, — разойтись они больше не могут · фактические значения проставлены по журналу заявок на 27.09.2026 <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pptx" target="_blank" rel="noopener">PPTX</a></small></span><button class="chip" data-state="done" data-confirmed="true" disabled title="Подтверждено руководителем и письмом организатора">готово</button></div>
-      <div class="row"><span class="n">Речь защиты<small><b>Новый текст подготовлен.</b> 737 слов, расчётно 6:25; один докладчик, возможна передача слова второму. Требуется репетиция со слайдами и паузами. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity-7-minut.pdf" target="_blank" rel="noopener">новая речь PDF</a></small></span><button class="chip" data-state="work" data-confirmed="true" disabled title="Текст подготовлен, время подтвердить репетицией">в работе</button></div>
+      <div class="row"><span class="n">Речь защиты<small><b>Новый текст подготовлен.</b> 737 слов, расчётно 6:25; один докладчик, возможна передача слова второму. Требуется репетиция со слайдами и паузами. <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-zashchity-7-minut.pdf" target="_blank" rel="noopener">речь с пояснениями PDF</a></small></span><button class="chip" data-state="work" data-confirmed="true" disabled title="Текст подготовлен, время подтвердить репетицией">в работе</button></div>
       <div class="row"><span class="n">Справка проекта<small>Подписана и отправлена; комплект принят 29.09.2026, № 3. Приложение № 2 к 99-р · подпись Главы округа · один из трёх сдаваемых документов <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-forma.docx" target="_blank" rel="noopener">форма Word</a> <a class="dl wip" href="https://nicegenn.github.io/Team-28-progress/файлы/spravka-proekta-chernovik.docx" target="_blank" rel="noopener">черновик Word</a></small></span><button class="chip" data-state="done" data-confirmed="true" disabled title="Подтверждено руководителем и письмом организатора">готово</button></div>
       <div class="row"><span class="n">Заявка на конкурс<small>подана 30.07.2026 · «Лидеры перемен», 5 человек · <b>подписанный оригинал не выкладываем</b> — у руководителя проекта</small></span><button class="chip" data-state="done">готово</button></div>
     </div>
@@ -1613,8 +1634,13 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   Документы и черновики — в репозитории <span class="mono">NiceGenn/Team-28</span>.
 
   <details class="changelog">
-    <summary>Версия 5.6 от 14.10.2026 — что менялось</summary>
+    <summary>Версия 5.7 от 23.10.2026 — что менялось</summary>
     <ul>
+      <li><b>5.7 · 23.10.2026.</b> Раздел «Защита» выделен отдельной шапкой
+        и быстрым переходом. Добавлены чистая речь для трибуны и одностраничный
+        рабочий лист по пяти очным критериям. В подробной речи явно
+        отделены произносимый текст и дополнения. Заочный результат —
+        14,0, второе место. Направленный комплект не менялся.</li>
       <li><b>5.6 · 14.10.2026.</b> В новую речь добавлены вопросы комиссии
         и ответы под каждым блоком. В блоке 3 разобраны девять этапов
         и оценочное происхождение диапазона 10–44 дня. Направленный
@@ -2666,7 +2692,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   function counters(){
     var t = today();
     var a = days(t, new Date(2026,9,20));
-    document.getElementById("leftClose").textContent  = a>=0 ? a+" "+plural(a) : "проверить публикацию";
+    document.getElementById("leftClose").textContent = "14,0 из 17 · 2-е место";
     document.getElementById("leftSubmit").textContent = "приняты 29.09 · № 3";
   }
 
