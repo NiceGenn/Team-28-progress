@@ -383,6 +383,30 @@ header .sub{color:var(--ink-2); max-width:62ch}
  color:var(--accent);font-weight:700;margin-bottom:3px}
 @media print{.defense-shortcut{display:none}}
 
+/* Отдельная параллельная отчётность по «Эффективному региону». */
+.er-shortcut{display:inline-flex;align-items:center;margin:0 0 12px;padding:10px 16px;
+ border-radius:8px;background:#236844;color:#fff;font-weight:700;text-decoration:none}
+.er-shortcut:hover{background:#194E32}
+#effective-region{min-width:0;scroll-margin-top:20px;border-color:#287F58;
+ box-shadow:0 8px 28px rgba(35,104,68,.14)}
+#effective-region .er-header{background:#236844;color:#fff;margin:-16px -18px 16px;
+ padding:18px;border-radius:10px 10px 0 0;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline}
+#effective-region .er-header h2{font-size:32px;color:#fff}
+#effective-region .er-header .due{color:#E2F4E8}
+#effective-region .er-header small{flex-basis:100%;font-size:13px;color:#E2F4E8}
+#effective-region .docs .row{grid-template-columns:minmax(0,1fr) auto;border-left:4px solid #287F58}
+#effective-region .docs .row .n{min-width:0}
+#effective-region .dl{border-color:#287F58;color:#236844;background:#E5F3EB}
+#effective-region .er-actions{display:flex;flex-wrap:wrap;gap:8px}
+#effective-region .review-note{padding:12px 14px;border:1px solid var(--border);
+ border-radius:8px;background:var(--surface);font-size:13px;line-height:1.5}
+@media(max-width:640px){
+ #effective-region .docs .row{grid-template-columns:minmax(0,1fr)}
+ #effective-region .docs .row .n{overflow-wrap:anywhere}
+ #effective-region .er-actions{justify-self:start}
+}
+@media print{.er-shortcut{display:none}}
+
 /* Раздел защиты: файлы удобно открывать с телефона. */
 #defense{min-width:0}
 #defense .docs .row{grid-template-columns:minmax(0,1fr) auto}
@@ -594,16 +618,17 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <div class="ph-2">
     <span>Участник: <i></i></span>
     <span>Распечатано: <i></i></span>
-    <span class="ver mono">в. 5.7 · 23.10.2026</span>
+    <span class="ver mono">в. 5.8 · 26.10.2026</span>
   </div>
 </div>
 
 <header>
   <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28
-    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 5.7 · 23.10.2026</span>
+    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 5.8 · 26.10.2026</span>
     <button class="printbtn" type="button" onclick="window.print()">Распечатать</button>
   </div>
   <a class="defense-shortcut" href="#defense">Защита 12 ноября → речь и материалы</a>
+  <a class="er-shortcut" href="#effective-region">Эффективный регион → план и отчёт</a>
   <h1>Плановое выявление и устранение проблем территории</h1>
   <p class="sub"><b>Оптимизация процесса устранения проблем благоустройства и содержания территории Благовещенского муниципального округа за счёт перехода от реагирования на обращения к их плановому выявлению и контролю результата.</b> Предмет проекта — процесс, а не бот: проблему находят до того, как житель напишет обращение. Сигнал подают инициативные группы — активные жители и сотрудники, ежедневно бывающие на территории. Бот «Точка перемен» — внедрённое мероприятие.</p>
 
@@ -648,6 +673,27 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-celevogo.png" target="_blank" rel="noopener">целевая карта</a>
     <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-dostignutogo.png" target="_blank" rel="noopener">достигнутая карта</a>
     <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/analiz-prichin.png" target="_blank" rel="noopener">анализ причин</a>.</p>
+</section>
+
+<section class="ship" id="effective-region" aria-labelledby="er-title">
+  <div class="er-header">
+    <h2 id="er-title">Эффективный регион</h2>
+    <span class="due">План мероприятий и отчёт · 26.10.2026</span>
+    <small>Отдельная параллельная отчётность по нашему проекту с инструментом «Точка перемен».</small>
+  </div>
+  <p class="lead"><b>Заполненные рабочие экземпляры.</b> Внесены мероприятия,
+    ответственные, плановые сроки и подтверждённые результаты. Период проекта —
+    22.07–30.09.2026, сведения пилота — на 27.09.2026. Страницы книжные,
+    таблицы с горизонтальным текстом. Ранее направленный конкурсный комплект сохранён.</p>
+  <div class="docs files">
+    <div class="row"><span class="n">План мероприятий по реализации проекта<small>Шесть мероприятий с проблемами, ответственными исполнителями и сроками из зафиксированной презентации. Одна страница А4. Для второй подписи требуется подтвердить Ф. И. О. ответственного за бережливое управление.</small></span><span class="er-actions"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/effective-region-plan.docx" target="_blank" rel="noopener">Word</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/effective-region-plan.pdf" target="_blank" rel="noopener">PDF</a></span></div>
+    <div class="row"><span class="n">Отчёт о результатах реализации проекта<small>Шесть показателей: база, цель и имеющиеся результаты; итоги шести мероприятий. Две страницы А4. 85 % выявлено до обращения, фотофиксация 67 %, расчётный эффект 476 ч/год — с пояснениями об источниках и ограничениях.</small></span><span class="er-actions"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/effective-region-report.docx" target="_blank" rel="noopener">Word</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/effective-region-report.pdf" target="_blank" rel="noopener">PDF</a></span></div>
+  </div>
+  <div class="review-note"><b>Перед подписанием подтвердить:</b> Ф. И. О. ответственного
+    за бережливое управление и итоговый процент выполнения плана. Замер фактического
+    количества официальных обращений в имеющихся материалах отсутствует; новые
+    октябрьские значения не придуманы. Неподтверждённые поля отмечены в документах.
+    Эти экземпляры не подписаны и не отправлены.</div>
 </section>
 
 <section class="ship">
@@ -1634,8 +1680,12 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   Документы и черновики — в репозитории <span class="mono">NiceGenn/Team-28</span>.
 
   <details class="changelog">
-    <summary>Версия 5.7 от 23.10.2026 — что менялось</summary>
+    <summary>Версия 5.8 от 26.10.2026 — что менялось</summary>
     <ul>
+      <li><b>5.8 · 26.10.2026.</b> Сразу после «Защиты» добавлен отдельный
+        зелёный раздел «Эффективный регион». Выложены заполненные рабочие
+        план и отчёт в Word и PDF; отмечены поля для подтверждения.
+        Ранее направленные конкурсные материалы сохранены.</li>
       <li><b>5.7 · 23.10.2026.</b> Раздел «Защита» выделен отдельной шапкой
         и быстрым переходом. Добавлены чистая речь для трибуны и одностраничный
         рабочий лист по пяти очным критериям. В подробной речи явно
