@@ -366,22 +366,56 @@ header .sub{color:var(--ink-2); max-width:62ch}
   .crit .body{padding-left:0}
 }
 
-/* Приоритетная навигация и явное разделение материалов защиты. */
-.defense-shortcut{display:inline-flex;align-items:center;margin:12px 0;padding:10px 16px;
- border-radius:8px;background:#244F6C;color:#fff;font-weight:700;text-decoration:none}
-.defense-shortcut:hover{background:#183A51}
-#defense{scroll-margin-top:20px;box-shadow:0 8px 28px rgba(24,58,81,.14)}
-#defense .defense-header{background:#244F6C;color:#fff;margin:-16px -18px 16px;
- padding:18px;border-radius:10px 10px 0 0;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline}
-#defense .defense-header h2{font-size:32px;color:#fff}
-#defense .defense-header .due{color:#E2EEF7}
-#defense .defense-header small{flex-basis:100%;font-size:13px;color:#E2EEF7}
-#defense .resource-primary{border-left:4px solid #244F6C}
-#defense .resource-primary .dl{background:#244F6C;color:#fff}
-#defense .resource-support{border-left:4px solid var(--border)}
-#defense .resource-tag{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;
- color:var(--accent);font-weight:700;margin-bottom:3px}
-@media print{.defense-shortcut{display:none}}
+/* Защита — яркий ориентир; основные и дополнительные материалы различаются цветом и заголовками. */
+.defense-shortcut{display:inline-flex;align-items:center;margin:12px 0;padding:12px 18px;
+ border-radius:9px;background:#6D28D9;color:#fff;font-weight:700;text-decoration:none;
+ box-shadow:0 4px 14px rgba(109,40,217,.24)}
+.defense-shortcut:hover{background:#5B21B6}
+#defense{scroll-margin-top:20px;border:3px solid #8B5CF6;
+ box-shadow:0 8px 30px rgba(109,40,217,.20)}
+#defense .defense-header{background:linear-gradient(115deg,#7C3AED,#4C1D95);color:#fff;
+ margin:-16px -18px 20px;padding:22px 20px;border-radius:10px 10px 0 0;
+ display:flex;flex-wrap:wrap;gap:10px 20px;align-items:baseline}
+#defense .defense-header h2{font-size:38px;color:#fff}
+#defense .defense-header .due{color:#fff;font-weight:700}
+#defense .defense-header small{flex-basis:100%;font-size:13px;color:#F3E8FF}
+#defense .docs{gap:9px;border:0;background:transparent;overflow:visible}
+#defense .docs .row{padding:14px;border:1px solid var(--border);
+ border-left:5px solid var(--accent-line);border-radius:9px}
+#defense .docs .row .n{font-size:14px;font-weight:600}
+#defense .docs .row .n small{color:var(--ink-2);font-size:12px;margin-top:5px;line-height:1.6}
+#defense .docs .row.resource-primary{border-left:6px solid var(--done);background:var(--done-soft)}
+#defense .resource-primary .dl{background:#166534;border-color:#166534;color:#fff}
+#defense .resource-primary .dl:hover{background:#14532D;border-color:#14532D;color:#fff}
+#defense .docs .row.resource-support{border-left:5px solid var(--accent);background:var(--accent-soft)}
+#defense .resource-tag{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+ color:var(--done);font-weight:700;margin-bottom:5px}
+#defense .resource-support .resource-tag{color:var(--accent)}
+#defense #primary-handouts-title{padding:14px 16px;margin:28px 0 12px;border:1px solid var(--done);
+ border-left:6px solid var(--done);border-radius:9px;background:var(--done-soft);
+ color:var(--done);font-size:19px}
+#defense #primary-handouts{gap:12px}
+#defense #primary-handouts .row{padding:17px;border-color:var(--done)}
+#defense #additional-handouts{margin:28px 0 0;padding:18px;
+ border:1px solid var(--accent);border-left:6px solid var(--accent);border-radius:10px;
+ background:var(--accent-soft);color:var(--ink);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#defense #additional-handouts b{grid-column:1/-1;display:block;font-size:18px;color:var(--accent);margin-bottom:3px}
+#defense #additional-handouts .dl{margin:0;white-space:normal;padding:10px 13px;
+ background:var(--surface);font-size:13px;min-width:0}
+@media(max-width:640px){
+ #defense .defense-header{padding:19px 16px}
+ #defense .defense-header h2{font-size:32px}
+ #defense #primary-handouts .row{padding:14px}
+ #defense #additional-handouts{grid-template-columns:minmax(0,1fr);padding:14px}
+}
+@media print{
+ .defense-shortcut{display:none}
+ #defense{box-shadow:none}
+ #defense .defense-header{padding:12px}
+ #defense .defense-header h2{font-size:22pt}
+ #defense .docs .row,#defense #primary-handouts .row{padding:8px;break-inside:avoid}
+ #defense #additional-handouts{break-inside:avoid}
+}
 
 /* Отдельная параллельная отчётность по «Эффективному региону». */
 .er-shortcut{display:inline-flex;align-items:center;margin:0 0 12px;padding:10px 16px;
@@ -618,13 +652,13 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <div class="ph-2">
     <span>Участник: <i></i></span>
     <span>Распечатано: <i></i></span>
-    <span class="ver mono">в. 5.24 · 04.11.2026</span>
+    <span class="ver mono">в. 5.25 · 04.11.2026</span>
   </div>
 </div>
 
 <header>
   <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28
-    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 5.24 · 04.11.2026</span>
+    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 5.25 · 04.11.2026</span>
     <button class="printbtn" type="button" onclick="window.print()">Распечатать</button>
   </div>
   <a class="defense-shortcut" href="#defense">Защита 12 ноября → речь и материалы</a>
@@ -665,7 +699,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <div class="row"><span class="n">Оценочный лист очного этапа<small>Приложение № 4 к Положению: аргументация выбора темы, клиентоориентированность, наглядные материалы, представление проекта и качество доклада. Оригинальная страница выделена из документа без изменения; лимит выступления 7 минут уточнён организатором.</small></span><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/ocenochnyy-list-ochnyy.pdf" target="_blank" rel="noopener">оценочный лист PDF</a></div>
   </div>
   <p class="ship-note"><b>Как переключать слайды:</b> в речи номера 01–22 идут по порядку показа. После 08 «Показатели проекта» идёт 09 «Карта достигнутого состояния» — процесс после внедрения. На достигнутой карте теперь номер 9. Номера на слайдах и в речи идут 1–22 по порядку: титул — 1, текущая карта — 3, целевая — 5, финал — 22.</p>
-  <h3 class="ship-sub">Основная раздатка для жюри · два материала</h3>
+  <h3 class="ship-sub" id="primary-handouts-title">Основная раздатка для жюри · два материала</h3>
   <div class="docs files" id="primary-handouts">
     <div class="row resource-primary"><span class="n"><span class="resource-tag">Основной материал 1 · админпанель</span>Точка перемен: панель управления · 8 страниц А5<small>Именно панель по архиву снимков 04.11.2026: дашборд, доска заявок, карта, маршрутизация, категории, статистика и встроенные инструкции. Крупные фрагменты экранов с короткими пояснениями. Без QR и разбора отдельной заявки. Печать: четыре А4, односторонне, 100%, разрезать по пунктиру и собрать страницы 1–8.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/mini-adminpanel.pdf?v=5.21" target="_blank" rel="noopener">панель · PDF</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/mini-adminpanel.pptx?v=5.21" target="_blank" rel="noopener">PPTX</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/mini-adminpanel-pechat-a4.pdf?v=5.21" target="_blank" rel="noopener">печать · 4 А4</a></span></div>
     <div class="row resource-primary"><span class="n"><span class="resource-tag">Основной материал 2 · реальная история</span>Путь заявки № 66 · 4 страницы А5<small>Переулок Лазурный, с. Верхнеблаговещенское: четыре фото «до», два «после», маршрут и личное подтверждение автора. От регистрации 04.09 до подтверждения 10.09 — 6 дней 3 часа 39 минут. Ожидание и эскалация показаны; минуту между статусами не выдаём за длительность работ. Без QR. Печать: два А4, односторонне, 100%, разрезать по пунктиру и собрать страницы 1–4.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/put-zayavki-66.pdf?v=5.22" target="_blank" rel="noopener">история № 66 · PDF</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/put-zayavki-66.pptx?v=5.22" target="_blank" rel="noopener">PPTX</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/zayavka-66-pechat-a4.pdf?v=5.22" target="_blank" rel="noopener">печать · 2 А4</a></span></div>
@@ -683,7 +717,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-tekushchego.png" target="_blank" rel="noopener">текущая карта</a>
     <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-celevogo.png" target="_blank" rel="noopener">целевая карта</a>
     <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/karta-dostignutogo.png" target="_blank" rel="noopener">достигнутая карта</a>
-    <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/analiz-prichin.png" target="_blank" rel="noopener">анализ причин</a>.</p>
+    <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/analiz-prichin.png" target="_blank" rel="noopener">анализ причин</a></p>
 </section>
 
 <section class="ship" id="effective-region" aria-labelledby="er-title">
@@ -1690,8 +1724,9 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   Документы и черновики — в репозитории <span class="mono">NiceGenn/Team-28</span>.
 
   <details class="changelog">
-    <summary>Версия 5.24 от 04.11.2026 — что менялось</summary>
+    <summary>Версия 5.25 от 04.11.2026 — что менялось</summary>
     <ul>
+      <li><b>5.25 · 04.11.2026.</b> «Защита» выделена яркой фиолетовой шапкой и рамкой. Основные материалы оформлены зелёными карточками, дополнительные карты и анализ — отдельным голубым блоком с четырьмя кнопками. Содержание и ссылки сохранены.</li>
       <li><b>5.24 · 04.11.2026.</b> Исправлено размещение раздатки: блок прежних вариантов для экрана удалён со страницы, три карты и анализ причин возвращены с пометкой «Дополнительные материалы для раздатки». Два основных материала сохранены.</li>
       <li><b>5.23 · 04.11.2026.</b> По уточнению пользователя убрана только нижняя строка «Материалы для раздатки» с кнопками трёх карт и анализа причин. Два основных материала и блок дополнительных вариантов сохранены.</li>
       <li><b>5.22 · 04.11.2026.</b> Выделены два основных материала для жюри: «Точка перемен: панель управления» (8 А5) и новая история №66 (4 А5, шесть фото, маршрут, личное подтверждение). Остальные сохранены как дополнительные для экрана. Для №66 добавлены PDF, PPTX и печать на двух А4, без QR.</li>
