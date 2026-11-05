@@ -419,6 +419,32 @@ header .sub{color:var(--ink-2); max-width:62ch}
  #defense #additional-handouts{break-inside:avoid}
 }
 
+
+/* Цвет принадлежит всей группе, включая её документы и кнопки. */
+#defense{--main-soft:#F1EAFE;--main-line:#8B5CF6;--archive-soft:#F0F2F5;--archive-line:#64748B}
+#defense #defense-current-title,#defense #primary-handouts-title{
+ padding:16px 18px;margin:28px 0 12px;border:0;border-radius:9px;
+ font-family:"Golos Text","Segoe UI",system-ui,sans-serif;font-size:21px;line-height:1.35;color:#fff}
+#defense #defense-current-title{background:#6D28D9}
+#defense #defense-current .row{background:var(--main-soft);border-color:var(--main-line);border-left:6px solid var(--main-line)}
+#defense #defense-current .dl{background:#6D28D9;border-color:#6D28D9;color:#fff}
+#defense #defense-current .dl:hover{background:#4C1D95;border-color:#4C1D95}
+#defense #primary-handouts-title{background:#166534}
+#defense #primary-handouts .row{border-left:6px solid var(--done);background:var(--done-soft)}
+#defense #additional-handouts{border:2px solid #2563A6;border-left-width:6px}
+#defense #additional-handouts .additional-title{padding-bottom:12px;border-bottom:2px solid var(--accent-line)}
+#defense #additional-handouts b{font-size:21px;color:var(--accent)}
+#defense #additional-handouts .dl{border-color:#2563A6;color:var(--accent)}
+#defense #additional-handouts .additional-title .dl{background:#1E4F82;border-color:#1E4F82;color:#fff}
+#defense #defense-archive{background:var(--archive-soft);border:2px solid var(--archive-line);border-radius:10px;padding:16px}
+#defense #defense-archive>summary{font-size:20px;color:var(--ink);font-weight:700;cursor:pointer}
+#defense #defense-archive .row{background:var(--surface);border-color:var(--border);border-left-color:var(--archive-line)}
+#defense #defense-archive .dl{background:var(--surface-2);border-color:var(--archive-line);color:var(--ink)}
+:root[data-theme="dark"] #defense{--main-soft:#2C2042;--main-line:#A78BFA;--archive-soft:#202A35;--archive-line:#94A3B8}
+@media(prefers-color-scheme:dark){
+ :root:not([data-theme="light"]) #defense{--main-soft:#2C2042;--main-line:#A78BFA;--archive-soft:#202A35;--archive-line:#94A3B8}
+}
+
 /* Отдельная параллельная отчётность по «Эффективному региону». */
 .er-shortcut{display:inline-flex;align-items:center;margin:0 0 12px;padding:10px 16px;
  border-radius:8px;background:#236844;color:#fff;font-weight:700;text-decoration:none}
@@ -654,13 +680,13 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   <div class="ph-2">
     <span>Участник: <i></i></span>
     <span>Распечатано: <i></i></span>
-    <span class="ver mono">в. 5.35 · 05.11.2026</span>
+    <span class="ver mono">в. 5.36 · 05.11.2026</span>
   </div>
 </div>
 
 <header>
   <div class="kicker">Бережливое управление · «Эффективный регион» · Команда-28
-    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 5.35 · 05.11.2026</span>
+    <span class="ver mono" title="Версия страницы и дата последнего обновления содержания">в. 5.36 · 05.11.2026</span>
     <button class="printbtn" type="button" onclick="window.print()">Распечатать</button>
   </div>
   <a class="defense-shortcut" href="#defense">Защита 12 ноября → речь и материалы</a>
@@ -691,7 +717,7 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
     <b>Все участники команды зарегистрированы.</b> Подтверждено руководителем проекта 27.10.2026.
     Пока выступает один докладчик; участие второго возможно, распределение ещё не утверждено.
     Направленные справка и карточка сохранены. Актуальный комплект построен на заявке №68: 27.09.2026, 16:04 → 28.09.2026, 17:12 — <b>25 часов 8 минут</b>. Прежние версии убраны в архив. Направленные подписанные документы не изменялись.</p>
-<h3 class="ship-sub" id="defense-current-title">Основные материалы защиты · актуальная заявка №68</h3>
+<h3 class="ship-sub" id="defense-current-title">1. Основная презентация и подготовка · №68</h3>
 <div class="docs files" id="defense-current">
 <div class="row resource-primary"><span class="n">Презентация · заявка №68<small>22 слайда в утверждённом порядке, с укрупнёнными картами и снимками. Номера слайдов 1–22 совпадают с обеими речами. Исходные экраны №68; срок от подачи до личного подтверждения — 25 часов 8 минут.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pdf?v=5.35" target="_blank" rel="noopener">PDF</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/prezentaciya-chernovik.pptx?v=5.35" target="_blank" rel="noopener">PPTX</a></span></div>
 <div class="row resource-primary"><span class="n">Речь для трибуны · только произносимый текст<small>Редакция 1.11. Один докладчик, 22 подсказки по слайдам. 713 слов: расчётно 6:12 при 115 словах в минуту, 48 секунд на паузы и переключение. Фактическое время проверить репетицией.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/rech-dlya-tribuny.pdf?v=5.35" target="_blank" rel="noopener">Речь · PDF</a></span></div>
@@ -699,18 +725,18 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
 <div class="row resource-support"><span class="n">Как подготовиться по пяти очным критериям<small>Актуальный рабочий лист 1.6 с примером №68: тезис, доказательство, действие и проверка по каждому критерию. Официальный лист — пять критериев по 5 баллов, максимум 25; его оригинал не изменён.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/ochnye-kriterii-i-podgotovka.pdf?v=5.35" target="_blank" rel="noopener">Критерии + подготовка · PDF</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/podgotovka-po-ochnym-kriteriyam.pdf?v=5.35" target="_blank" rel="noopener">Рабочий лист · PDF</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/ocenochnyy-list-ochnyy.pdf?v=5.35" target="_blank" rel="noopener">Оригинал оценки · PDF</a></span></div>
 <div class="row resource-primary"><span class="n">Весь актуальный комплект · 10 PDF<small>Презентация №68, обе речи, оценочный лист с подготовкой, две раздатки А4 — панель управления и путь №68, четыре схемы А3. Обе актуальные раздатки и четыре схемы ниже входят в этот архив.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/zashchita-team28-pechat.zip?v=5.35" target="_blank" rel="noopener">Скачать всё · ZIP</a></span></div>
 </div>
-<h3 class="ship-sub" id="primary-handouts-title">Основная раздатка для жюри · буклеты А4</h3>
+<h3 class="ship-sub" id="primary-handouts-title">2. Раздаточные материалы для жюри · буклеты А4</h3>
 <div class="docs files" id="primary-handouts">
 <div class="row resource-primary"><span class="n"><span class="resource-tag">1 · Печатать на А4</span>Точка перемен: панель управления · 5 листов А4<small>Первый лист — отдельная ознакомительная обложка с гербом округа, картинкой «Точки перемен» и описанием. Далее восемь страниц обзора панели, по две на каждом из четырёх листов А4.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/mini-adminpanel-pechat-a4.pdf?v=5.35" target="_blank" rel="noopener">Панель · PDF А4</a></span></div>
 <div class="row resource-primary"><span class="n"><span class="resource-tag">2 · Печатать на А4</span>Путь заявки №68 · 3 листа А4<small>Отдельная обложка с гербом и картинкой сервиса. Далее четыре страницы истории, по две на листе: проблема, маршрут, фотографии результата, личное подтверждение и оценка 5/5. Подача 27 сентября, подтверждение 28 сентября: 25 часов 8 минут.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/put-zayavki-68-a4.pdf?v=5.35" target="_blank" rel="noopener">Путь №68 · PDF А4</a></span></div>
 </div>
 <p class="ship-note"><b>Печать буклетов:</b> А4, масштаб 100%, одна страница PDF на листе. По две страницы материала уже размещены внутри PDF; разрезать листы не нужно. Первая обложка каждой раздатки занимает целый лист. QR штаба и даты выпуска нет.</p>
-  <p class="ship-note" id="additional-handouts"><span class="additional-title"><b>Дополнительные материалы для раздатки · А3</b><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/razdatka-shemy-a3.zip?v=5.35">Все схемы · ZIP</a></span>
+  <p class="ship-note" id="additional-handouts"><span class="additional-title"><b>3. Дополнительные материалы для раздатки · А3</b><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/razdatka-shemy-a3.zip?v=5.35">Все схемы · ZIP</a></span>
     <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/razdatka-karta-tekushchego-a3.pdf?v=5.35" target="_blank" rel="noopener">Карта текущего состояния · PDF</a>
     <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/razdatka-karta-celevogo-a3.pdf?v=5.35" target="_blank" rel="noopener">Карта целевого состояния · PDF</a>
     <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/razdatka-karta-dostignutogo-a3.pdf?v=5.35" target="_blank" rel="noopener">Карта достигнутого состояния · PDF</a>
     <a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/razdatka-analiz-prichin-a3.pdf?v=5.35" target="_blank" rel="noopener">Анализ причин · PDF</a></p>
-<details id="defense-archive"><summary>Архив · прежние версии и отложенные материалы</summary><p>Для выступления и печати используйте актуальные материалы выше. Здесь сохранены предыдущие редакции; в них могут быть прежние сроки и примеры. По заявке №55 решение о раздатке отложено.</p><div class="docs files">
+<details id="defense-archive"><summary>4. Архив · прежние версии и отложенные материалы</summary><p>Для выступления и печати используйте актуальные материалы выше. Здесь сохранены предыдущие редакции; в них могут быть прежние сроки и примеры. По заявке №55 решение о раздатке отложено.</p><div class="docs files">
 <div class="row resource-support"><span class="n">Предыдущая презентация · №66<small>Сохранена перед переводом основного комплекта на №68, без изменения прежних файлов.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/arhiv-prezentaciya-66.pdf?v=5.35" target="_blank" rel="noopener">№66 · PDF</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/arhiv-prezentaciya-66.pptx?v=5.35" target="_blank" rel="noopener">№66 · PPTX</a></span></div>
 <div class="row resource-support"><span class="n">Предыдущие речи · №66<small>Редакция 1.10; сохранены отдельно, в актуальный комплект не входят.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/arhiv-rech-66-dlya-tribuny.pdf?v=5.35" target="_blank" rel="noopener">Трибуна · PDF</a><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/arhiv-rech-66-s-poyasneniyami.pdf?v=5.35" target="_blank" rel="noopener">Пояснения · PDF</a></span></div>
 <div class="row resource-support"><span class="n">Заявка №55 · отложено<small>Материал сохранён. К основным раздаткам вернёмся после решения руководителя.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap"><a class="dl" href="https://nicegenn.github.io/Team-28-progress/файлы/zayavka-55-pechat-a4.pdf?v=5.35" target="_blank" rel="noopener">№55 · PDF А4</a></span></div>
@@ -1732,8 +1758,9 @@ footer{color:var(--muted); font-size:12.5px; text-align:center; padding-top:6px;
   Документы и черновики — в репозитории <span class="mono">NiceGenn/Team-28</span>.
 
   <details class="changelog">
-    <summary>Версия 5.35 от 05.11.2026 — что менялось</summary>
+    <summary>Версия 5.36 от 05.11.2026 — что менялось</summary>
     <ul>
+      <li><b>5.36 · 05.11.2026.</b> Раздел защиты разделён на четыре цветовые группы: основная презентация и подготовка — фиолетовые, раздаточные буклеты — зелёные, дополнительные схемы — синие, архив — серый. Заголовки пронумерованы; цвет кнопок соответствует группе.</li>
       <li><b>5.35 · 05.11.2026.</b> Заявка №68 стала основой актуальной презентации и обеих речей. После основных документов размещены раздатки: панель управления, путь №68, затем четыре схемы А3. Текущий ZIP содержит десять PDF. Прежние версии и заявка №55 перенесены в свёрнутый архив; №55 отложена до решения руководителя.</li>
       <li><b>5.34 · 05.11.2026.</b> Подготовлены отдельные речи и буклет №68. Руководитель уточнил даты 27→28сентября:25ч8мин. Согласована отдельная презентация с тем же сроком; прежние версии сохранены в архиве. Новый ZIP содержит4PDF. Существующие речи/основная презентация №66 и комплект печати не перезаписывались.</li>
       <li><b>5.33 · 05.11.2026.</b> По запросу руководителя отдельно восстановлена прежняя презентация с заявкой №68: PDF/PPTX,22слайда, точные копии сохранённой версии до замены на №66. Добавлены отдельные ссылки. Основная презентация, речь, раздаткиА4 и текущий архив сохранены.</li>
