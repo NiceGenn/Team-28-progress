@@ -23,14 +23,14 @@ h3{font-size:16px}p{margin:0}.container{max-width:1160px;margin:auto;padding:0 2
 .brand::before{content:'';display:inline-block;width:29px;height:5px;margin:0 10px 4px 0;background:linear-gradient(90deg,var(--gold) 0 37%,#fff 37% 69%,#cc3e42 69%);transform:skewY(-12deg);border-radius:8px}
 .back{color:#fff;text-decoration:none;font-size:12px;font-weight:700;opacity:.88}.back:hover{opacity:1;color:var(--gold)}
 .hero{background:var(--navy-deep);color:#fff;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;inset:0;background:url('служение-волны.svg') center 55%/cover no-repeat;opacity:.62;pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0 0 50px 37%;background:url('служение-волны.svg') center/cover no-repeat;opacity:.47;pointer-events:none}
 .hero .container{position:relative;z-index:1}
 .hero-panel{padding:52px 0 32px;max-width:970px;min-height:350px}
 .eyebrow{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:17px}
 .hero h1{color:#fff;max-width:21ch;text-transform:uppercase}
 .hero p{max-width:76ch;margin-top:20px;font-weight:500;color:#edf1fa;font-size:14px}
 .hero .project-heading{color:var(--gold);font-size:clamp(17px,2vw,22px);line-height:1.35;font-weight:800;max-width:37ch;margin-top:13px}
-.hero .status{display:inline-flex;background:var(--gold);color:var(--navy-deep);padding:7px 12px;border-radius:3px;font-size:11px;font-weight:800;letter-spacing:.02em;margin-top:21px}
+.hero .status{display:inline-block;max-width:100%;background:var(--gold);color:var(--navy-deep);padding:7px 12px;border-radius:3px;font-size:11px;font-weight:800;letter-spacing:.02em;margin-top:21px}
 .facts{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
 .fact{display:block;min-width:155px;padding:9px 12px;background:#ffffff16;border:1px solid #ffffff3d;border-radius:4px;color:#d9e4f4;font-size:11px;font-weight:600;backdrop-filter:blur(4px)}
 .fact strong{display:block;color:#fff;font-size:14px;font-weight:800;margin-top:2px}
