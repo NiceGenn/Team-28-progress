@@ -57,7 +57,7 @@ h3{font-size:16px}p{margin:0}.container{max-width:1160px;margin:auto;padding:0 2
 .field-card{padding:22px 24px;border:1px solid var(--line);border-left:4px solid var(--gold);background:#fafbfd}
 .field-card .num{color:var(--navy-mid);font-size:10px;font-weight:800;letter-spacing:.08em;margin-bottom:8px}
 .field-card h3{color:var(--navy);font-size:19px;margin-bottom:12px}
-.field-card p{color:var(--ink-2);font-size:14px;line-height:1.7}
+.field-card>p{display:block;color:var(--ink-2);font-size:14px;line-height:1.7}
 .field-card .field-note{padding:10px 13px;background:var(--gold-pale);color:var(--navy);font-size:12px;margin-top:14px}
 .flow{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .flow li{background:var(--navy);color:#fff;padding:17px 16px;min-height:116px;border-radius:5px;font-size:12px;font-weight:700}
